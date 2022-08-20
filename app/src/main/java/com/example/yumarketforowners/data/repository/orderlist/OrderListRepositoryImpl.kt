@@ -1,11 +1,12 @@
 package com.example.yumarketforowners.data.repository.orderlist
 
-import com.example.yumarketforowners.adapter.viewholder.CellType
-import com.example.yumarketforowners.data.model.itemmanage.ItemModel
-import com.example.yumarketforowners.data.model.orderlist.DeliveryType
-import com.example.yumarketforowners.data.model.orderlist.OrderModel
-import com.example.yumarketforowners.screen.orderlist.OrderListContract.State
-import com.example.yumarketforowners.screen.orderlist.OrderState
+import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.domain.model.itemmanage.ItemModel
+import com.example.yumarketforowners.domain.model.orderlist.DeliveryType
+import com.example.yumarketforowners.domain.model.orderlist.OrderModel
+import com.example.yumarketforowners.domain.repository.OrderListRepository
+import com.example.yumarketforowners.presentation.screen.orderlist.OrderListContract.State
+import com.example.yumarketforowners.presentation.screen.orderlist.OrderState
 import javax.inject.Inject
 
 

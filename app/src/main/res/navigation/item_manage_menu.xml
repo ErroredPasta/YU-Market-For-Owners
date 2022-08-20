@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/itemManageFragment"
-        android:name="com.example.yumarketforowners.screen.itemmanage.ItemManageFragment"
+        android:name="com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageFragment"
         android:label="ItemManageFragment" />
 
 </navigation>

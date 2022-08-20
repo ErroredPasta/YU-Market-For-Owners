@@ -1,12 +1,13 @@
 package com.example.yumarketforowners.data.repository.reviewmanage
 
-import com.example.yumarketforowners.adapter.viewholder.CellType
-import com.example.yumarketforowners.data.model.itemmanage.ItemModel
-import com.example.yumarketforowners.data.model.orderlist.DeliveryType
-import com.example.yumarketforowners.data.model.orderlist.OrderModel
-import com.example.yumarketforowners.data.model.reviewmanage.ReviewModel
-import com.example.yumarketforowners.screen.orderlist.OrderState
-import com.example.yumarketforowners.screen.reviewmanage.ReviewManageContract.State
+import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.domain.model.itemmanage.ItemModel
+import com.example.yumarketforowners.domain.model.orderlist.DeliveryType
+import com.example.yumarketforowners.domain.model.orderlist.OrderModel
+import com.example.yumarketforowners.domain.model.reviewmanage.ReviewModel
+import com.example.yumarketforowners.domain.repository.ReviewOrChatRoomRepository
+import com.example.yumarketforowners.presentation.screen.orderlist.OrderState
+import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageContract.State
 import javax.inject.Inject
 
 class ReviewRepositoryImpl @Inject constructor() : ReviewOrChatRoomRepository<ReviewModel> {

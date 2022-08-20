@@ -1,8 +1,8 @@
 package com.example.yumarketforowners.data.repository.reviewmanage
 
-import com.example.yumarketforowners.data.model.reviewmanage.ChatRoomModel
-import com.example.yumarketforowners.screen.reviewmanage.ReviewManageContract
-import com.example.yumarketforowners.screen.reviewmanage.ReviewManageContract.State
+import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoomModel
+import com.example.yumarketforowners.domain.repository.ReviewOrChatRoomRepository
+import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageContract.State
 import javax.inject.Inject
 
 class ChatRoomRepositoryImpl @Inject constructor() : ReviewOrChatRoomRepository<ChatRoomModel> {

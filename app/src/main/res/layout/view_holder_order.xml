@@ -7,13 +7,13 @@
 
         <variable
             name="orderModel"
-            type="com.example.yumarketforowners.data.model.orderlist.OrderModel" />
+            type="com.example.yumarketforowners.domain.model.orderlist.OrderModel" />
 
         <variable
             name="listener"
-            type="com.example.yumarketforowners.adapter.listener.orderlist.OrderViewHolderListener" />
+            type="com.example.yumarketforowners.presentation.recyclerview.listener.orderlist.OrderViewHolderListener" />
 
-        <import type="com.example.yumarketforowners.screen.orderlist.OrderState" />
+        <import type="com.example.yumarketforowners.presentation.screen.orderlist.OrderState" />
 
     </data>
 

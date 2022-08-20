@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/reviewManageFragment"
-        android:name="com.example.yumarketforowners.screen.reviewmanage.ReviewManageFragment"
+        android:name="com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageFragment"
         android:label="ReviewManageFragment" />
 </navigation>

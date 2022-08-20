@@ -7,11 +7,11 @@
 
         <variable
             name="reviewModel"
-            type="com.example.yumarketforowners.data.model.reviewmanage.ReviewModel" />
+            type="com.example.yumarketforowners.domain.model.reviewmanage.ReviewModel" />
 
         <variable
             name="listener"
-            type="com.example.yumarketforowners.adapter.listener.reviewmanage.ReviewViewHolderListener" />
+            type="com.example.yumarketforowners.presentation.recyclerview.listener.reviewmanage.ReviewViewHolderListener" />
 
     </data>
 

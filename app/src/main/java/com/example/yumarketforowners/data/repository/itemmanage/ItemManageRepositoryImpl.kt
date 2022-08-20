@@ -1,7 +1,8 @@
 package com.example.yumarketforowners.data.repository.itemmanage
 
-import com.example.yumarketforowners.data.model.itemmanage.ItemModel
-import com.example.yumarketforowners.screen.itemmanage.ItemManageContract.State
+import com.example.yumarketforowners.domain.model.itemmanage.ItemModel
+import com.example.yumarketforowners.domain.repository.ItemManageRepository
+import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageContract.State
 import javax.inject.Inject
 
 class ItemManageRepositoryImpl @Inject constructor() : ItemManageRepository {

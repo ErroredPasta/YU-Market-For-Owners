@@ -7,11 +7,11 @@
 
         <variable
             name="chatRoomModel"
-            type="com.example.yumarketforowners.data.model.reviewmanage.ChatRoomModel" />
+            type="com.example.yumarketforowners.domain.model.reviewmanage.ChatRoomModel" />
 
         <variable
             name="listener"
-            type="com.example.yumarketforowners.adapter.listener.reviewmanage.ChatRoomViewHolderListener" />
+            type="com.example.yumarketforowners.presentation.recyclerview.listener.reviewmanage.ChatRoomViewHolderListener" />
 
     </data>
 

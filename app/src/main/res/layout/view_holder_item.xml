@@ -7,11 +7,11 @@
 
         <variable
             name="itemModel"
-            type="com.example.yumarketforowners.data.model.itemmanage.ItemModel" />
+            type="com.example.yumarketforowners.domain.model.itemmanage.ItemModel" />
 
         <variable
             name="listener"
-            type="com.example.yumarketforowners.adapter.listener.itemmanage.ItemManageViewHolderListener" />
+            type="com.example.yumarketforowners.presentation.recyclerview.listener.itemmanage.ItemManageViewHolderListener" />
 
     </data>
 

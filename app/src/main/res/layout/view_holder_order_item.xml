@@ -7,7 +7,7 @@
 
         <variable
             name="itemModel"
-            type="com.example.yumarketforowners.data.model.itemmanage.ItemModel" />
+            type="com.example.yumarketforowners.domain.model.itemmanage.ItemModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
