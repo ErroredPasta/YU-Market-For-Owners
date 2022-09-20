@@ -1,8 +1,8 @@
 package com.example.yumarketforowners.di.fragment
 
 import androidx.fragment.app.Fragment
-import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoomModel
-import com.example.yumarketforowners.domain.model.reviewmanage.ReviewModel
+import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
+import com.example.yumarketforowners.domain.model.reviewmanage.Review
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageContract
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderListContract
 import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageContract
@@ -17,11 +17,11 @@ import dagger.hilt.android.components.FragmentComponent
 object FragmentViewModule {
     @Provides
     fun provideReviewView(fragment: Fragment) =
-        fragment as ReviewManageContract.View<ReviewModel>
+        fragment as ReviewManageContract.View<Review>
 
     @Provides
     fun provideChatRoomView(fragment: Fragment) =
-        fragment as ReviewManageContract.View<ChatRoomModel>
+        fragment as ReviewManageContract.View<ChatRoom>
 
     @Provides
     fun provideOrderListView(fragment: Fragment) =

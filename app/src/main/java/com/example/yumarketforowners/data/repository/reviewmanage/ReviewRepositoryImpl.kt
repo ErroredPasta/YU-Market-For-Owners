@@ -1,26 +1,25 @@
 package com.example.yumarketforowners.data.repository.reviewmanage
 
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
-import com.example.yumarketforowners.domain.model.itemmanage.ItemModel
+import com.example.yumarketforowners.domain.model.itemmanage.Item
 import com.example.yumarketforowners.domain.model.orderlist.DeliveryType
-import com.example.yumarketforowners.domain.model.orderlist.OrderModel
-import com.example.yumarketforowners.domain.model.reviewmanage.ReviewModel
+import com.example.yumarketforowners.domain.model.orderlist.Order
+import com.example.yumarketforowners.domain.model.reviewmanage.Review
 import com.example.yumarketforowners.domain.repository.ReviewOrChatRoomRepository
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderState
-import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageContract.State
 import javax.inject.Inject
 
-class ReviewRepositoryImpl @Inject constructor() : ReviewOrChatRoomRepository<ReviewModel> {
+class ReviewRepositoryImpl @Inject constructor() : ReviewOrChatRoomRepository<Review> {
     private val testList get() = (0..9).map {
-        ReviewModel(
+        Review(
             id = it.toLong(),
             writer = "writer $it",
             profileImageUrl = "https://picsum.photos/200",
             content = "content $it",
-            order = OrderModel(
+            order = Order(
                 id = it.toLong(),
                 orderItems = (0..1).map { itemIndex ->
-                    ItemModel(
+                    Item(
                         id = itemIndex.toLong(),
                         name = "name $itemIndex",
                         count = itemIndex,
@@ -42,5 +41,5 @@ class ReviewRepositoryImpl @Inject constructor() : ReviewOrChatRoomRepository<Re
         )
     }
 
-    override fun getAllByMarketId(marketId: Long): List<ReviewModel> = testList
+    override fun getAllByMarketId(marketId: Long): List<Review> = testList
 }

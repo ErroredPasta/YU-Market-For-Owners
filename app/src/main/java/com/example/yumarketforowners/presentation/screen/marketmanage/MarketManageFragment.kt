@@ -3,7 +3,7 @@ package com.example.yumarketforowners.presentation.screen.marketmanage
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.yumarketforowners.domain.model.marketmanage.UserModel
+import com.example.yumarketforowners.domain.model.marketmanage.User
 import com.example.yumarketforowners.databinding.FragmentMarketManageBinding
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 
@@ -18,14 +18,14 @@ class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), Market
 
     override fun initState() {
         binding.listener = this
-        binding.userModel = UserModel(
+        binding.userModel = User(
             name = "user",
             storeName = "store",
             imageUrl = "https://picsum.photos/200"
         )
     }
 
-    override fun onEditProfileClicked(user: UserModel) {
+    override fun onEditProfileClicked(user: User) {
         // TODO: 2022.06.10 start profile edit activity
         Toast.makeText(context, "$user edit clicked", Toast.LENGTH_SHORT).show()
     }

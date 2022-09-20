@@ -1,13 +1,12 @@
 package com.example.yumarketforowners.data.repository.reviewmanage
 
-import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoomModel
+import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
 import com.example.yumarketforowners.domain.repository.ReviewOrChatRoomRepository
-import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageContract.State
 import javax.inject.Inject
 
-class ChatRoomRepositoryImpl @Inject constructor() : ReviewOrChatRoomRepository<ChatRoomModel> {
+class ChatRoomRepositoryImpl @Inject constructor() : ReviewOrChatRoomRepository<ChatRoom> {
     private val testList get() = (0..9).map {
-        ChatRoomModel(
+        ChatRoom(
             id = it.toLong(),
             opponentName = "name $it",
             opponentImageUrl = "https://picsum.photos/200",
@@ -17,5 +16,5 @@ class ChatRoomRepositoryImpl @Inject constructor() : ReviewOrChatRoomRepository<
         )
     }
 
-    override fun getAllByMarketId(marketId: Long): List<ChatRoomModel> = testList
+    override fun getAllByMarketId(marketId: Long): List<ChatRoom> = testList
 }

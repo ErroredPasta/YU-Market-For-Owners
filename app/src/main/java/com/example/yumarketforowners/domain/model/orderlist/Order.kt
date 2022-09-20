@@ -2,13 +2,13 @@ package com.example.yumarketforowners.domain.model.orderlist
 
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
 import com.example.yumarketforowners.domain.model.BaseModel
-import com.example.yumarketforowners.domain.model.itemmanage.ItemModel
+import com.example.yumarketforowners.domain.model.itemmanage.Item
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderState
 
-data class OrderModel(
+data class Order(
     override val id: Long,
     val orderId: String,
-    val orderItems: List<ItemModel>,
+    val orderItems: List<Item>,
     val deliveryType: DeliveryType,
     val orderTime: Long,
     val telePhoneNumber: String,

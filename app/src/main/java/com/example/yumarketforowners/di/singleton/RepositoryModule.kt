@@ -4,8 +4,8 @@ import com.example.yumarketforowners.data.repository.itemmanage.ItemManageReposi
 import com.example.yumarketforowners.data.repository.orderlist.OrderListRepositoryImpl
 import com.example.yumarketforowners.data.repository.reviewmanage.ChatRoomRepositoryImpl
 import com.example.yumarketforowners.data.repository.reviewmanage.ReviewRepositoryImpl
-import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoomModel
-import com.example.yumarketforowners.domain.model.reviewmanage.ReviewModel
+import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
+import com.example.yumarketforowners.domain.model.reviewmanage.Review
 import com.example.yumarketforowners.domain.repository.ItemManageRepository
 import com.example.yumarketforowners.domain.repository.OrderListRepository
 import com.example.yumarketforowners.domain.repository.ReviewOrChatRoomRepository
@@ -19,11 +19,11 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
     @Binds
     abstract fun bindReviewRepository(repository: ReviewRepositoryImpl):
-            ReviewOrChatRoomRepository<ReviewModel>
+            ReviewOrChatRoomRepository<Review>
 
     @Binds
     abstract fun bindChatRoomRepository(repository: ChatRoomRepositoryImpl):
-            ReviewOrChatRoomRepository<ChatRoomModel>
+            ReviewOrChatRoomRepository<ChatRoom>
 
     @Binds
     abstract fun bindItemManageRepository(repository: ItemManageRepositoryImpl): ItemManageRepository

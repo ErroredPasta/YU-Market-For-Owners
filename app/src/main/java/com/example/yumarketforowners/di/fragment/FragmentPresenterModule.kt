@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.di.fragment
 
-import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoomModel
-import com.example.yumarketforowners.domain.model.reviewmanage.ReviewModel
+import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
+import com.example.yumarketforowners.domain.model.reviewmanage.Review
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageContract
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManagePresenter
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderListContract
@@ -23,10 +23,10 @@ abstract class FragmentPresenterModule {
     abstract fun bindOrderListPresenter(presenter: OrderListPresenter): OrderListContract.Presenter
 
     @Binds
-    abstract fun bindReviewPresenter(presenter: ReviewManagePresenter<ReviewModel>):
-            ReviewManageContract.Presenter<ReviewModel>
+    abstract fun bindReviewPresenter(presenter: ReviewManagePresenter<Review>):
+            ReviewManageContract.Presenter<Review>
 
     @Binds
-    abstract fun bindChatRoomPresenter(presenter: ReviewManagePresenter<ChatRoomModel>):
-            ReviewManageContract.Presenter<ChatRoomModel>
+    abstract fun bindChatRoomPresenter(presenter: ReviewManagePresenter<ChatRoom>):
+            ReviewManageContract.Presenter<ChatRoom>
 }

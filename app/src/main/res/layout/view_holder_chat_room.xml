@@ -7,7 +7,7 @@
 
         <variable
             name="chatRoomModel"
-            type="com.example.yumarketforowners.domain.model.reviewmanage.ChatRoomModel" />
+            type="com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom" />
 
         <variable
             name="listener"

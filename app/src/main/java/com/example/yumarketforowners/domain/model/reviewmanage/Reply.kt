@@ -1,6 +1,6 @@
 package com.example.yumarketforowners.domain.model.reviewmanage
 
-data class ReplyModel(
+data class Reply(
     val replyWriter: String,
     val profileImageUrl: String,
     val content: String,

@@ -1,13 +1,13 @@
 package com.example.yumarketforowners.data.repository.itemmanage
 
-import com.example.yumarketforowners.domain.model.itemmanage.ItemModel
+import com.example.yumarketforowners.domain.model.itemmanage.Item
 import com.example.yumarketforowners.domain.repository.ItemManageRepository
 import javax.inject.Inject
 
 class ItemManageRepositoryImpl @Inject constructor() : ItemManageRepository {
     private val testList
         get() = (0..9).map {
-            ItemModel(
+            Item(
                 id = it.toLong(),
                 count = it,
                 name = "name $it",
@@ -18,5 +18,5 @@ class ItemManageRepositoryImpl @Inject constructor() : ItemManageRepository {
             )
         }
 
-    override fun getItemsByMarketId(marketId: Long): List<ItemModel> = testList
+    override fun getItemsByMarketId(marketId: Long): List<Item> = testList
 }

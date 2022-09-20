@@ -3,18 +3,18 @@ package com.example.yumarketforowners.presentation.recyclerview.viewholder.revie
 import com.example.yumarketforowners.presentation.recyclerview.listener.AdapterListener
 import com.example.yumarketforowners.presentation.recyclerview.listener.reviewmanage.ChatRoomViewHolderListener
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.BaseViewHolder
-import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoomModel
+import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
 import com.example.yumarketforowners.databinding.ViewHolderChatRoomBinding
 import com.example.yumarketforowners.presentation.extension.clear
 
 class ChatRoomViewHolder(
     binding: ViewHolderChatRoomBinding
-) : BaseViewHolder<ViewHolderChatRoomBinding, ChatRoomModel>(binding) {
+) : BaseViewHolder<ViewHolderChatRoomBinding, ChatRoom>(binding) {
     override fun clear() {
         binding.chatRoomOpponentImage.clear()
     }
 
-    override fun bindData(model: ChatRoomModel) {
+    override fun bindData(model: ChatRoom) {
         super.bindData(model)
         binding.chatRoomModel = model
     }

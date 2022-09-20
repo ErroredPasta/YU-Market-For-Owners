@@ -1,11 +1,10 @@
 package com.example.yumarketforowners.data.repository.orderlist
 
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
-import com.example.yumarketforowners.domain.model.itemmanage.ItemModel
+import com.example.yumarketforowners.domain.model.itemmanage.Item
 import com.example.yumarketforowners.domain.model.orderlist.DeliveryType
-import com.example.yumarketforowners.domain.model.orderlist.OrderModel
+import com.example.yumarketforowners.domain.model.orderlist.Order
 import com.example.yumarketforowners.domain.repository.OrderListRepository
-import com.example.yumarketforowners.presentation.screen.orderlist.OrderListContract.State
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderState
 import javax.inject.Inject
 
@@ -13,10 +12,10 @@ import javax.inject.Inject
 class OrderListRepositoryImpl @Inject constructor() : OrderListRepository {
     private val testList
         get() = (0..9).map {
-            OrderModel(
+            Order(
                 id = it.toLong(),
                 orderItems = (0..1).map { itemIndex ->
-                    ItemModel(
+                    Item(
                         id = itemIndex.toLong(),
                         name = "name $itemIndex",
                         count = itemIndex,
@@ -36,5 +35,5 @@ class OrderListRepositoryImpl @Inject constructor() : OrderListRepository {
             )
         }
 
-    override fun getOrderListByMarketId(marketId: Long): List<OrderModel> = testList
+    override fun getOrderListByMarketId(marketId: Long): List<Order> = testList
 }

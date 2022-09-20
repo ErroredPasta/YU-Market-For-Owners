@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.recyclerview.listener.itemmanage.ItemManageViewHolderListener
-import com.example.yumarketforowners.domain.model.itemmanage.ItemModel
+import com.example.yumarketforowners.domain.model.itemmanage.Item
 import com.example.yumarketforowners.databinding.InnerFragmentItemListBinding
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
@@ -30,10 +30,10 @@ class ItemListInnerFragment :
     lateinit var presenter: ItemManageContract.Presenter
 
     private val adapter by lazy {
-        ModelRecyclerAdapter<ItemModel>(
+        ModelRecyclerAdapter<Item>(
             listOf(),
             object : ItemManageViewHolderListener {
-                override fun onEditItemButtonClick(item: ItemModel) {
+                override fun onEditItemButtonClick(item: Item) {
                     // TODO: 2022.06.08 implement start edit item activity
                     Toast.makeText(context, "$item edit button clicked", Toast.LENGTH_SHORT).show()
                 }
@@ -45,7 +45,7 @@ class ItemListInnerFragment :
         requireArguments()[AVAILABILITY_KEY] as Boolean
     }
 
-    private var items = listOf<ItemModel>()
+    private var items = listOf<Item>()
         set(value) {
             field = value.filter { it.available == available }
             adapter.submitList(field)
@@ -73,7 +73,7 @@ class ItemListInnerFragment :
         // TODO: 2022.07.10 implement loading
     }
 
-    override fun onRequestDataSuccess(items: List<ItemModel>) {
+    override fun onRequestDataSuccess(items: List<Item>) {
         this.items = items
     }
 

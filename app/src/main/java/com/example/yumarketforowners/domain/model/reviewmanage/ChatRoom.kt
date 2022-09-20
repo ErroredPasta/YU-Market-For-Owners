@@ -3,7 +3,7 @@ package com.example.yumarketforowners.domain.model.reviewmanage
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
 import com.example.yumarketforowners.domain.model.BaseModel
 
-data class ChatRoomModel(
+data class ChatRoom(
     override val id: Long,
     val opponentName: String,
     val opponentImageUrl: String,

@@ -1,12 +1,12 @@
 package com.example.yumarketforowners.presentation.screen.orderlist
 
 import androidx.annotation.StringRes
-import com.example.yumarketforowners.domain.model.orderlist.OrderModel
+import com.example.yumarketforowners.domain.model.orderlist.Order
 
 interface OrderListContract {
     interface View {
         fun loading(show: Boolean)
-        fun onRequestDataSuccess(data: List<OrderModel>)
+        fun onRequestDataSuccess(data: List<Order>)
         fun onRequestDataError(@StringRes errorMessage: Int)
     }
 
@@ -16,7 +16,7 @@ interface OrderListContract {
 
     sealed class State {
         data class Success(
-            val data: List<OrderModel>
+            val data: List<Order>
         ) : State()
 
         data class Error(

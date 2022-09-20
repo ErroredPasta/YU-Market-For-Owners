@@ -7,7 +7,7 @@
 
         <variable
             name="orderModel"
-            type="com.example.yumarketforowners.domain.model.orderlist.OrderModel" />
+            type="com.example.yumarketforowners.domain.model.orderlist.Order" />
 
         <variable
             name="listener"
