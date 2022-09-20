@@ -11,7 +11,10 @@ class OrderListPresenter @Inject constructor(
 
     override fun requestData(marketId: Long) {
         view.loading(show = true)
-        val result = repository.getOrderListByMarketId(marketId)
+        /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
+        val result: State = State.Success(
+            data = repository.getOrderListByMarketId(marketId)
+        )
         view.loading(show = false)
 
         if (result is State.Success) {

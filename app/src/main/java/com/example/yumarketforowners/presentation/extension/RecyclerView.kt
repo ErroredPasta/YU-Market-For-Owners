@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.extension
+package com.example.yumarketforowners.presentation.extension
 
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView

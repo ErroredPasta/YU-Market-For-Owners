@@ -36,6 +36,5 @@ class OrderListRepositoryImpl @Inject constructor() : OrderListRepository {
             )
         }
 
-    override fun getOrderListByMarketId(marketId: Long): State =
-        State.Success(data = testList)
+    override fun getOrderListByMarketId(marketId: Long): List<OrderModel> = testList
 }

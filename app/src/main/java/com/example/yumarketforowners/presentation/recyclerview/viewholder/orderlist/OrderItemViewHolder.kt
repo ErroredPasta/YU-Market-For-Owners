@@ -3,7 +3,7 @@ package com.example.yumarketforowners.presentation.recyclerview.viewholder.order
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.BaseViewHolder
 import com.example.yumarketforowners.domain.model.itemmanage.ItemModel
 import com.example.yumarketforowners.databinding.ViewHolderOrderItemBinding
-import com.example.yumarketforowners.extension.clear
+import com.example.yumarketforowners.presentation.extension.clear
 
 class OrderItemViewHolder(
     binding: ViewHolderOrderItemBinding

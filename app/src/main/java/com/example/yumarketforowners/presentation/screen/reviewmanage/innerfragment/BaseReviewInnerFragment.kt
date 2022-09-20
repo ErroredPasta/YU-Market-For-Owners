@@ -8,7 +8,7 @@ import androidx.annotation.StringRes
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.domain.model.BaseModel
 import com.example.yumarketforowners.databinding.InnerFragmentReviewOrChatRoomListBinding
-import com.example.yumarketforowners.extension.addItemDivider
+import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageContract
 import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewOrChatRoomType

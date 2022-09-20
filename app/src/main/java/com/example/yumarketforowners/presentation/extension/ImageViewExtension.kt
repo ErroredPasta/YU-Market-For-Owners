@@ -1,9 +1,8 @@
-package com.example.yumarketforowners.extension
+package com.example.yumarketforowners.presentation.extension
 
 import android.graphics.Bitmap
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.MultiTransformation
 import com.bumptech.glide.load.Transformation
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterInside

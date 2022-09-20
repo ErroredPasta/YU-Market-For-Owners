@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.domain.repository
 
-import com.example.yumarketforowners.presentation.screen.orderlist.OrderListContract
+import com.example.yumarketforowners.domain.model.orderlist.OrderModel
 
 interface OrderListRepository {
-    fun getOrderListByMarketId(marketId: Long): OrderListContract.State
+    fun getOrderListByMarketId(marketId: Long): List<OrderModel>
 }

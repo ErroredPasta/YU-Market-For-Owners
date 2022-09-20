@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.domain.repository
 
-import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageContract
+import com.example.yumarketforowners.domain.model.itemmanage.ItemModel
 
 interface ItemManageRepository {
-    fun getItemsByMarketId(marketId: Long): ItemManageContract.State
+    fun getItemsByMarketId(marketId: Long): List<ItemModel>
 }

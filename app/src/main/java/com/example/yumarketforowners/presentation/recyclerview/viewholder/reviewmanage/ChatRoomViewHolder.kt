@@ -5,7 +5,7 @@ import com.example.yumarketforowners.presentation.recyclerview.listener.reviewma
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.BaseViewHolder
 import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoomModel
 import com.example.yumarketforowners.databinding.ViewHolderChatRoomBinding
-import com.example.yumarketforowners.extension.clear
+import com.example.yumarketforowners.presentation.extension.clear
 
 class ChatRoomViewHolder(
     binding: ViewHolderChatRoomBinding

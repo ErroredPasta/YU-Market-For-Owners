@@ -42,5 +42,5 @@ class ReviewRepositoryImpl @Inject constructor() : ReviewOrChatRoomRepository<Re
         )
     }
 
-    override fun getAllByMarketId(marketId: Long): State = State.Success(data = testList)
+    override fun getAllByMarketId(marketId: Long): List<ReviewModel> = testList
 }

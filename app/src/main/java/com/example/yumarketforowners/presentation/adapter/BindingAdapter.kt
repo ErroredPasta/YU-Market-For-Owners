@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.yumarketforowners.extension.load
+import com.example.yumarketforowners.presentation.extension.load
 
 @BindingAdapter(value = ["imageUrl", "cornerRadius"], requireAll = false)
 fun setImageByUrl(imageView: ImageView, imageUrl: String, corner: Float) =

@@ -13,7 +13,10 @@ class ReviewManagePresenter<M : BaseModel> @Inject constructor(
     override fun requestData(marketId: Long) {
         view.loading(show = true)
         // TODO: 2022.06.04 get all data by market id
-        val result = repository.getAllByMarketId(marketId)
+        /* TODO: 2022-09-21 수 01:35, error 처리 구현 */
+        val result: ReviewManageContract.State = ReviewManageContract.State.Success(
+            data = repository.getAllByMarketId(marketId)
+        )
         view.loading(show = false)
 
         if (result is ReviewManageContract.State.Success<*>) {

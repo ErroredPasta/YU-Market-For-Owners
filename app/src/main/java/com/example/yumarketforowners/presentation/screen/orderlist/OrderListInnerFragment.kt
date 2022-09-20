@@ -10,7 +10,7 @@ import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.recyclerview.listener.orderlist.OrderViewHolderListener
 import com.example.yumarketforowners.domain.model.orderlist.OrderModel
 import com.example.yumarketforowners.databinding.InnerFragmentOrderListBinding
-import com.example.yumarketforowners.extension.addItemDivider
+import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
