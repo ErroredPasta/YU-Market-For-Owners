@@ -17,8 +17,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class OrderListInnerFragment :
-    BaseFragment<InnerFragmentOrderListBinding>(),
-    OrderListContract.View {
+    BaseFragment<InnerFragmentOrderListBinding>() {
     companion object {
         private const val ORDER_STATE_KEY = "ORDER_STATE_KEY"
 
@@ -37,11 +36,11 @@ class OrderListInnerFragment :
     }
 
     @Inject
-    lateinit var presenter: OrderListContract.Presenter
+    lateinit var presenter: OrderListPresenter
 
     private val adapter by lazy {
         ModelRecyclerAdapter<Order>(
-            listOf(), object : OrderViewHolderListener {
+            object : OrderViewHolderListener {
                 override fun onTelePhoneNumberClicked(telePhoneNumber: String) {
                     // TODO: 2022.06.09 start telephone screen with number
                     Toast.makeText(context, "$telePhoneNumber clicked", Toast.LENGTH_SHORT).show()
@@ -87,15 +86,15 @@ class OrderListInnerFragment :
         presenter.requestData(0)
     }
 
-    override fun loading(show: Boolean) {
+    fun loading(show: Boolean) {
         // TODO: 2022.07.10 implement loading
     }
 
-    override fun onRequestDataSuccess(data: List<Order>) {
+    fun onRequestDataSuccess(data: List<Order>) {
         this.orders = data
     }
 
-    override fun onRequestDataError(@StringRes errorMessage: Int) {
+    fun onRequestDataError(@StringRes errorMessage: Int) {
         Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
     }
 }

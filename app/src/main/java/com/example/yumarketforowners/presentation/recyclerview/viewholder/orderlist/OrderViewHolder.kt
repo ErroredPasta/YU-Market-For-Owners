@@ -15,9 +15,9 @@ class OrderViewHolder(
     override fun bindData(model: Order) {
         super.bindData(model)
         binding.orderModel = model
-        binding.orderItemRecyclerView.adapter = ModelRecyclerAdapter<Item>(
-            model.orderItems
-        )
+        binding.orderItemRecyclerView.adapter = ModelRecyclerAdapter<Item>().also {
+            it.submitList(model.orderItems)
+        }
     }
 
     override fun bindListener(listener: AdapterListener) {

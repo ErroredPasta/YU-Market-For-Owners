@@ -1,14 +1,13 @@
 package com.example.yumarketforowners.di.singleton
 
-import com.example.yumarketforowners.data.repository.itemmanage.ItemManageRepositoryImpl
-import com.example.yumarketforowners.data.repository.orderlist.OrderListRepositoryImpl
+import com.example.yumarketforowners.data.repository.itemmanage.ItemRepositoryImpl
+import com.example.yumarketforowners.data.repository.orderlist.OrderRepositoryImpl
 import com.example.yumarketforowners.data.repository.reviewmanage.ChatRoomRepositoryImpl
 import com.example.yumarketforowners.data.repository.reviewmanage.ReviewRepositoryImpl
-import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
-import com.example.yumarketforowners.domain.model.reviewmanage.Review
-import com.example.yumarketforowners.domain.repository.ItemManageRepository
-import com.example.yumarketforowners.domain.repository.OrderListRepository
-import com.example.yumarketforowners.domain.repository.ReviewOrChatRoomRepository
+import com.example.yumarketforowners.domain.repository.ChatRoomRepository
+import com.example.yumarketforowners.domain.repository.ItemRepository
+import com.example.yumarketforowners.domain.repository.OrderRepository
+import com.example.yumarketforowners.domain.repository.ReviewRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -19,15 +18,15 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
     @Binds
     abstract fun bindReviewRepository(repository: ReviewRepositoryImpl):
-            ReviewOrChatRoomRepository<Review>
+            ReviewRepository
 
     @Binds
     abstract fun bindChatRoomRepository(repository: ChatRoomRepositoryImpl):
-            ReviewOrChatRoomRepository<ChatRoom>
+            ChatRoomRepository
 
     @Binds
-    abstract fun bindItemManageRepository(repository: ItemManageRepositoryImpl): ItemManageRepository
+    abstract fun bindItemManageRepository(repository: ItemRepositoryImpl): ItemRepository
 
     @Binds
-    abstract fun bindOrderListRepository(repository: OrderListRepositoryImpl): OrderListRepository
+    abstract fun bindOrderListRepository(repository: OrderRepositoryImpl): OrderRepository
 }

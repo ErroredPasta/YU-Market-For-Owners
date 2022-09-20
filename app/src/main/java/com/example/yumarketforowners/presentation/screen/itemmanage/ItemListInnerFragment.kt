@@ -5,19 +5,18 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
-import com.example.yumarketforowners.presentation.recyclerview.listener.itemmanage.ItemManageViewHolderListener
-import com.example.yumarketforowners.domain.model.itemmanage.Item
 import com.example.yumarketforowners.databinding.InnerFragmentItemListBinding
+import com.example.yumarketforowners.domain.model.itemmanage.Item
+import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
+import com.example.yumarketforowners.presentation.recyclerview.listener.itemmanage.ItemManageViewHolderListener
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class ItemListInnerFragment :
-    BaseFragment<InnerFragmentItemListBinding>(),
-    ItemManageContract.View {
+    BaseFragment<InnerFragmentItemListBinding>() {
     companion object {
         private const val AVAILABILITY_KEY = "AVAILABILITY_KEY"
 
@@ -27,11 +26,10 @@ class ItemListInnerFragment :
     }
 
     @Inject
-    lateinit var presenter: ItemManageContract.Presenter
+    lateinit var presenter: ItemManagePresenter
 
     private val adapter by lazy {
         ModelRecyclerAdapter<Item>(
-            listOf(),
             object : ItemManageViewHolderListener {
                 override fun onEditItemButtonClick(item: Item) {
                     // TODO: 2022.06.08 implement start edit item activity
@@ -69,15 +67,15 @@ class ItemListInnerFragment :
         container: ViewGroup?
     ) = InnerFragmentItemListBinding.inflate(inflater, container, false)
 
-    override fun loading(show: Boolean) {
+    fun loading(show: Boolean) {
         // TODO: 2022.07.10 implement loading
     }
 
-    override fun onRequestDataSuccess(items: List<Item>) {
+    fun onRequestDataSuccess(items: List<Item>) {
         this.items = items
     }
 
-    override fun onRequestDataError(errorMessage: Int) {
+    fun onRequestDataError(errorMessage: Int) {
         Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
     }
 }

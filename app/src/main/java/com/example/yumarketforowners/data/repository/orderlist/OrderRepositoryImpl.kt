@@ -1,15 +1,21 @@
 package com.example.yumarketforowners.data.repository.orderlist
 
-import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.di.singleton.Dispatcher
+import com.example.yumarketforowners.di.singleton.DispatcherType
 import com.example.yumarketforowners.domain.model.itemmanage.Item
 import com.example.yumarketforowners.domain.model.orderlist.DeliveryType
 import com.example.yumarketforowners.domain.model.orderlist.Order
-import com.example.yumarketforowners.domain.repository.OrderListRepository
+import com.example.yumarketforowners.domain.repository.OrderRepository
+import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderState
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
-class OrderListRepositoryImpl @Inject constructor() : OrderListRepository {
+class OrderRepositoryImpl @Inject constructor(
+    @Dispatcher(DispatcherType.IO) private val dispatcher: CoroutineDispatcher
+) : OrderRepository {
     private val testList
         get() = (0..9).map {
             Order(
@@ -35,5 +41,8 @@ class OrderListRepositoryImpl @Inject constructor() : OrderListRepository {
             )
         }
 
-    override fun getOrderListByMarketId(marketId: Long): List<Order> = testList
+    override suspend fun getOrderListByMarketId(marketId: Long): List<Order> =
+        withContext(dispatcher) {
+            testList
+        }
 }

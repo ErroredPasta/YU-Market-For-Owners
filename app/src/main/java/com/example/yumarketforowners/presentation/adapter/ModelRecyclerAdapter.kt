@@ -5,20 +5,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.example.yumarketforowners.domain.model.BaseModel
 import com.example.yumarketforowners.presentation.recyclerview.listener.AdapterListener
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.BaseViewHolder
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
-import com.example.yumarketforowners.domain.model.BaseModel
 import com.example.yumarketforowners.presentation.util.ViewHolderMapper
 
 class ModelRecyclerAdapter<M : BaseModel>(
-    private var modelList: List<BaseModel>,
     private val adapterListener: AdapterListener? = null
 ) : ListAdapter<BaseModel, BaseViewHolder<*, M>>(ModelDiffCallback) {
 
-    init {
-        submitList(modelList)
-    }
+    private var modelList: List<BaseModel> = emptyList()
 
     override fun getItemViewType(position: Int): Int = modelList[position].cellType.ordinal
 

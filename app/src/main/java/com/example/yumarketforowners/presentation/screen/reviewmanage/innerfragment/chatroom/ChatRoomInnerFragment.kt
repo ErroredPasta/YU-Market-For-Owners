@@ -1,21 +1,20 @@
-package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment
+package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom
 
 import android.widget.Toast
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.recyclerview.listener.reviewmanage.ChatRoomViewHolderListener
 import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
-import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageContract
+import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.BaseReviewInnerFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class ChatRoomInnerFragment : BaseReviewInnerFragment<ChatRoom>() {
     @Inject
-    lateinit var presenter: ReviewManageContract.Presenter<ChatRoom>
+    lateinit var presenter: ChatRoomPresenter
 
     override val adapter: ModelRecyclerAdapter<ChatRoom> by lazy {
         ModelRecyclerAdapter(
-            emptyList(),
             object : ChatRoomViewHolderListener {
                 override fun onClicked(chatRoom: ChatRoom) {
                     // TODO: 2022.07.10 start chat room activity

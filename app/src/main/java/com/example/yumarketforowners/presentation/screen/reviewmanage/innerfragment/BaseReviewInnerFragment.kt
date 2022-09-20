@@ -5,23 +5,22 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.StringRes
-import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
-import com.example.yumarketforowners.domain.model.BaseModel
 import com.example.yumarketforowners.databinding.InnerFragmentReviewOrChatRoomListBinding
+import com.example.yumarketforowners.domain.model.BaseModel
+import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
-import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageContract
 import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewOrChatRoomType
+import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomInnerFragment
+import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewInnerFragment
 
 abstract class BaseReviewInnerFragment<M : BaseModel> :
-    BaseFragment<InnerFragmentReviewOrChatRoomListBinding>(),
-    ReviewManageContract.View<M> {
+    BaseFragment<InnerFragmentReviewOrChatRoomListBinding>() {
 
     companion object {
-        fun newInstance(type: ReviewOrChatRoomType) = if (type == ReviewOrChatRoomType.REVIEW) {
-            ReviewInnerFragment()
-        } else {
-            ChatRoomInnerFragment()
+        fun newInstance(type: ReviewOrChatRoomType) = when (type) {
+            ReviewOrChatRoomType.REVIEW -> ReviewInnerFragment()
+            ReviewOrChatRoomType.CHAT_ROOM -> ChatRoomInnerFragment()
         }
     }
 
@@ -43,15 +42,15 @@ abstract class BaseReviewInnerFragment<M : BaseModel> :
 
     abstract fun requestData()
 
-    override fun loading(show: Boolean) {
+    fun loading(show: Boolean) {
         // TODO: 2022.06.04 handle loading
     }
 
-    override fun onRequestDataSuccess(data: List<M>) {
+    fun onRequestDataSuccess(data: List<M>) {
         adapter.submitList(data)
     }
 
-    override fun onRequestDataError(@StringRes errorMessage: Int) {
+    fun onRequestDataError(@StringRes errorMessage: Int) {
         Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
     }
 }
