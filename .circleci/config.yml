@@ -10,7 +10,7 @@ orbs:
   android: circleci/android@1.0.3
 
 commands:
-  changepermission:
+  change-permission:
     description: "Change gradle's permission"
     steps:
       - run: chmod +x ./gradlew
@@ -31,7 +31,7 @@ jobs:
       # Checkout the code as the first step.
       - checkout
 
-      - changepermission
+      - change-permission
 
       # The next step will run the unit tests
       - android/run-tests:
@@ -42,16 +42,17 @@ jobs:
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: system-images;android-25;google_apis;x86
 
-      # And finally run the release build
-      - run:
-          name: Assemble release build
-          command: |
-            ./gradlew assembleRelease
-
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+  automated-test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
+              
     jobs:
-      - build-and-test
+      - build-and-test:
+        filters:
+          branches:
+            only:
+              - main
+
+
