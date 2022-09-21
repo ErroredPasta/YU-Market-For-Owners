@@ -9,6 +9,12 @@ version: 2.1
 orbs:
   android: circleci/android@1.0.3
 
+commands:
+  changepermission:
+    description: "Change gradle's permission"
+    steps:
+      - run: chmod +x ./gradlew
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -24,6 +30,8 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+
+      - changepermission
 
       # The next step will run the unit tests
       - android/run-tests:
