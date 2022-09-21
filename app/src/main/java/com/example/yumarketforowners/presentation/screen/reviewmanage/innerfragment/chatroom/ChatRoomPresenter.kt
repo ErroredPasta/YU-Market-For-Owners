@@ -2,7 +2,6 @@ package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfrag
 
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
-import com.example.yumarketforowners.domain.repository.ChatRoomRepository
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRooms
 import com.example.yumarketforowners.presentation.screen.base.State
 import kotlinx.coroutines.launch

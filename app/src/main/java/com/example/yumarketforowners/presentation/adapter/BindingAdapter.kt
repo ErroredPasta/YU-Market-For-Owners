@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.presentation.adapter.databinding
+package com.example.yumarketforowners.presentation.adapter
 
 import android.view.View
 import android.widget.ImageView

@@ -2,7 +2,6 @@ package com.example.yumarketforowners.presentation.screen.itemmanage
 
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.yumarketforowners.domain.model.itemmanage.Item
-import com.example.yumarketforowners.domain.repository.ItemRepository
 import com.example.yumarketforowners.domain.usecase.item.GetItems
 import com.example.yumarketforowners.presentation.screen.base.State
 import kotlinx.coroutines.launch

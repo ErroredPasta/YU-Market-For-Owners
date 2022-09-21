@@ -2,7 +2,6 @@ package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfrag
 
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.yumarketforowners.domain.model.reviewmanage.Review
-import com.example.yumarketforowners.domain.repository.ReviewRepository
 import com.example.yumarketforowners.domain.usecase.review.GetReviews
 import com.example.yumarketforowners.presentation.screen.base.State
 import kotlinx.coroutines.launch

@@ -3,7 +3,6 @@ package com.example.yumarketforowners.presentation.screen.orderlist
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.yumarketforowners.domain.model.orderlist.Order
 import com.example.yumarketforowners.domain.model.orderlist.OrderState
-import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.domain.usecase.order.GetOrderList
 import com.example.yumarketforowners.presentation.screen.base.State
 import kotlinx.coroutines.launch
