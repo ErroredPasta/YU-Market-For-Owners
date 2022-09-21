@@ -4,7 +4,6 @@ import com.example.yumarketforowners.di.singleton.Dispatcher
 import com.example.yumarketforowners.di.singleton.DispatcherType
 import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
 import com.example.yumarketforowners.domain.repository.ChatRoomRepository
-import com.example.yumarketforowners.domain.repository.ReviewRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -24,7 +23,7 @@ class ChatRoomRepositoryImpl @Inject constructor(
             )
         }
 
-    override suspend fun getAllReviewsByMarketId(marketId: Long): List<ChatRoom> =
+    override suspend fun getAllChatRoomsByMarketId(marketId: Long): List<ChatRoom> =
         withContext(dispatcher) {
             testList
         }

@@ -10,6 +10,7 @@ import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.recyclerview.listener.orderlist.OrderViewHolderListener
 import com.example.yumarketforowners.domain.model.orderlist.Order
 import com.example.yumarketforowners.databinding.InnerFragmentOrderListBinding
+import com.example.yumarketforowners.domain.model.orderlist.OrderState
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,12 +67,6 @@ class OrderListInnerFragment :
         )
     }
 
-    private var orders: List<Order> = listOf()
-        set(value) {
-            field = value.filter { it.orderState == orderState }
-            adapter.submitList(field)
-        }
-
     override fun initState() {
         binding.orderListRecyclerView.run {
             this.adapter = this@OrderListInnerFragment.adapter
@@ -83,7 +78,7 @@ class OrderListInnerFragment :
 
     private fun requestData() {
         // TODO: 2022.07.10 request data by market id
-        presenter.requestData(0)
+        presenter.requestData(marketId = 0, orderState = orderState)
     }
 
     fun loading(show: Boolean) {
@@ -91,7 +86,7 @@ class OrderListInnerFragment :
     }
 
     fun onRequestDataSuccess(data: List<Order>) {
-        this.orders = data
+        adapter.submitList(data)
     }
 
     fun onRequestDataError(@StringRes errorMessage: Int) {

@@ -3,6 +3,7 @@ package com.example.yumarketforowners.presentation.screen.orderlist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.yumarketforowners.databinding.FragmentOrderListBinding
+import com.example.yumarketforowners.domain.model.orderlist.OrderState
 import com.example.yumarketforowners.presentation.screen.base.BaseViewPagerFragment
 
 class OrderListFragment :
@@ -15,7 +16,7 @@ class OrderListFragment :
         inflater, container, false
     )
 
-    override val tabStrings = OrderState.values().map { it.tabString }
+    override val tabStrings = OrderState.values().map { it.stateString }
 
     override fun initState() {
         initViewPagerAndTabLayout(

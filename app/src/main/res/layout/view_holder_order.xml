@@ -13,7 +13,7 @@
             name="listener"
             type="com.example.yumarketforowners.presentation.recyclerview.listener.orderlist.OrderViewHolderListener" />
 
-        <import type="com.example.yumarketforowners.presentation.screen.orderlist.OrderState" />
+        <import type="com.example.yumarketforowners.domain.model.orderlist.OrderState" />
 
     </data>
 

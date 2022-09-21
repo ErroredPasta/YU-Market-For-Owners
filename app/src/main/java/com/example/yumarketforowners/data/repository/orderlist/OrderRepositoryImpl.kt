@@ -7,7 +7,7 @@ import com.example.yumarketforowners.domain.model.orderlist.DeliveryType
 import com.example.yumarketforowners.domain.model.orderlist.Order
 import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
-import com.example.yumarketforowners.presentation.screen.orderlist.OrderState
+import com.example.yumarketforowners.domain.model.orderlist.OrderState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
