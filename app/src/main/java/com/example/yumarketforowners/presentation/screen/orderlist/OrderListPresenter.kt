@@ -1,10 +1,10 @@
 package com.example.yumarketforowners.presentation.screen.orderlist
 
-import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.yumarketforowners.domain.model.orderlist.Order
 import com.example.yumarketforowners.domain.model.orderlist.OrderState
 import com.example.yumarketforowners.domain.usecase.order.GetOrderList
 import com.example.yumarketforowners.presentation.screen.base.State
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
@@ -12,7 +12,7 @@ import javax.inject.Provider
 class OrderListPresenter @Inject constructor(
     private val view: OrderListInnerFragment,
     private val getOrderList: GetOrderList,
-    private val scopeProvider: Provider<LifecycleCoroutineScope>
+    private val scopeProvider: Provider<CoroutineScope>
 ) {
     private val coroutineScope get() = scopeProvider.get()
 

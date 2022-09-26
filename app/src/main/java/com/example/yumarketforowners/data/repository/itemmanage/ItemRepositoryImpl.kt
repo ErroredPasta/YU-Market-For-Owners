@@ -24,7 +24,7 @@ class ItemRepositoryImpl @Inject constructor(
             )
         }
 
-    override suspend fun getItemsByMarketId(marketId: Long): List<Item> =
+    override suspend fun getItemsByMarketId(marketId: Long): List<Item>? =
         withContext(dispatcher) {
             testList
         }

@@ -26,7 +26,7 @@ class GetItemsTest {
     @Test
     fun `get available items`() = runTest {
         // act
-        val result = sut(marketId = 0L, available = true)
+        val result = sut(marketId = 0L, available = true)!!
 
         // assert
         for (item in result) {
@@ -37,7 +37,7 @@ class GetItemsTest {
     @Test
     fun `get unavailable items`() = runTest {
         // act
-        val result = sut(marketId = 0L, available = false)
+        val result = sut(marketId = 0L, available = false)!!
 
         // assert
         for (item in result) {

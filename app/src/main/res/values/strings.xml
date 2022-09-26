@@ -32,4 +32,5 @@
     <string name="notice_icon_description">공지 사항 아이콘</string>
     <string name="service_center">고객센터</string>
     <string name="setting">환경설정</string>
+    <string name="error_placeholder">error</string>
 </resources>
