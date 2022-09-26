@@ -30,7 +30,7 @@ class GetOrderListTest {
         val result = sut(marketId = 0L, orderState = OrderState.PENDING)
 
         // assert
-        for (order in result) {
+        for (order in result!!) {
             assertThat(order.orderState).isEqualTo(OrderState.PENDING)
         }
     }
@@ -41,7 +41,7 @@ class GetOrderListTest {
         val result = sut(marketId = 0L, orderState = OrderState.ACCEPTED)
 
         // assert
-        for (order in result) {
+        for (order in result!!) {
             assertThat(order.orderState).isEqualTo(OrderState.ACCEPTED)
         }
     }
@@ -52,7 +52,7 @@ class GetOrderListTest {
         val result = sut(marketId = 0L, orderState = OrderState.DONE)
 
         // assert
-        for (order in result) {
+        for (order in result!!) {
             assertThat(order.orderState).isEqualTo(OrderState.DONE)
         }
     }

@@ -1,5 +1,6 @@
 package com.example.yumarketforowners.presentation.screen.orderlist
 
+import com.example.yumarketforowners.R
 import com.example.yumarketforowners.domain.model.orderlist.Order
 import com.example.yumarketforowners.domain.model.orderlist.OrderState
 import com.example.yumarketforowners.domain.usecase.order.GetOrderList
@@ -20,9 +21,11 @@ class OrderListPresenter @Inject constructor(
         coroutineScope.launch {
             view.loading(show = true)
             /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
-            val result: State = State.Success(
-                data = getOrderList(marketId = marketId, orderState = orderState)
-            )
+            val result = getOrderList(marketId = marketId, orderState = orderState)?.let {
+                State.Success(
+                    data = it
+                )
+            } ?: State.Error(R.string.error_placeholder)
 
             view.loading(show = false)
 
@@ -32,6 +35,6 @@ class OrderListPresenter @Inject constructor(
                 is State.Error -> view.onRequestDataError(result.errorMessage)
             }
         }
-
     }
+
 }

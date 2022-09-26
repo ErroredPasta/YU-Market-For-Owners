@@ -9,5 +9,5 @@ class GetOrderList(
     suspend operator fun invoke(
         marketId: Long,
         orderState: OrderState
-    ) = repository.getOrderListByMarketId(marketId).filter { it.orderState == orderState }
+    ) = repository.getOrderListByMarketId(marketId)?.filter { it.orderState == orderState }
 }
