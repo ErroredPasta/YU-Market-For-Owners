@@ -1,5 +1,6 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review
 
+import com.example.yumarketforowners.R
 import com.example.yumarketforowners.domain.model.reviewmanage.Review
 import com.example.yumarketforowners.domain.usecase.review.GetReviews
 import com.example.yumarketforowners.presentation.screen.base.State
@@ -20,9 +21,12 @@ class ReviewManagePresenter @Inject constructor(
             view.loading(show = true)
             // TODO: 2022.06.04 get all data by market id
             /* TODO: 2022-09-21 수 01:35, error 처리 구현 */
-            val result: State = State.Success(
-                data = getReviews(marketId = marketId)
-            )
+            val result = getReviews(marketId = marketId)?.let {
+                State.Success(
+                    data = it
+                )
+            } ?: State.Error(R.string.error_placeholder)
+
             view.loading(show = false)
 
             @Suppress("UNCHECKED_CAST")
