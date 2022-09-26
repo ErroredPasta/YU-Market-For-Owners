@@ -141,7 +141,7 @@ class ItemManagePresenterTest {
             price = it,
             saleRatio = it,
             imageUrl = "imageUrl $it",
-            available = it % 2 == 0
+            available = available
         )
     }
     // endregion helper methods ====================================================================
