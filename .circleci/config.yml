@@ -16,7 +16,9 @@ jobs:
   add-execution-permission:
     executor: android/android-machine
     steps:
-      - run: chmod +x ./gradlew
+      - run: 
+          name: Add execution permission to gradle
+          command: chmod +x ./gradlew
 
   unit-test:
     executor: android/android-machine
