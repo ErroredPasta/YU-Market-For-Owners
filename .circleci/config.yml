@@ -9,50 +9,54 @@ version: 2.1
 orbs:
   android: circleci/android@1.0.3
 
-commands:
-  change-permission:
-    description: "Change gradle's permission"
-    steps:
-      - run: chmod +x ./gradlew
-
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-test:
-    # These next lines define the Android machine image executor.
-    # See: https://circleci.com/docs/2.0/executor-types/
-    executor:
-      name: android/android-machine
-
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+  add-execution-permission:
+    executor: android/android-machine
     steps:
-      # Checkout the code as the first step.
+      - run: chmod +x ./gradlew
+
+  unit-test:
+    executor: android/android-machine
+    steps:
       - checkout
-
-      - change-permission
-
+      - android/restore-gradle-cache
       # The next step will run the unit tests
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
+      - run:
+            name: Save test results
+            command: |
+                mkdir -p ~/test-results/junit/
+                find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+            when: always
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: ~/test-results/junit
 
+  instrumented-test:
+    executor:
+      name: android/android-machine
+      resource-class: xlarge
+
+    steps:
+      - checkout
       # Then start the emulator and run the Instrumentation tests!
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
-          system-image: system-images;android-25;google_apis;x86
+          system-image: system-images;android-32;google_apis;x86
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   automated-test: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
-              
+    # Inside the workflow, you define the jobs you want to run.           
     jobs:
-      - build-and-test:
-        filters:
-          branches:
-            only:
-              - main
+      - add-execution-permission
+      - unit-test
+      # 나중에 instrumented-test 추가
 
 
