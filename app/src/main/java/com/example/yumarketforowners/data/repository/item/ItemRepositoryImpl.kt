@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.data.repository.itemmanage
+package com.example.yumarketforowners.data.repository.item
 
 import com.example.yumarketforowners.di.singleton.Dispatcher
 import com.example.yumarketforowners.di.singleton.DispatcherType
@@ -24,7 +24,7 @@ class ItemRepositoryImpl @Inject constructor(
             )
         }
 
-    override suspend fun getItemsByMarketId(marketId: Long): List<Item>? =
+    override suspend fun getItemsByMarketId(marketId: Long): List<Item> =
         withContext(dispatcher) {
             testList
         }

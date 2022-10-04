@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.data.repository.orderlist
+package com.example.yumarketforowners.data.repository.order
 
 import com.example.yumarketforowners.di.singleton.Dispatcher
 import com.example.yumarketforowners.di.singleton.DispatcherType

@@ -1,9 +1,9 @@
 package com.example.yumarketforowners.di.singleton
 
-import com.example.yumarketforowners.data.repository.itemmanage.ItemRepositoryImpl
-import com.example.yumarketforowners.data.repository.orderlist.OrderRepositoryImpl
-import com.example.yumarketforowners.data.repository.reviewmanage.ChatRoomRepositoryImpl
-import com.example.yumarketforowners.data.repository.reviewmanage.ReviewRepositoryImpl
+import com.example.yumarketforowners.data.repository.item.ItemRepositoryImpl
+import com.example.yumarketforowners.data.repository.order.OrderRepositoryImpl
+import com.example.yumarketforowners.data.repository.chatroom.ChatRoomRepositoryImpl
+import com.example.yumarketforowners.data.repository.review.ReviewRepositoryImpl
 import com.example.yumarketforowners.domain.repository.ChatRoomRepository
 import com.example.yumarketforowners.domain.repository.ItemRepository
 import com.example.yumarketforowners.domain.repository.OrderRepository

@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.data.repository.reviewmanage
+package com.example.yumarketforowners.data.repository.chatroom
 
 import com.example.yumarketforowners.di.singleton.Dispatcher
 import com.example.yumarketforowners.di.singleton.DispatcherType
