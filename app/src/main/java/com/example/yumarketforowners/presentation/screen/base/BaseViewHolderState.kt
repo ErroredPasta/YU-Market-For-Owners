@@ -1,11 +1,11 @@
-package com.example.yumarketforowners.domain.model
+package com.example.yumarketforowners.presentation.screen.base
 
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
 
-abstract class BaseModel(
+abstract class BaseViewHolderState(
     open val id: Long,
     open val cellType: CellType
 ) {
-    open fun isTheSame(other: BaseModel) =
+    open fun isTheSame(other: BaseViewHolderState) =
         this.id == other.id && this.cellType == other.cellType
 }
