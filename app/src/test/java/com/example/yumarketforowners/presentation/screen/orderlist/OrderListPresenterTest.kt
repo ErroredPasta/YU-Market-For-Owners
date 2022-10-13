@@ -1,12 +1,10 @@
 package com.example.yumarketforowners.presentation.screen.orderlist
 
 import com.example.yumarketforowners.coroutine.TestCoroutineRule
-import com.example.yumarketforowners.domain.model.itemmanage.Item
-import com.example.yumarketforowners.domain.model.orderlist.DeliveryType
-import com.example.yumarketforowners.domain.model.orderlist.Order
-import com.example.yumarketforowners.domain.model.orderlist.OrderState
+import com.example.yumarketforowners.domain.model.order.*
 import com.example.yumarketforowners.domain.usecase.order.GetOrderList
-import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.entity.createOrder
+import com.example.yumarketforowners.presentation.mapper.order.toOrderUiState
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -147,14 +145,15 @@ class OrderListPresenterTest {
     }
 
     // region helper methods =======================================================================
-    private fun getOrderListReturns(orderState: OrderState): List<Order> {
+
+    private fun getOrderListReturns(orderState: OrderState): List<OrderUiState> {
         val returnValue = createOrderList(orderState)
 
         coEvery {
             getOrderListMock(marketId = any(), orderState = orderState)
         } returns returnValue
 
-        return returnValue
+        return returnValue.map { it.toOrderUiState() }
     }
 
     private fun getOrderListFailed() {
@@ -162,31 +161,9 @@ class OrderListPresenterTest {
     }
 
     private fun createOrderList(orderState: OrderState) = (1..10).map {
-        Order(
-            id = it.toLong(),
-            orderItems = (it..it + 1).map { itemIndex ->
-                Item(
-                    id = itemIndex.toLong(),
-                    name = "name $itemIndex",
-                    count = itemIndex,
-                    price = itemIndex,
-                    saleRatio = itemIndex,
-                    imageUrl = "imageUrl $itemIndex",
-                    available = true,
-                    cellType = CellType.ORDER_ITEM_CELL
-                )
-            },
-            orderId = "orderId $it",
-            deliveryType = DeliveryType.values()[it % 3],
-            orderTime = it.toLong(),
-            telePhoneNumber = "telePhoneNumber $it",
-            request = "request $it",
-            orderState = orderState
-        )
+        createOrder(it, orderState = orderState)
     }
+
     // endregion helper methods ====================================================================
 
-    // region test double classes ==================================================================
-
-    // endregion test doubles classes ==============================================================
 }

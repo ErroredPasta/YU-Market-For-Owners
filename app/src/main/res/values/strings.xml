@@ -15,7 +15,8 @@
     <string name="reject_order">거절</string>
     <string name="delivery_done">상품전달 완료</string>
     <string name="order_item_image_description">주문한 상품의 이미지</string>
-    <string name="price_format">₩<b>%1$,d</b></string>
+    <string name="total_price_format"><b>%1$d x ₩%2$,d</b></string>
+    <string name="price_format"><b>₩%1$,d</b></string>
     <string name="item_edit_button_description">상품 수정 버튼</string>
     <string name="review_customer_profile_image_description">소비자 프로필 이미지</string>
     <string name="long_review_example">review content review content review content review content review content review content review content</string>

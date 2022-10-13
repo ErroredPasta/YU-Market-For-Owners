@@ -1,9 +1,11 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom
 
 import com.example.yumarketforowners.R
-import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRooms
-import com.example.yumarketforowners.presentation.screen.base.State
+import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoomUiState
+import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
+import com.example.yumarketforowners.presentation.screen.base.Result
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,16 +24,24 @@ class ChatRoomPresenter @Inject constructor(
             // TODO: 2022.06.04 get all data by market id
             /* TODO: 2022-09-21 수 01:35, error 처리 구현 */
             val result = getChatRooms(marketId = marketId)?.let {
-                State.Success(data = it)
-            } ?: State.Error(R.string.error_placeholder)
+                Result.Success(data = it.map { chatRoom -> chatRoom.toChatRoomUiState() })
+            } ?: Result.Error(R.string.error_placeholder)
 
             view.loading(show = false)
 
-            @Suppress("UNCHECKED_CAST")
             when (result) {
-                is State.Success<*> -> view.onRequestDataSuccess(result.data as List<ChatRoom>)
-                is State.Error -> view.onRequestDataError(result.errorMessage)
+                is Result.Success -> view.onRequestDataSuccess(result.data)
+                is Result.Error -> view.onRequestDataError(result.errorMessage)
             }
         }
     }
 }
+
+data class ChatRoomUiState(
+    override val id: Long,
+    val opponentName: String,
+    val opponentImageUrl: String?,
+    val lastMessage: String,
+    val createdTime: Long,
+    val unreadMessageCount: Int
+) : BaseViewHolderState(id, CellType.CHAT_ROOM_CELL)

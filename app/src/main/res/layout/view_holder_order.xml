@@ -6,14 +6,14 @@
     <data>
 
         <variable
-            name="orderModel"
-            type="com.example.yumarketforowners.domain.model.orderlist.Order" />
+            name="orderUiState"
+            type="com.example.yumarketforowners.presentation.screen.orderlist.OrderUiState" />
 
         <variable
             name="listener"
             type="com.example.yumarketforowners.presentation.recyclerview.listener.orderlist.OrderViewHolderListener" />
 
-        <import type="com.example.yumarketforowners.domain.model.orderlist.OrderState" />
+        <import type="com.example.yumarketforowners.domain.model.order.OrderState" />
 
     </data>
 
@@ -82,14 +82,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
-                    android:text="@{orderModel.orderId}"
+                    android:text="@{orderUiState.orderId}"
                     tools:text="order id" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
-                    android:text="@{orderModel.deliveryType.string}"
+                    android:text="@{orderUiState.deliveryType.string}"
                     tools:text="매장 이용" />
 
                 <!-- todo 2022.06.08 need a binding adapter for order time -->
@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
-                    android:text="@{Long.toString(orderModel.orderTime)}"
+                    android:text="@{Long.toString(orderUiState.orderedAt)}"
                     tools:text="11/27 (토요일) 19:30 주문" />
 
                 <!-- todo 2022.06.09 set on click -->
@@ -105,8 +105,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
-                    android:onClick="@{() -> listener.onTelePhoneNumberClicked(orderModel.telePhoneNumber)}"
-                    android:text="@{orderModel.telePhoneNumber}"
+                    android:onClick="@{() -> listener.onTelePhoneNumberClicked(orderUiState.telephoneNumber)}"
+                    android:text="@{orderUiState.telephoneNumber}"
                     android:textColor="@color/telephone_string_color"
                     tools:text="010-1111-2222" />
 
@@ -114,26 +114,26 @@
 
             <TextView
                 android:id="@+id/orderRequest"
-                showIf="@{!orderModel.request.equals(``)}"
+                showIf="@{!orderUiState.request.empty}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
                 android:background="@color/request_text_background"
                 android:padding="5dp"
-                android:text="@{`[요청사항] ` + orderModel.request}"
+                android:text="@{`[요청사항] ` + orderUiState.request}"
                 android:textColor="@color/request_text_color"
                 app:layout_constraintTop_toBottomOf="@id/orderTitleSet"
                 tools:text="[요청사항] 15분 후에 방문하겠습니다." />
 
             <Button
                 android:id="@+id/orderAcceptButton"
-                showIf="@{orderModel.orderState == OrderState.PENDING}"
+                showIf="@{orderUiState.orderState == OrderState.PENDING}"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="@color/interactive_color"
-                android:onClick="@{() -> listener.onAcceptOrderButtonClicked(orderModel)}"
+                android:onClick="@{() -> listener.onAcceptOrderButtonClicked(orderUiState)}"
                 android:text="@string/accept_order"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -144,13 +144,13 @@
 
             <Button
                 android:id="@+id/orderRejectButton"
-                showIf="@{orderModel.orderState == OrderState.PENDING}"
+                showIf="@{orderUiState.orderState == OrderState.PENDING}"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="@color/unfocused_color"
-                android:onClick="@{() -> listener.onRejectOrderButtonClicked(orderModel)}"
+                android:onClick="@{() -> listener.onRejectOrderButtonClicked(orderUiState)}"
                 android:text="@string/reject_order"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -161,13 +161,13 @@
 
             <!-- todo 2022.06.09 set on click -->
             <Button
-                showIf="@{orderModel.orderState == OrderState.ACCEPTED}"
+                showIf="@{orderUiState.orderState == OrderState.ACCEPTED}"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="@color/interactive_color"
-                android:onClick="@{() -> listener.onDeliveryDoneButtonClicked(orderModel)}"
+                android:onClick="@{() -> listener.onDeliveryDoneButtonClicked(orderUiState)}"
                 android:text="@string/delivery_done"
                 android:textColor="@color/white"
                 android:textStyle="bold"

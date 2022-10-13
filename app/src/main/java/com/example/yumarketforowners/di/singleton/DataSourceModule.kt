@@ -1,13 +1,13 @@
 package com.example.yumarketforowners.di.singleton
 
-import com.example.yumarketforowners.data.remote.chatroom.ChatRoomRemoteDataSource
-import com.example.yumarketforowners.data.remote.chatroom.FakeChatRoomRemoteDataSource
-import com.example.yumarketforowners.data.remote.item.FakeItemRemoteDataSource
-import com.example.yumarketforowners.data.remote.item.ItemRemoteDataSource
-import com.example.yumarketforowners.data.remote.order.FakeOrderRemoteDataSource
-import com.example.yumarketforowners.data.remote.order.OrderRemoteDataSource
-import com.example.yumarketforowners.data.remote.review.FakeReviewRemoteDataSource
-import com.example.yumarketforowners.data.remote.review.ReviewRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.chatroom.ChatRoomRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.chatroom.FakeChatRoomRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.item.FakeItemRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.item.ItemRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.order.FakeOrderRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.order.OrderRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.review.FakeReviewRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.review.ReviewRemoteDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

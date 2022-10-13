@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="chatRoomModel"
-            type="com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom" />
+            name="chatRoomUiState"
+            type="com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomUiState" />
 
         <variable
             name="listener"
@@ -18,13 +18,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> listener.onClicked(chatRoomModel)}"
+        android:onClick="@{() -> listener.onClicked(chatRoomUiState)}"
         android:padding="10dp">
 
         <ImageView
             android:id="@+id/chatRoomOpponentImage"
             cornerRadius="@{50f}"
-            imageUrl="@{chatRoomModel.opponentImageUrl}"
+            imageUrl="@{chatRoomUiState.opponentImageUrl}"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:contentDescription="@string/chat_room_opponent_profile_image_description"
@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/chatRoomOpponentNameText"
-            opponentName="@{chatRoomModel.opponentName}"
+            opponentName="@{chatRoomUiState.opponentName}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:text="@{chatRoomModel.lastMessage}"
+            android:text="@{chatRoomUiState.lastMessage}"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/chatRoomCreatedTimeText"
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:text="@{Long.toString(chatRoomModel.createdTime)}"
+            android:text="@{Long.toString(chatRoomUiState.createdTime)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/chatRoomOpponentImage"
             tools:text="2022-01-02 12:34:56" />
@@ -69,16 +69,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/chat_room_remove_button_description"
-            android:onClick="@{() -> listener.onRemoveClicked(chatRoomModel)}"
+            android:onClick="@{() -> listener.onRemoveClicked(chatRoomUiState)}"
             android:src="@drawable/ic_baseline_clear_24"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.chip.Chip
-            showIf="@{chatRoomModel.unreadMessageCount > 0}"
+            showIf="@{chatRoomUiState.unreadMessageCount > 0}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{Integer.toString(chatRoomModel.unreadMessageCount)}"
+            android:text="@{Integer.toString(chatRoomUiState.unreadMessageCount)}"
             android:textColor="@color/white"
             android:textSize="11sp"
             app:chipBackgroundColor="@color/unread_count_color"

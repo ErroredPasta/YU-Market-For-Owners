@@ -3,7 +3,7 @@ package com.example.yumarketforowners.presentation.screen.orderlist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.yumarketforowners.databinding.FragmentOrderListBinding
-import com.example.yumarketforowners.domain.model.orderlist.OrderState
+import com.example.yumarketforowners.domain.model.order.OrderState
 import com.example.yumarketforowners.presentation.screen.base.BaseViewPagerFragment
 
 class OrderListFragment :

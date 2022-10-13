@@ -1,8 +1,10 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom
 
 import com.example.yumarketforowners.coroutine.TestCoroutineRule
-import com.example.yumarketforowners.domain.model.reviewmanage.ChatRoom
+import com.example.yumarketforowners.domain.model.chatroom.ChatRoom
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRooms
+import com.example.yumarketforowners.entity.createChatRoom
+import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoomUiState
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -91,12 +93,13 @@ class ChatRoomPresenterTest {
     }
 
     // region helper methods =======================================================================
-    private fun getChatRoomsReturns(): List<ChatRoom> {
+
+    private fun getChatRoomsReturns(): List<ChatRoomUiState> {
         val returnValue = createChatRoomList()
 
         coEvery { getChatRoomsMock(marketId = any()) } returns returnValue
 
-        return returnValue
+        return returnValue.map { it.toChatRoomUiState() }
     }
 
     private fun getChatRoomsFailed() {
@@ -104,18 +107,8 @@ class ChatRoomPresenterTest {
     }
 
     private fun createChatRoomList() = (1..10).map {
-        ChatRoom(
-            id = it.toLong(),
-            opponentName = "opponentName $it",
-            opponentImageUrl = "opponentImageUrl $it",
-            lastMessage = "lastMessage $it",
-            createdTime = it.toLong(),
-            unreadMessageCount = it
-        )
+        createChatRoom(it)
     }
+
     // endregion helper methods ====================================================================
-
-    // region test double classes ==================================================================
-
-    // endregion test doubles classes ==============================================================
 }

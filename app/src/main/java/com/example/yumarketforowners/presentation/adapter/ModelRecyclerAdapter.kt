@@ -5,17 +5,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.yumarketforowners.domain.model.BaseModel
+import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.recyclerview.listener.AdapterListener
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.BaseViewHolder
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
 import com.example.yumarketforowners.presentation.util.ViewHolderMapper
 
-class ModelRecyclerAdapter<M : BaseModel>(
+class ModelRecyclerAdapter<M : BaseViewHolderState>(
     private val adapterListener: AdapterListener? = null
-) : ListAdapter<BaseModel, BaseViewHolder<*, M>>(ModelDiffCallback) {
+) : ListAdapter<BaseViewHolderState, BaseViewHolder<*, M>>(ModelDiffCallback) {
 
-    private var modelList: List<BaseModel> = emptyList()
+    private var modelList: List<BaseViewHolderState> = emptyList()
 
     override fun getItemViewType(position: Int): Int = modelList[position].cellType.ordinal
 
@@ -32,17 +32,17 @@ class ModelRecyclerAdapter<M : BaseModel>(
         adapterListener?.let { holder.bindListener(it) }
     }
 
-    override fun submitList(list: List<BaseModel>?) {
+    override fun submitList(list: List<BaseViewHolderState>?) {
         list?.let { modelList = it }
         super.submitList(list)
     }
 
-    companion object ModelDiffCallback : DiffUtil.ItemCallback<BaseModel>() {
-        override fun areItemsTheSame(oldItem: BaseModel, newItem: BaseModel): Boolean =
+    companion object ModelDiffCallback : DiffUtil.ItemCallback<BaseViewHolderState>() {
+        override fun areItemsTheSame(oldItem: BaseViewHolderState, newItem: BaseViewHolderState): Boolean =
             oldItem.isTheSame(newItem)
 
         @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: BaseModel, newItem: BaseModel): Boolean =
+        override fun areContentsTheSame(oldItem: BaseViewHolderState, newItem: BaseViewHolderState): Boolean =
             oldItem == newItem
     }
 }

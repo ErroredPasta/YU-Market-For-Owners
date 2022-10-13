@@ -1,6 +1,6 @@
 package com.example.yumarketforowners.presentation.screen.marketmanage
 
-import com.example.yumarketforowners.domain.model.marketmanage.User
+import com.example.yumarketforowners.domain.model.user.User
 
 interface MarketManageListener {
     fun onEditProfileClicked(user: User)

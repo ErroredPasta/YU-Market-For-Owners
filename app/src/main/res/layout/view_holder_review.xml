@@ -7,7 +7,7 @@
 
         <variable
             name="reviewModel"
-            type="com.example.yumarketforowners.domain.model.reviewmanage.Review" />
+            type="com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewUiState" />
 
         <variable
             name="listener"
@@ -40,7 +40,7 @@
                 android:id="@+id/reviewWriterName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{reviewModel.writer}"
+                android:text="@{reviewModel.writerName}"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -62,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{Long.toString(reviewModel.writeTime)}"
+                android:text="@{Long.toString(reviewModel.writtenAt)}"
                 android:textSize="12sp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

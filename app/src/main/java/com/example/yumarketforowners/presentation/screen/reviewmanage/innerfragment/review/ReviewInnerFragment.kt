@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review
 
 import android.widget.Toast
-import com.example.yumarketforowners.domain.model.reviewmanage.Review
+import com.example.yumarketforowners.domain.model.review.Review
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.recyclerview.listener.reviewmanage.ReviewViewHolderListener
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.BaseReviewInnerFragment
@@ -9,14 +9,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ReviewInnerFragment : BaseReviewInnerFragment<Review>() {
+class ReviewInnerFragment : BaseReviewInnerFragment<ReviewUiState>() {
     @Inject
     lateinit var presenter: ReviewManagePresenter
 
-    override val adapter: ModelRecyclerAdapter<Review> by lazy {
+    override val adapter: ModelRecyclerAdapter<ReviewUiState> by lazy {
         ModelRecyclerAdapter(
             object : ReviewViewHolderListener {
-                override fun onReplyClicked(review: Review) {
+                override fun onReplyClicked(review: ReviewUiState) {
                     Toast.makeText(context, "$review reply clicked", Toast.LENGTH_SHORT).show()
                 }
             }

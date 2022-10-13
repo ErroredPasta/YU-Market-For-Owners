@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="itemModel"
-            type="com.example.yumarketforowners.domain.model.itemmanage.Item" />
+            name="itemUiState"
+            type="com.example.yumarketforowners.presentation.screen.itemmanage.ItemUiState" />
 
         <variable
             name="listener"
@@ -25,7 +25,7 @@
             android:id="@+id/itemCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="@={itemModel.checkedForStateChange}"
+            android:checked="@={itemUiState.checkedForStateChange}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{itemModel.name}"
+                android:text="@{itemUiState.name}"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 tools:text="item name" />
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@{@string/price_format(itemModel.price)}"
+                android:text="@{@string/price_format(itemUiState.price)}"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 tools:text="₩7,000" />
@@ -67,7 +67,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:contentDescription="@string/item_edit_button_description"
-            android:onClick="@{() -> listener.onEditItemButtonClick(itemModel)}"
+            android:onClick="@{() -> listener.onEditItemButtonClick(itemUiState)}"
             android:src="@drawable/item_edit_icon"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/itemDescriptionLayout" />

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="itemModel"
-            type="com.example.yumarketforowners.domain.model.itemmanage.Item" />
+            name="orderItemUiState"
+            type="com.example.yumarketforowners.presentation.screen.orderlist.OrderItemUiState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
         <ImageView
             android:id="@+id/orderItemImageView"
             cornerRadius="@{10f}"
-            imageUrl="@{itemModel.imageUrl}"
+            imageUrl="@{orderItemUiState.imageUrl}"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:contentDescription="@string/order_item_image_description"
@@ -29,9 +29,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:layout_marginHorizontal="10dp"
-            android:text="@{itemModel.name}"
+            android:text="@{orderItemUiState.name}"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@id/orderItemImageView"
             app:layout_constraintTop_toTopOf="@id/orderItemImageView"
@@ -41,11 +41,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:text="@{@string/price_format(itemModel.price)}"
+            android:text="@{@string/total_price_format(orderItemUiState.amount, orderItemUiState.pricePerItem)}"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/orderItemImageView"
             app:layout_constraintRight_toRightOf="parent"
-            tools:text="₩11,000" />
+            tools:text="3 x ₩11,000" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

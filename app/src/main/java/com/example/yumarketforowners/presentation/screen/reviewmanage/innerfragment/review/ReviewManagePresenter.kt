@@ -1,9 +1,13 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review
 
 import com.example.yumarketforowners.R
-import com.example.yumarketforowners.domain.model.reviewmanage.Review
+import com.example.yumarketforowners.domain.model.order.Order
+import com.example.yumarketforowners.domain.model.review.Reply
 import com.example.yumarketforowners.domain.usecase.review.GetReviews
-import com.example.yumarketforowners.presentation.screen.base.State
+import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
+import com.example.yumarketforowners.presentation.screen.base.Result
+import com.example.yumarketforowners.presentation.mapper.review.toReviewUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,18 +26,30 @@ class ReviewManagePresenter @Inject constructor(
             // TODO: 2022.06.04 get all data by market id
             /* TODO: 2022-09-21 수 01:35, error 처리 구현 */
             val result = getReviews(marketId = marketId)?.let {
-                State.Success(
-                    data = it
+                Result.Success(
+                    data = it.map { review -> review.toReviewUiState() }
                 )
-            } ?: State.Error(R.string.error_placeholder)
+            } ?: Result.Error(R.string.error_placeholder)
 
             view.loading(show = false)
 
-            @Suppress("UNCHECKED_CAST")
             when (result) {
-                is State.Success<*> -> view.onRequestDataSuccess(result.data as List<Review>)
-                is State.Error -> view.onRequestDataError(result.errorMessage)
+                is Result.Success -> view.onRequestDataSuccess(result.data)
+                is Result.Error -> view.onRequestDataError(result.errorMessage)
             }
         }
     }
 }
+
+data class ReviewUiState(
+    override val id: Long,
+    val writerName: String,
+    val profileImageUrl: String?,
+    val writtenAt: Long,
+    val order: Order,
+    val title: String?,
+    val content: String,
+    val rating: Int,
+    val reviewImages: List<String>,
+    val reply: Reply? = null
+) : BaseViewHolderState(id, CellType.REVIEW_CELL)

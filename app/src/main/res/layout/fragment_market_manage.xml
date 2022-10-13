@@ -8,7 +8,7 @@
 
         <variable
             name="userModel"
-            type="com.example.yumarketforowners.domain.model.marketmanage.User" />
+            type="com.example.yumarketforowners.domain.model.user.User" />
 
         <variable
             name="listener"
@@ -29,7 +29,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/marketManageProfileImage"
-                imageUrl="@{userModel.imageUrl ?? ``}"
+                imageUrl="@{userModel.profileImage ?? ``}"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:src="@drawable/market_manage_icon"
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:text="@{@string/market_manage_name_format(userModel.storeName, userModel.name)}"
+                android:text="@{@string/market_manage_name_format(userModel.marketName, userModel.userName)}"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"

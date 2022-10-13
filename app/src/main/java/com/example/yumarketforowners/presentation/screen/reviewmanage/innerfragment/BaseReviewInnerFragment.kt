@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.StringRes
 import com.example.yumarketforowners.databinding.InnerFragmentReviewOrChatRoomListBinding
-import com.example.yumarketforowners.domain.model.BaseModel
+import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
@@ -14,7 +14,7 @@ import com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewOrCh
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomInnerFragment
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewInnerFragment
 
-abstract class BaseReviewInnerFragment<M : BaseModel> :
+abstract class BaseReviewInnerFragment<M : BaseViewHolderState> :
     BaseFragment<InnerFragmentReviewOrChatRoomListBinding>() {
 
     companion object {

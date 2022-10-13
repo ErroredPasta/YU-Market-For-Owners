@@ -8,9 +8,9 @@ import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.recyclerview.listener.orderlist.OrderViewHolderListener
-import com.example.yumarketforowners.domain.model.orderlist.Order
+import com.example.yumarketforowners.domain.model.order.Order
 import com.example.yumarketforowners.databinding.InnerFragmentOrderListBinding
-import com.example.yumarketforowners.domain.model.orderlist.OrderState
+import com.example.yumarketforowners.domain.model.order.OrderState
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,26 +40,26 @@ class OrderListInnerFragment :
     lateinit var presenter: OrderListPresenter
 
     private val adapter by lazy {
-        ModelRecyclerAdapter<Order>(
+        ModelRecyclerAdapter<OrderUiState>(
             object : OrderViewHolderListener {
-                override fun onTelePhoneNumberClicked(telePhoneNumber: String) {
+                override fun onTelePhoneNumberClicked(telephoneNumber: String) {
                     // TODO: 2022.06.09 start telephone screen with number
-                    Toast.makeText(context, "$telePhoneNumber clicked", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "$telephoneNumber clicked", Toast.LENGTH_SHORT).show()
                 }
 
-                override fun onAcceptOrderButtonClicked(order: Order) {
+                override fun onAcceptOrderButtonClicked(order: OrderUiState) {
                     // TODO: 2022.06.09 handle accept order
                     Toast.makeText(context, "$order accept button clicked", Toast.LENGTH_SHORT)
                         .show()
                 }
 
-                override fun onRejectOrderButtonClicked(order: Order) {
+                override fun onRejectOrderButtonClicked(order: OrderUiState) {
                     // TODO: 2022.06.09 handle reject order
                     Toast.makeText(context, "$order reject button clicked", Toast.LENGTH_SHORT)
                         .show()
                 }
 
-                override fun onDeliveryDoneButtonClicked(order: Order) {
+                override fun onDeliveryDoneButtonClicked(order: OrderUiState) {
                     // TODO: 2022.06.09 handle delivery done
                     Toast.makeText(context, "$order done button clicked", Toast.LENGTH_SHORT).show()
                 }
@@ -85,7 +85,7 @@ class OrderListInnerFragment :
         // TODO: 2022.07.10 implement loading
     }
 
-    fun onRequestDataSuccess(data: List<Order>) {
+    fun onRequestDataSuccess(data: List<OrderUiState>) {
         adapter.submitList(data)
     }
 

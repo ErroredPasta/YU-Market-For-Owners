@@ -1,8 +1,9 @@
 package com.example.yumarketforowners.presentation.screen.itemmanage
 
 import com.example.yumarketforowners.coroutine.TestCoroutineRule
-import com.example.yumarketforowners.domain.model.itemmanage.Item
 import com.example.yumarketforowners.domain.usecase.item.GetItems
+import com.example.yumarketforowners.entity.createItem
+import com.example.yumarketforowners.presentation.mapper.item.toItemUiState
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -117,14 +118,15 @@ class ItemManagePresenterTest {
     }
 
     // region helper methods =======================================================================
-    private fun getItemsReturns(available: Boolean): List<Item> {
+
+    private fun getItemsReturns(available: Boolean): List<ItemUiState> {
         val returnValue = createItemList(available = available)
 
         coEvery {
             getItemsMock(marketId = any(), available = available)
         } returns returnValue
 
-        return returnValue
+        return returnValue.map { it.toItemUiState() }
     }
 
     private fun getItemsFailed() {
@@ -134,15 +136,8 @@ class ItemManagePresenterTest {
     }
 
     private fun createItemList(available: Boolean) = (1..10).map {
-        Item(
-            id = it.toLong(),
-            name = "name $it",
-            count = it,
-            price = it,
-            saleRatio = it,
-            imageUrl = "imageUrl $it",
-            available = available
-        )
+        createItem(it, available = available)
     }
+
     // endregion helper methods ====================================================================
 }
