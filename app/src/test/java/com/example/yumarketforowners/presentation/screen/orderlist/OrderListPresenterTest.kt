@@ -153,7 +153,14 @@ class OrderListPresenterTest {
             getOrderListMock(marketId = any(), orderState = orderState)
         } returns returnValue
 
-        return returnValue.map { it.toOrderUiState() }
+        return returnValue.map {
+            it.toOrderUiState(
+                onTelephoneNumberClicked = {},
+                onAcceptOrderButtonClicked = {},
+                onRejectOrderButtonClicked = {},
+                onDeliveryDoneButtonClicked = {}
+            )
+        }
     }
 
     private fun getOrderListFailed() {

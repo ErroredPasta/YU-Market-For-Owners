@@ -5,7 +5,12 @@ import com.example.yumarketforowners.domain.model.order.OrderItem
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderItemUiState
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderUiState
 
-fun Order.toOrderUiState() = OrderUiState(
+fun Order.toOrderUiState(
+    onTelephoneNumberClicked: () -> Unit,
+    onAcceptOrderButtonClicked: () -> Unit,
+    onRejectOrderButtonClicked: () -> Unit,
+    onDeliveryDoneButtonClicked: () -> Unit
+) = OrderUiState(
     id = id,
     orderId = id.toString(),
     orderedAt = orderedAt,
@@ -16,7 +21,11 @@ fun Order.toOrderUiState() = OrderUiState(
     deliveryTime = deliveryTime,
     deliveryType = deliveryType,
     telephoneNumber = orderMakerId.toString(),
-    request = request
+    request = request,
+    onTelephoneNumberClicked = onTelephoneNumberClicked,
+    onAcceptOrderButtonClicked = onAcceptOrderButtonClicked,
+    onRejectOrderButtonClicked = onRejectOrderButtonClicked,
+    onDeliveryDoneButtonClicked = onDeliveryDoneButtonClicked
 )
 
 private fun List<OrderItem>.toOrderItemUiStates() = map {

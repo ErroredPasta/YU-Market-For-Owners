@@ -126,7 +126,11 @@ class ItemManagePresenterTest {
             getItemsMock(marketId = any(), available = available)
         } returns returnValue
 
-        return returnValue.map { it.toItemUiState() }
+        return returnValue.map {
+            it.toItemUiState(
+                onEditItemButtonClick = {}
+            )
+        }
     }
 
     private fun getItemsFailed() {

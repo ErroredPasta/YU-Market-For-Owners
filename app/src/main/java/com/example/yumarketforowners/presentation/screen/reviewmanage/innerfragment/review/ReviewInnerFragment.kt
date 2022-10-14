@@ -8,7 +8,6 @@ import androidx.annotation.StringRes
 import com.example.yumarketforowners.databinding.InnerFragmentReviewListBinding
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
-import com.example.yumarketforowners.presentation.recyclerview.listener.reviewmanage.ReviewViewHolderListener
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.BaseReviewInnerFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,21 +25,15 @@ class ReviewInnerFragment : BaseFragment<InnerFragmentReviewListBinding>(), Base
     @Inject
     lateinit var presenter: ReviewManagePresenter
 
-    private val adapter: ModelRecyclerAdapter<ReviewUiState> by lazy {
-        ModelRecyclerAdapter(
-            object : ReviewViewHolderListener {
-                override fun onReplyClicked(review: ReviewUiState) {
-                    Toast.makeText(context, "$review reply clicked", Toast.LENGTH_SHORT).show()
-                }
-            }
-        )
-    }
+    private val adapter: ModelRecyclerAdapter<ReviewUiState> by lazy { ModelRecyclerAdapter() }
 
     override fun initState() {
         binding.reviewOrChatRoomListRecyclerView.apply {
             this.adapter = this@ReviewInnerFragment.adapter
             addItemDivider(LinearLayout.VERTICAL)
         }
+
+        requestData()
     }
 
     private fun requestData() {

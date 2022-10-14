@@ -6,13 +6,9 @@
     <data>
 
         <variable
-            name="reviewModel"
+            name="reviewUiState"
             type="com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewUiState" />
-
-        <variable
-            name="listener"
-            type="com.example.yumarketforowners.presentation.recyclerview.listener.reviewmanage.ReviewViewHolderListener" />
-
+        
     </data>
 
     <LinearLayout
@@ -23,7 +19,7 @@
         <ImageView
             android:id="@+id/reviewWriterProfileImage"
             cornerRadius="@{25f}"
-            imageUrl="@{reviewModel.profileImageUrl}"
+            imageUrl="@{reviewUiState.profileImageUrl}"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginHorizontal="10dp"
@@ -40,7 +36,7 @@
                 android:id="@+id/reviewWriterName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{reviewModel.writerName}"
+                android:text="@{reviewUiState.writerName}"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -52,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingVertical="10dp"
-                android:text="@{reviewModel.content}"
+                android:text="@{reviewUiState.content}"
                 android:textColor="@color/black"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/reviewWriterName"
@@ -62,7 +58,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{Long.toString(reviewModel.writtenAt)}"
+                android:text="@{Long.toString(reviewUiState.writtenAt)}"
                 android:textSize="12sp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -102,7 +98,7 @@
                     android:layout_marginHorizontal="10dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="@{reviewModel.order.orderItems[0].name}"
+                    android:text="@{reviewUiState.order.orderItems[0].name}"
                     android:textColor="@color/black"
                     android:textSize="11sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -115,7 +111,7 @@
                     android:id="@+id/replyText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> listener.onReplyClicked(reviewModel)}"
+                    android:onClick="@{() -> reviewUiState.onReplyClicked.invoke()}"
                     android:text="@string/reply"
                     android:textColor="@color/interactive_color"
                     android:textSize="11sp"

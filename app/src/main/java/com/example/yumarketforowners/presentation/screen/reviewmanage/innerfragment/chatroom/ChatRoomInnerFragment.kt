@@ -8,7 +8,6 @@ import androidx.annotation.StringRes
 import com.example.yumarketforowners.databinding.InnerFragmentChatRoomListBinding
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
-import com.example.yumarketforowners.presentation.recyclerview.listener.reviewmanage.ChatRoomViewHolderListener
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.BaseReviewInnerFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,21 +25,7 @@ class ChatRoomInnerFragment : BaseFragment<InnerFragmentChatRoomListBinding>(),
     @Inject
     lateinit var presenter: ChatRoomListPresenter
 
-    private val adapter: ModelRecyclerAdapter<ChatRoomUiState> by lazy {
-        ModelRecyclerAdapter(
-            object : ChatRoomViewHolderListener {
-                override fun onClicked(chatRoom: ChatRoomUiState) {
-                    // TODO: 2022.07.10 start chat room activity
-                    Toast.makeText(context, "$chatRoom clicked", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onRemoveClicked(chatRoom: ChatRoomUiState) {
-                    // TODO: 2022.07.10 handle remove
-                    Toast.makeText(context, "$chatRoom remove clicked", Toast.LENGTH_SHORT).show()
-                }
-            }
-        )
-    }
+    private val adapter: ModelRecyclerAdapter<ChatRoomUiState> by lazy { ModelRecyclerAdapter() }
 
     override fun initState() {
         binding.chatRoomListRecyclerView.apply {

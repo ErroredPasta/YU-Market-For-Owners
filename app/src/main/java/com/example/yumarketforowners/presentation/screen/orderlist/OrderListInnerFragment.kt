@@ -1,5 +1,7 @@
 package com.example.yumarketforowners.presentation.screen.orderlist
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -7,7 +9,6 @@ import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
-import com.example.yumarketforowners.presentation.recyclerview.listener.orderlist.OrderViewHolderListener
 import com.example.yumarketforowners.databinding.InnerFragmentOrderListBinding
 import com.example.yumarketforowners.domain.model.order.OrderState
 import com.example.yumarketforowners.presentation.extension.addItemDivider
@@ -38,33 +39,7 @@ class OrderListInnerFragment :
     @Inject
     lateinit var presenter: OrderListPresenter
 
-    private val adapter by lazy {
-        ModelRecyclerAdapter<OrderUiState>(
-            object : OrderViewHolderListener {
-                override fun onTelePhoneNumberClicked(telephoneNumber: String) {
-                    // TODO: 2022.06.09 start telephone screen with number
-                    Toast.makeText(context, "$telephoneNumber clicked", Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onAcceptOrderButtonClicked(order: OrderUiState) {
-                    // TODO: 2022.06.09 handle accept order
-                    Toast.makeText(context, "$order accept button clicked", Toast.LENGTH_SHORT)
-                        .show()
-                }
-
-                override fun onRejectOrderButtonClicked(order: OrderUiState) {
-                    // TODO: 2022.06.09 handle reject order
-                    Toast.makeText(context, "$order reject button clicked", Toast.LENGTH_SHORT)
-                        .show()
-                }
-
-                override fun onDeliveryDoneButtonClicked(order: OrderUiState) {
-                    // TODO: 2022.06.09 handle delivery done
-                    Toast.makeText(context, "$order done button clicked", Toast.LENGTH_SHORT).show()
-                }
-            }
-        )
-    }
+    private val adapter by lazy { ModelRecyclerAdapter<OrderUiState>() }
 
     override fun initState() {
         binding.orderListRecyclerView.apply {
@@ -90,5 +65,13 @@ class OrderListInnerFragment :
 
     override fun onRequestDataError(@StringRes errorMessage: Int) {
         Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun navigateToCallScreen(telephoneNumber: String) {
+        startActivity(
+            Intent(Intent.ACTION_CALL).apply {
+                data = Uri.parse("tel:$telephoneNumber")
+            }
+        )
     }
 }

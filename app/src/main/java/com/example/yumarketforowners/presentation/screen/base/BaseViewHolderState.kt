@@ -1,6 +1,6 @@
 package com.example.yumarketforowners.presentation.screen.base
 
-import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.presentation.viewholder.CellType
 
 abstract class BaseViewHolderState(
     open val id: Long,

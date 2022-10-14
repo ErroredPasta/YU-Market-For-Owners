@@ -98,7 +98,12 @@ class ChatRoomListPresenterTest {
 
         coEvery { getChatRoomsMock(marketId = any()) } returns returnValue
 
-        return returnValue.map { it.toChatRoomUiState() }
+        return returnValue.map {
+            it.toChatRoomUiState(
+                onClicked = {},
+                onRemoveClicked = {}
+            )
+        }
     }
 
     private fun getChatRoomsFailed() {

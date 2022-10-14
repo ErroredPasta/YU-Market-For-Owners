@@ -6,30 +6,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
-import com.example.yumarketforowners.presentation.recyclerview.listener.AdapterListener
-import com.example.yumarketforowners.presentation.recyclerview.viewholder.BaseViewHolder
-import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
-import com.example.yumarketforowners.presentation.util.ViewHolderMapper
+import com.example.yumarketforowners.presentation.util.ViewHolderFactory
+import com.example.yumarketforowners.presentation.viewholder.BaseViewHolder
+import com.example.yumarketforowners.presentation.viewholder.CellType
 
-class ModelRecyclerAdapter<M : BaseViewHolderState>(
-    private val adapterListener: AdapterListener? = null
-) : ListAdapter<BaseViewHolderState, BaseViewHolder<*, M>>(ModelDiffCallback) {
+class ModelRecyclerAdapter<M : BaseViewHolderState> :
+    ListAdapter<BaseViewHolderState, BaseViewHolder<*, M>>(ModelDiffCallback) {
 
     private var modelList: List<BaseViewHolderState> = emptyList()
 
     override fun getItemViewType(position: Int): Int = modelList[position].cellType.ordinal
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*, M> =
-        ViewHolderMapper.map(
-            LayoutInflater.from(parent.context),
-            parent,
-            CellType.values()[viewType]
+        ViewHolderFactory.create(
+            LayoutInflater.from(parent.context), parent, CellType.values()[viewType]
         )
 
     @Suppress("UNCHECKED_CAST")
     override fun onBindViewHolder(holder: BaseViewHolder<*, M>, position: Int) {
         holder.bindData(modelList[position] as M)
-        adapterListener?.let { holder.bindListener(it) }
     }
 
     override fun submitList(list: List<BaseViewHolderState>?) {
@@ -38,11 +33,13 @@ class ModelRecyclerAdapter<M : BaseViewHolderState>(
     }
 
     companion object ModelDiffCallback : DiffUtil.ItemCallback<BaseViewHolderState>() {
-        override fun areItemsTheSame(oldItem: BaseViewHolderState, newItem: BaseViewHolderState): Boolean =
-            oldItem.isTheSame(newItem)
+        override fun areItemsTheSame(
+            oldItem: BaseViewHolderState, newItem: BaseViewHolderState
+        ) = oldItem.isTheSame(newItem)
 
         @SuppressLint("DiffUtilEquals")
-        override fun areContentsTheSame(oldItem: BaseViewHolderState, newItem: BaseViewHolderState): Boolean =
-            oldItem == newItem
+        override fun areContentsTheSame(
+            oldItem: BaseViewHolderState, newItem: BaseViewHolderState
+        ) = oldItem == newItem
     }
 }

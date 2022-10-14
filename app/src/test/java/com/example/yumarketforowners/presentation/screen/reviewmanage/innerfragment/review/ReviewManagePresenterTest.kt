@@ -98,7 +98,11 @@ class ReviewManagePresenterTest {
 
         coEvery { getReviewsMock(marketId = any()) } returns returnValue
 
-        return returnValue.map { it.toReviewUiState() }
+        return returnValue.map {
+            it.toReviewUiState(
+                onReplyClicked = {}
+            )
+        }
     }
 
     private fun getReviewsFailed() {

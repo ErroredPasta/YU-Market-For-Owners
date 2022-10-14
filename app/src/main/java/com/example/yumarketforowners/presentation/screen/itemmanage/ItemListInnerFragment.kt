@@ -8,7 +8,6 @@ import androidx.core.os.bundleOf
 import com.example.yumarketforowners.databinding.InnerFragmentItemListBinding
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
-import com.example.yumarketforowners.presentation.recyclerview.listener.itemmanage.ItemManageViewHolderListener
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -27,16 +26,7 @@ class ItemListInnerFragment :
     @Inject
     lateinit var presenter: ItemManagePresenter
 
-    private val adapter by lazy {
-        ModelRecyclerAdapter<ItemUiState>(
-            object : ItemManageViewHolderListener {
-                override fun onEditItemButtonClick(item: ItemUiState) {
-                    // TODO: 2022.06.08 implement start edit item activity
-                    Toast.makeText(context, "$item edit button clicked", Toast.LENGTH_SHORT).show()
-                }
-            }
-        )
-    }
+    private val adapter by lazy { ModelRecyclerAdapter<ItemUiState>() }
 
     private val available by lazy {
         requireArguments()[AVAILABILITY_KEY] as Boolean

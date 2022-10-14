@@ -1,9 +1,10 @@
 package com.example.yumarketforowners.presentation.screen.itemmanage
 
+import android.util.Log
 import com.example.yumarketforowners.R
 import com.example.yumarketforowners.domain.model.item.OptionGroup
 import com.example.yumarketforowners.domain.usecase.item.GetItems
-import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.presentation.viewholder.CellType
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.screen.base.Result
 import com.example.yumarketforowners.presentation.mapper.item.toItemUiState
@@ -26,7 +27,13 @@ class ItemManagePresenter @Inject constructor(
             /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
 
             val result = getItems(marketId = marketId, available = available)?.let {
-                Result.Success(data = it.map { item -> item.toItemUiState() })
+                Result.Success(data = it.map { item ->
+                    item.toItemUiState(
+                        onEditItemButtonClick = {
+                            Log.d("TAG", "onEditItemButtonClick: ${item.id}")
+                        }
+                    )
+                })
             } ?: Result.Error(R.string.error_placeholder)
 
             view.loading(isLoading = false)
@@ -51,4 +58,5 @@ data class ItemUiState(
     val optionGroups: List<OptionGroup>,
     val available: Boolean,
     var checkedForStateChange: Boolean = false,
+    val onEditItemButtonClick: () -> Unit
 ) : BaseViewHolderState(id, CellType.ITEM_CELL)

@@ -8,6 +8,7 @@
         <variable
             name="orderItemUiState"
             type="com.example.yumarketforowners.presentation.screen.orderlist.OrderItemUiState" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

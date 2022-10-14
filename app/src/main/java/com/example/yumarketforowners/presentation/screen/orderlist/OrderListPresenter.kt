@@ -1,12 +1,13 @@
 package com.example.yumarketforowners.presentation.screen.orderlist
 
+import android.util.Log
 import com.example.yumarketforowners.R
 import com.example.yumarketforowners.domain.model.order.DeliveryType
 import com.example.yumarketforowners.domain.model.order.OrderOptionGroup
 import com.example.yumarketforowners.domain.model.order.OrderState
 import com.example.yumarketforowners.domain.usecase.order.GetOrderList
 import com.example.yumarketforowners.presentation.mapper.order.toOrderUiState
-import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.presentation.viewholder.CellType
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.screen.base.Result
@@ -28,7 +29,22 @@ class OrderListPresenter @Inject constructor(
             /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
             val result = getOrderList(marketId = marketId, orderState = orderState)?.let {
                 Result.Success(
-                    data = it.map { order -> order.toOrderUiState() }
+                    data = it.map { order ->
+                        order.toOrderUiState(
+                            onTelephoneNumberClicked = {
+                                Log.d("TAG", "onTelephoneNumberClicked: ${order.id}")
+                            },
+                            onAcceptOrderButtonClicked = {
+                                Log.d("TAG", "onAcceptOrderButtonClicked: ${order.id}")
+                            },
+                            onRejectOrderButtonClicked = {
+                                Log.d("TAG", "onRejectOrderButtonClicked: ${order.id}")
+                            },
+                            onDeliveryDoneButtonClicked = {
+                                Log.d("TAG", "onDeliveryDoneButtonClicked: ${order.id}")
+                            }
+                        )
+                    }
                 )
             } ?: Result.Error(R.string.error_placeholder)
 
@@ -54,7 +70,11 @@ data class OrderUiState(
     val deliveryTime: Pair<LocalTime, LocalTime>,
     val deliveryType: DeliveryType,
     val telephoneNumber: String,
-    val request: String
+    val request: String,
+    val onTelephoneNumberClicked: () -> Unit,
+    val onAcceptOrderButtonClicked: () -> Unit,
+    val onRejectOrderButtonClicked: () -> Unit,
+    val onDeliveryDoneButtonClicked: () -> Unit
 ) : BaseViewHolderState(id, CellType.ORDER_CELL)
 
 data class OrderItemUiState(

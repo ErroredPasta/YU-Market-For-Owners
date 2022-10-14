@@ -1,6 +1,5 @@
 package com.example.yumarketforowners.data.remote.datasource.chatroom
 
-import com.example.yumarketforowners.data.mapper.chatroom.toChatRoom
 import com.example.yumarketforowners.data.remote.dto.chatroom.ChatRoomDto
 import javax.inject.Inject
 

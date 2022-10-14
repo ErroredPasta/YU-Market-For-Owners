@@ -1,11 +1,12 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review
 
+import android.util.Log
 import com.example.yumarketforowners.R
 import com.example.yumarketforowners.domain.model.order.Order
 import com.example.yumarketforowners.domain.model.review.Reply
 import com.example.yumarketforowners.domain.usecase.review.GetReviews
 import com.example.yumarketforowners.presentation.mapper.review.toReviewUiState
-import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.presentation.viewholder.CellType
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.screen.base.Result
@@ -27,7 +28,13 @@ class ReviewManagePresenter @Inject constructor(
             /* TODO: 2022-09-21 수 01:35, error 처리 구현 */
             val result = getReviews(marketId = marketId)?.let {
                 Result.Success(
-                    data = it.map { review -> review.toReviewUiState() }
+                    data = it.map { review ->
+                        review.toReviewUiState(
+                            onReplyClicked = {
+                                Log.d("TAG", "onReplyClicked: ${review.id}")
+                            }
+                        )
+                    }
                 )
             } ?: Result.Error(R.string.error_placeholder)
 
@@ -51,5 +58,6 @@ data class ReviewUiState(
     val content: String,
     val rating: Int,
     val reviewImages: List<String>,
-    val reply: Reply? = null
+    val reply: Reply? = null,
+    val onReplyClicked: () -> Unit
 ) : BaseViewHolderState(id, CellType.REVIEW_CELL)

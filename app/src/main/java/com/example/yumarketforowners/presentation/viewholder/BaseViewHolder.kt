@@ -1,8 +1,7 @@
-package com.example.yumarketforowners.presentation.recyclerview.viewholder
+package com.example.yumarketforowners.presentation.viewholder
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yumarketforowners.presentation.recyclerview.listener.AdapterListener
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 
 abstract class BaseViewHolder<VDB : ViewDataBinding, M : BaseViewHolderState>(
@@ -13,6 +12,4 @@ abstract class BaseViewHolder<VDB : ViewDataBinding, M : BaseViewHolderState>(
     open fun bindData(model: M) {
         clear()
     }
-
-    open fun bindListener(listener: AdapterListener) = Unit
 }

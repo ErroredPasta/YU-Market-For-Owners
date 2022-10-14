@@ -3,13 +3,18 @@ package com.example.yumarketforowners.presentation.mapper.chatroom
 import com.example.yumarketforowners.domain.model.chatroom.ChatRoom
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomUiState
 
-fun ChatRoom.toChatRoomUiState() = ChatRoomUiState(
+fun ChatRoom.toChatRoomUiState(
+    onClicked: () -> Unit,
+    onRemoveClicked: () -> Unit
+) = ChatRoomUiState(
     id = id,
     opponentName = opponentName,
     opponentImageUrl = opponentImageUrl,
     lastMessage = lastMessage,
     createdTime = createdTime,
-    unreadMessageCount = unreadMessageCount
+    unreadMessageCount = unreadMessageCount,
+    onClicked = onClicked,
+    onRemoveClicked = onRemoveClicked
 )
 
 fun ChatRoomUiState.toChatRoom() = ChatRoom(

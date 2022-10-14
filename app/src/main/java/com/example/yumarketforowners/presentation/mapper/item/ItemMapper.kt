@@ -3,7 +3,9 @@ package com.example.yumarketforowners.presentation.mapper.item
 import com.example.yumarketforowners.domain.model.item.Item
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemUiState
 
-fun Item.toItemUiState() = ItemUiState(
+fun Item.toItemUiState(
+    onEditItemButtonClick: () -> Unit
+) = ItemUiState(
     id = id,
     name = name,
     description = description,
@@ -13,7 +15,8 @@ fun Item.toItemUiState() = ItemUiState(
     discountRatio = (price - discountedPrice) / 100,
     imageUrl = imageUrl,
     optionGroups = optionGroups,
-    available = available
+    available = available,
+    onEditItemButtonClick = onEditItemButtonClick
 )
 
 fun ItemUiState.toItem() = Item(

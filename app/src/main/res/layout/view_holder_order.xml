@@ -9,10 +9,6 @@
             name="orderUiState"
             type="com.example.yumarketforowners.presentation.screen.orderlist.OrderUiState" />
 
-        <variable
-            name="listener"
-            type="com.example.yumarketforowners.presentation.recyclerview.listener.orderlist.OrderViewHolderListener" />
-
         <import type="com.example.yumarketforowners.domain.model.order.OrderState" />
 
     </data>
@@ -105,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
-                    android:onClick="@{() -> listener.onTelePhoneNumberClicked(orderUiState.telephoneNumber)}"
+                    android:onClick="@{() -> orderUiState.onTelephoneNumberClicked.invoke()}"
                     android:text="@{orderUiState.telephoneNumber}"
                     android:textColor="@color/telephone_string_color"
                     tools:text="010-1111-2222" />
@@ -133,7 +129,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="@color/interactive_color"
-                android:onClick="@{() -> listener.onAcceptOrderButtonClicked(orderUiState)}"
+                android:onClick="@{() -> orderUiState.onAcceptOrderButtonClicked.invoke()}"
                 android:text="@string/accept_order"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -150,7 +146,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="@color/unfocused_color"
-                android:onClick="@{() -> listener.onRejectOrderButtonClicked(orderUiState)}"
+                android:onClick="@{() -> orderUiState.onRejectOrderButtonClicked.invoke()}"
                 android:text="@string/reject_order"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -167,7 +163,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="@color/interactive_color"
-                android:onClick="@{() -> listener.onDeliveryDoneButtonClicked(orderUiState)}"
+                android:onClick="@{() -> orderUiState.onDeliveryDoneButtonClicked.invoke()}"
                 android:text="@string/delivery_done"
                 android:textColor="@color/white"
                 android:textStyle="bold"

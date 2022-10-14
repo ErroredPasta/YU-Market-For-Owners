@@ -3,7 +3,9 @@ package com.example.yumarketforowners.presentation.mapper.review
 import com.example.yumarketforowners.domain.model.review.Review
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewUiState
 
-fun Review.toReviewUiState() = ReviewUiState(
+fun Review.toReviewUiState(
+    onReplyClicked: () -> Unit
+) = ReviewUiState(
     id = id,
     writerName = writerName,
     profileImageUrl = profileImageUrl,
@@ -13,7 +15,8 @@ fun Review.toReviewUiState() = ReviewUiState(
     content = content,
     rating = rating,
     reviewImages = reviewImages,
-    reply = reply
+    reply = reply,
+    onReplyClicked = onReplyClicked
 )
 
 fun ReviewUiState.toReview() = Review(
