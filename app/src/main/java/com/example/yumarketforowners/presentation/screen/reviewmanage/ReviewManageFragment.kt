@@ -3,21 +3,21 @@ package com.example.yumarketforowners.presentation.screen.reviewmanage
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.yumarketforowners.databinding.FragmentReviewManageBinding
+import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import com.example.yumarketforowners.presentation.screen.base.BaseViewPagerFragment
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.BaseReviewInnerFragment
 
 class ReviewManageFragment :
-    BaseViewPagerFragment<FragmentReviewManageBinding, BaseReviewInnerFragment<*>>() {
+    BaseViewPagerFragment<FragmentReviewManageBinding, BaseFragment<*>>() {
 
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentReviewManageBinding =
-        FragmentReviewManageBinding.inflate(inflater, container, false)
+    ) = FragmentReviewManageBinding.inflate(inflater, container, false)
 
 
     override val tabStrings by lazy {
-        ReviewOrChatRoomType.values().map {
+        BaseReviewInnerFragment.Type.values().map {
             it.tabString
         }
     }
@@ -26,8 +26,8 @@ class ReviewManageFragment :
         initViewPagerAndTabLayout(
             binding.reviewManageViewPager,
             binding.reviewManageTabLayout,
-            ReviewOrChatRoomType.values().map {
-                BaseReviewInnerFragment.newInstance(it)
+            BaseReviewInnerFragment.Type.values().map {
+                BaseReviewInnerFragment.newInstance(it) as BaseFragment<*>
             }
         )
     }

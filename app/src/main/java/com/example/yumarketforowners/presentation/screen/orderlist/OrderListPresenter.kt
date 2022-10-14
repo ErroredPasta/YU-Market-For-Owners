@@ -16,7 +16,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class OrderListPresenter @Inject constructor(
-    private val view: OrderListInnerFragment,
+    private val view: OrderListView,
     private val getOrderList: GetOrderList,
     private val scopeProvider: Provider<CoroutineScope>
 ) {
@@ -24,7 +24,7 @@ class OrderListPresenter @Inject constructor(
 
     fun requestData(marketId: Long, orderState: OrderState) {
         coroutineScope.launch {
-            view.loading(show = true)
+            view.loading(isLoading = true)
             /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
             val result = getOrderList(marketId = marketId, orderState = orderState)?.let {
                 Result.Success(
@@ -32,7 +32,7 @@ class OrderListPresenter @Inject constructor(
                 )
             } ?: Result.Error(R.string.error_placeholder)
 
-            view.loading(show = false)
+            view.loading(isLoading = false)
 
             when (result) {
                 is Result.Success -> view.onRequestDataSuccess(result.data)

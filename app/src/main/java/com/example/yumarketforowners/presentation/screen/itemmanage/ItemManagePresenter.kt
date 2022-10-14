@@ -13,7 +13,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class ItemManagePresenter @Inject constructor(
-    private val view: ItemListInnerFragment,
+    private val view: ItemManageView,
     private val getItems: GetItems,
     private val scopeProvider: Provider<CoroutineScope>
 ) {
@@ -21,7 +21,7 @@ class ItemManagePresenter @Inject constructor(
 
     fun requestData(marketId: Long, available: Boolean) {
         coroutineScope.launch {
-            view.loading(show = true)
+            view.loading(isLoading = true)
             // TODO: 2022.05.27 get item by market id
             /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
 
@@ -29,7 +29,7 @@ class ItemManagePresenter @Inject constructor(
                 Result.Success(data = it.map { item -> item.toItemUiState() })
             } ?: Result.Error(R.string.error_placeholder)
 
-            view.loading(show = false)
+            view.loading(isLoading = false)
 
             when (result) {
                 is Result.Success -> view.onRequestDataSuccess(result.data)

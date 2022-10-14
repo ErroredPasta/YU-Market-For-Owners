@@ -14,7 +14,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class ReviewManagePresenter @Inject constructor(
-    private val view: ReviewInnerFragment,
+    private val view: ReviewListView,
     private val getReviews: GetReviews,
     private val scopeProvider: Provider<CoroutineScope>
 ) {
@@ -22,7 +22,7 @@ class ReviewManagePresenter @Inject constructor(
 
     fun requestData(marketId: Long) {
         coroutineScope.launch {
-            view.loading(show = true)
+            view.loading(isLoading = true)
             // TODO: 2022.06.04 get all data by market id
             /* TODO: 2022-09-21 수 01:35, error 처리 구현 */
             val result = getReviews(marketId = marketId)?.let {
@@ -31,7 +31,7 @@ class ReviewManagePresenter @Inject constructor(
                 )
             } ?: Result.Error(R.string.error_placeholder)
 
-            view.loading(show = false)
+            view.loading(isLoading = false)
 
             when (result) {
                 is Result.Success -> view.onRequestDataSuccess(result.data)

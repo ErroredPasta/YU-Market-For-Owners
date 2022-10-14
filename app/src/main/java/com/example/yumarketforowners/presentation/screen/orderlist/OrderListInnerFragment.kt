@@ -8,7 +8,6 @@ import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.recyclerview.listener.orderlist.OrderViewHolderListener
-import com.example.yumarketforowners.domain.model.order.Order
 import com.example.yumarketforowners.databinding.InnerFragmentOrderListBinding
 import com.example.yumarketforowners.domain.model.order.OrderState
 import com.example.yumarketforowners.presentation.extension.addItemDivider
@@ -18,7 +17,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class OrderListInnerFragment :
-    BaseFragment<InnerFragmentOrderListBinding>() {
+    BaseFragment<InnerFragmentOrderListBinding>(), OrderListView {
     companion object {
         private const val ORDER_STATE_KEY = "ORDER_STATE_KEY"
 
@@ -68,7 +67,7 @@ class OrderListInnerFragment :
     }
 
     override fun initState() {
-        binding.orderListRecyclerView.run {
+        binding.orderListRecyclerView.apply {
             this.adapter = this@OrderListInnerFragment.adapter
             addItemDivider(LinearLayout.VERTICAL)
         }
@@ -81,15 +80,15 @@ class OrderListInnerFragment :
         presenter.requestData(marketId = 0, orderState = orderState)
     }
 
-    fun loading(show: Boolean) {
+    override fun loading(isLoading: Boolean) {
         // TODO: 2022.07.10 implement loading
     }
 
-    fun onRequestDataSuccess(data: List<OrderUiState>) {
+    override fun onRequestDataSuccess(data: List<OrderUiState>) {
         adapter.submitList(data)
     }
 
-    fun onRequestDataError(@StringRes errorMessage: Int) {
+    override fun onRequestDataError(@StringRes errorMessage: Int) {
         Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
     }
 }

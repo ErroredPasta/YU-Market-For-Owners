@@ -11,8 +11,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
 
-class ChatRoomPresenter @Inject constructor(
-    private val view: ChatRoomInnerFragment,
+class ChatRoomListPresenter @Inject constructor(
+    private val view: ChatRoomListView,
     private val getChatRooms: GetChatRooms,
     private val scopeProvider: Provider<CoroutineScope>
 ) {
@@ -20,14 +20,14 @@ class ChatRoomPresenter @Inject constructor(
 
     fun requestData(marketId: Long) {
         coroutineScope.launch {
-            view.loading(show = true)
+            view.loading(isLoading = true)
             // TODO: 2022.06.04 get all data by market id
             /* TODO: 2022-09-21 수 01:35, error 처리 구현 */
             val result = getChatRooms(marketId = marketId)?.let {
                 Result.Success(data = it.map { chatRoom -> chatRoom.toChatRoomUiState() })
             } ?: Result.Error(R.string.error_placeholder)
 
-            view.loading(show = false)
+            view.loading(isLoading = false)
 
             when (result) {
                 is Result.Success -> view.onRequestDataSuccess(result.data)

@@ -1,10 +1,13 @@
 package com.example.yumarketforowners.di.fragment
 
 import androidx.fragment.app.Fragment
-import com.example.yumarketforowners.presentation.screen.itemmanage.ItemListInnerFragment
+import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageView
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderListInnerFragment
+import com.example.yumarketforowners.presentation.screen.orderlist.OrderListView
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomInnerFragment
+import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomListView
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewInnerFragment
+import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewListView
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,17 +19,17 @@ import dagger.hilt.android.components.FragmentComponent
 object FragmentViewModule {
     @Provides
     fun provideReviewView(fragment: Fragment) =
-        fragment as ReviewInnerFragment
+        fragment as ReviewListView
 
     @Provides
     fun provideChatRoomView(fragment: Fragment) =
-        fragment as ChatRoomInnerFragment
+        fragment as ChatRoomListView
 
     @Provides
     fun provideOrderListView(fragment: Fragment) =
-        fragment as OrderListInnerFragment
+        fragment as OrderListView
 
     @Provides
     fun provideItemManageView(fragment: Fragment) =
-        fragment as ItemListInnerFragment
+        fragment as ItemManageView
 }

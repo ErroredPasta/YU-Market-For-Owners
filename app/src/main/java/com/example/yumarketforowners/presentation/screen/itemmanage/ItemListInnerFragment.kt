@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ItemListInnerFragment :
-    BaseFragment<InnerFragmentItemListBinding>() {
+    BaseFragment<InnerFragmentItemListBinding>(), ItemManageView {
     companion object {
         private const val AVAILABILITY_KEY = "AVAILABILITY_KEY"
 
@@ -43,7 +43,7 @@ class ItemListInnerFragment :
     }
 
     override fun initState() = with(binding) {
-        itemListRecyclerView.run {
+        itemListRecyclerView.apply {
             this.adapter = this@ItemListInnerFragment.adapter
             addItemDivider(LinearLayout.VERTICAL)
         }
@@ -60,15 +60,15 @@ class ItemListInnerFragment :
         container: ViewGroup?
     ) = InnerFragmentItemListBinding.inflate(inflater, container, false)
 
-    fun loading(show: Boolean) {
+    override fun loading(isLoading: Boolean) {
         // TODO: 2022.07.10 implement loading
     }
 
-    fun onRequestDataSuccess(data: List<ItemUiState>) {
+    override fun onRequestDataSuccess(data: List<ItemUiState>) {
         adapter.submitList(data)
     }
 
-    fun onRequestDataError(errorMessage: Int) {
+    override fun onRequestDataError(errorMessage: Int) {
         Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
     }
 }

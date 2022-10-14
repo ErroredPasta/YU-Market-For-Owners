@@ -60,8 +60,8 @@ class ReviewManagePresenterTest {
 
         // assert
         verifyOrder {
-            viewMock.loading(show = true)
-            viewMock.loading(show = false)
+            viewMock.loading(isLoading = true)
+            viewMock.loading(isLoading = false)
         }
     }
 

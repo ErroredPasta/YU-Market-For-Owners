@@ -1,7 +1,6 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom
 
 import com.example.yumarketforowners.coroutine.TestCoroutineRule
-import com.example.yumarketforowners.domain.model.chatroom.ChatRoom
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRooms
 import com.example.yumarketforowners.entity.createChatRoom
 import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoomUiState
@@ -18,12 +17,12 @@ import javax.inject.Provider
 
 
 @ExperimentalCoroutinesApi
-class ChatRoomPresenterTest {
+class ChatRoomListPresenterTest {
 
     @get:Rule
     val testCoroutineRule = TestCoroutineRule()
 
-    private lateinit var sut: ChatRoomPresenter
+    private lateinit var sut: ChatRoomListPresenter
 
     // region test doubles =========================================================================
     private lateinit var viewMock: ChatRoomInnerFragment
@@ -41,7 +40,7 @@ class ChatRoomPresenterTest {
         getChatRoomsMock = mockk()
         scopeProviderMock = mockk()
 
-        sut = ChatRoomPresenter(
+        sut = ChatRoomListPresenter(
             view = viewMock,
             getChatRooms = getChatRoomsMock,
             scopeProvider = scopeProviderMock
@@ -61,8 +60,8 @@ class ChatRoomPresenterTest {
 
         // assert
         verifyOrder {
-            viewMock.loading(show = true)
-            viewMock.loading(show = false)
+            viewMock.loading(isLoading = true)
+            viewMock.loading(isLoading = false)
         }
     }
 
