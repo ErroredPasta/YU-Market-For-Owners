@@ -7,6 +7,7 @@ import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellTy
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.screen.base.Result
 import com.example.yumarketforowners.presentation.mapper.item.toItemUiState
+import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,9 +16,8 @@ import javax.inject.Provider
 class ItemManagePresenter @Inject constructor(
     private val view: ItemManageView,
     private val getItems: GetItems,
-    private val scopeProvider: Provider<CoroutineScope>
-) {
-    private val coroutineScope get() = scopeProvider.get()
+    scopeProvider: Provider<CoroutineScope>
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestData(marketId: Long, available: Boolean) {
         coroutineScope.launch {

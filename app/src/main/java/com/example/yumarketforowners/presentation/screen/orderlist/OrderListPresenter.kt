@@ -7,6 +7,7 @@ import com.example.yumarketforowners.domain.model.order.OrderState
 import com.example.yumarketforowners.domain.usecase.order.GetOrderList
 import com.example.yumarketforowners.presentation.mapper.order.toOrderUiState
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.screen.base.Result
 import kotlinx.coroutines.CoroutineScope
@@ -18,9 +19,8 @@ import javax.inject.Provider
 class OrderListPresenter @Inject constructor(
     private val view: OrderListView,
     private val getOrderList: GetOrderList,
-    private val scopeProvider: Provider<CoroutineScope>
-) {
-    private val coroutineScope get() = scopeProvider.get()
+    scopeProvider: Provider<CoroutineScope>
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestData(marketId: Long, orderState: OrderState) {
         coroutineScope.launch {

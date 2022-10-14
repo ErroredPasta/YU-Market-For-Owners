@@ -4,6 +4,7 @@ import com.example.yumarketforowners.R
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRooms
 import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoomUiState
 import com.example.yumarketforowners.presentation.recyclerview.viewholder.CellType
+import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.screen.base.Result
 import kotlinx.coroutines.CoroutineScope
@@ -14,9 +15,8 @@ import javax.inject.Provider
 class ChatRoomListPresenter @Inject constructor(
     private val view: ChatRoomListView,
     private val getChatRooms: GetChatRooms,
-    private val scopeProvider: Provider<CoroutineScope>
-) {
-    private val coroutineScope get() = scopeProvider.get()
+    scopeProvider: Provider<CoroutineScope>
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestData(marketId: Long) {
         coroutineScope.launch {
