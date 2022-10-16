@@ -29,9 +29,7 @@ class ItemManagePresenter @Inject constructor(
             val result = getItems(marketId = marketId, available = available)?.let {
                 Result.Success(data = it.map { item ->
                     item.toItemUiState(
-                        onEditItemButtonClick = {
-                            Log.d("TAG", "onEditItemButtonClick: ${item.id}")
-                        }
+                        onEditItemButtonClick = { view.navigateToEditScreen(item) }
                     )
                 })
             } ?: Result.Error(R.string.error_placeholder)

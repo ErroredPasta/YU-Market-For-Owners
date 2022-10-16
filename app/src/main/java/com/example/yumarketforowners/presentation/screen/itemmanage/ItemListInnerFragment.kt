@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import com.example.yumarketforowners.databinding.InnerFragmentItemListBinding
+import com.example.yumarketforowners.domain.model.item.Item
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
@@ -60,5 +61,9 @@ class ItemListInnerFragment :
 
     override fun onRequestDataError(errorMessage: Int) {
         Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun navigateToEditScreen(item: Item) {
+        Toast.makeText(context, "Edit item's id : ${item.id}", Toast.LENGTH_SHORT).show()
     }
 }

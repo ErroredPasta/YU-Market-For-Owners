@@ -9,6 +9,8 @@
             name="chatRoomUiState"
             type="com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomUiState" />
 
+        <import type="kotlin.jvm.functions.Function0" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

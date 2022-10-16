@@ -9,6 +9,8 @@
             name="itemUiState"
             type="com.example.yumarketforowners.presentation.screen.itemmanage.ItemUiState" />
 
+        <import type="kotlin.jvm.functions.Function0" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +47,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="item description"
+                android:text="@{itemUiState.description}"
                 tools:text="item description" />
 
             <TextView

@@ -1,6 +1,5 @@
 package com.example.yumarketforowners.data.remote.datasource.item
 
-import com.example.yumarketforowners.data.mapper.item.toItem
 import com.example.yumarketforowners.data.remote.dto.item.ItemDto
 import com.example.yumarketforowners.data.remote.dto.item.OptionDto
 import com.example.yumarketforowners.data.remote.dto.item.OptionGroupDto
