@@ -1,7 +1,5 @@
 package com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket
 
-import com.example.yumarketforowners.di.qualifier.LifeCycleScope
-import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType.ACTIVITY
 import com.example.yumarketforowners.domain.model.market.UpdateMarket
 import com.example.yumarketforowners.domain.usecase.market.GetMarketDetailUseCase
 import com.example.yumarketforowners.domain.usecase.market.UpdateMarketUseCase
@@ -10,14 +8,13 @@ import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePrese
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 import javax.inject.Provider
 
-class EditMarketPresenter @Inject constructor(
+class EditMarketPresenter(
     private val view: UpdateMarketView,
     private val getMarketDetailUseCase: GetMarketDetailUseCase,
     private val updateMarketUseCase: UpdateMarketUseCase,
-    @LifeCycleScope(ACTIVITY) scopeProvider: Provider<CoroutineScope>
+    scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->

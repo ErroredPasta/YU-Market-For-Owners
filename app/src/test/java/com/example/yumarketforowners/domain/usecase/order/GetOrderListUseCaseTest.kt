@@ -10,8 +10,8 @@ import org.junit.Test
 
 
 @ExperimentalCoroutinesApi
-class GetOrderListTest {
-    private lateinit var sut: GetOrderList
+class GetOrderListUseCaseTest {
+    private lateinit var sut: GetOrderListUseCase
 
     // region test doubles =========================================================================
     private lateinit var fakeRepository: FakeOrderRepository
@@ -21,7 +21,7 @@ class GetOrderListTest {
     fun setup() {
         fakeRepository = FakeOrderRepository()
 
-        sut = GetOrderList(fakeRepository)
+        sut = GetOrderListUseCase(fakeRepository)
     }
 
     @Test
@@ -30,7 +30,7 @@ class GetOrderListTest {
         val result = sut(marketId = 0L, orderState = OrderState.PENDING)
 
         // assert
-        for (order in result!!) {
+        for (order in result) {
             assertThat(order.orderState).isEqualTo(OrderState.PENDING)
         }
     }
@@ -41,7 +41,7 @@ class GetOrderListTest {
         val result = sut(marketId = 0L, orderState = OrderState.ACCEPTED)
 
         // assert
-        for (order in result!!) {
+        for (order in result) {
             assertThat(order.orderState).isEqualTo(OrderState.ACCEPTED)
         }
     }
@@ -52,7 +52,7 @@ class GetOrderListTest {
         val result = sut(marketId = 0L, orderState = OrderState.DONE)
 
         // assert
-        for (order in result!!) {
+        for (order in result) {
             assertThat(order.orderState).isEqualTo(OrderState.DONE)
         }
     }

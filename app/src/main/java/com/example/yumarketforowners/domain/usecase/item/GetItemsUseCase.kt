@@ -2,7 +2,7 @@ package com.example.yumarketforowners.domain.usecase.item
 
 import com.example.yumarketforowners.domain.repository.ItemRepository
 
-class GetItems(
+class GetItemsUseCase(
     private val repository: ItemRepository
 ) {
     suspend operator fun invoke(

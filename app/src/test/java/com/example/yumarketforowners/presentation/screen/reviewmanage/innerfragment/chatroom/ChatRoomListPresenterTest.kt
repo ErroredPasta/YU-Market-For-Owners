@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom
 
 import com.example.yumarketforowners.coroutine.TestCoroutineRule
-import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRooms
+import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
 import com.example.yumarketforowners.entity.createChatRoom
 import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoomUiState
 import io.mockk.*
@@ -26,7 +26,7 @@ class ChatRoomListPresenterTest {
 
     // region test doubles =========================================================================
     private lateinit var viewMock: ChatRoomInnerFragment
-    private lateinit var getChatRoomsMock: GetChatRooms
+    private lateinit var getChatRoomsUseCaseMock: GetChatRoomsUseCase
     private lateinit var scopeProviderMock: Provider<CoroutineScope>
     // endregion test doubles ======================================================================
 
@@ -37,12 +37,12 @@ class ChatRoomListPresenterTest {
     @Before
     fun setup() {
         viewMock = mockk(relaxed = true)
-        getChatRoomsMock = mockk()
+        getChatRoomsUseCaseMock = mockk()
         scopeProviderMock = mockk()
 
         sut = ChatRoomListPresenter(
             view = viewMock,
-            getChatRooms = getChatRoomsMock,
+            getChatRoomsUseCase = getChatRoomsUseCaseMock,
             scopeProvider = scopeProviderMock
         )
 
@@ -96,7 +96,7 @@ class ChatRoomListPresenterTest {
     private fun getChatRoomsReturns(): List<ChatRoomUiState> {
         val returnValue = createChatRoomList()
 
-        coEvery { getChatRoomsMock(marketId = any()) } returns returnValue
+        coEvery { getChatRoomsUseCaseMock(marketId = any()) } returns returnValue
 
         return returnValue.map {
             it.toChatRoomUiState(
@@ -107,7 +107,7 @@ class ChatRoomListPresenterTest {
     }
 
     private fun getChatRoomsFailed() {
-        coEvery { getChatRoomsMock(marketId = any()) } returns null
+        coEvery { getChatRoomsUseCaseMock(marketId = any()) } returns null
     }
 
     private fun createChatRoomList() = (1..10).map {

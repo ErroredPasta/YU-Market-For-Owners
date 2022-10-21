@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review
 
 import com.example.yumarketforowners.coroutine.TestCoroutineRule
-import com.example.yumarketforowners.domain.usecase.review.GetReviews
+import com.example.yumarketforowners.domain.usecase.review.GetReviewsUseCase
 import com.example.yumarketforowners.entity.createReview
 import com.example.yumarketforowners.presentation.mapper.review.toReviewUiState
 import io.mockk.*
@@ -26,7 +26,7 @@ class ReviewManagePresenterTest {
 
     // region test doubles =========================================================================
     private lateinit var viewMock: ReviewInnerFragment
-    private lateinit var getReviewsMock: GetReviews
+    private lateinit var getReviewsUseCaseMock: GetReviewsUseCase
     private lateinit var scopeProviderMock: Provider<CoroutineScope>
     // endregion test doubles ======================================================================
 
@@ -37,12 +37,12 @@ class ReviewManagePresenterTest {
     @Before
     fun setup() {
         viewMock = mockk(relaxed = true)
-        getReviewsMock = mockk()
+        getReviewsUseCaseMock = mockk()
         scopeProviderMock = mockk()
 
         sut = ReviewManagePresenter(
             view = viewMock,
-            getReviews = getReviewsMock,
+            getReviewsUseCase = getReviewsUseCaseMock,
             scopeProvider = scopeProviderMock
         )
 
@@ -96,7 +96,7 @@ class ReviewManagePresenterTest {
     private fun getReviewsReturns(): List<ReviewUiState> {
         val returnValue = createReviewList()
 
-        coEvery { getReviewsMock(marketId = any()) } returns returnValue
+        coEvery { getReviewsUseCaseMock(marketId = any()) } returns returnValue
 
         return returnValue.map {
             it.toReviewUiState(
@@ -106,7 +106,7 @@ class ReviewManagePresenterTest {
     }
 
     private fun getReviewsFailed() {
-        coEvery { getReviewsMock(marketId = any()) } returns null
+        coEvery { getReviewsUseCaseMock(marketId = any()) } returns null
     }
 
     private fun createReviewList() = (1..10).map {

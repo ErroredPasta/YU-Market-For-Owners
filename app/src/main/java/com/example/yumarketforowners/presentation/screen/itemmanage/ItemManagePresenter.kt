@@ -1,10 +1,8 @@
 package com.example.yumarketforowners.presentation.screen.itemmanage
 
 import com.example.yumarketforowners.R
-import com.example.yumarketforowners.di.qualifier.LifeCycleScope
-import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType.FRAGMENT
 import com.example.yumarketforowners.domain.model.item.OptionGroup
-import com.example.yumarketforowners.domain.usecase.item.GetItems
+import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
 import com.example.yumarketforowners.presentation.mapper.item.toItemUiState
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
@@ -12,13 +10,12 @@ import com.example.yumarketforowners.presentation.screen.base.Result
 import com.example.yumarketforowners.presentation.viewholder.CellType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 import javax.inject.Provider
 
-class ItemManagePresenter @Inject constructor(
+class ItemManagePresenter(
     private val view: ItemManageView,
-    private val getItems: GetItems,
-    @LifeCycleScope(FRAGMENT) scopeProvider: Provider<CoroutineScope>
+    private val getItemsUseCase: GetItemsUseCase,
+    scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestData(marketId: Long, available: Boolean) {
@@ -27,7 +24,7 @@ class ItemManagePresenter @Inject constructor(
             // TODO: 2022.05.27 get item by market id
             /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
 
-            val result = getItems(marketId = marketId, available = available)?.let {
+            val result = getItemsUseCase(marketId = marketId, available = available)?.let {
                 Result.Success(data = it.map { item ->
                     item.toItemUiState(
                         onEditItemButtonClick = { view.navigateToEditScreen(item) }

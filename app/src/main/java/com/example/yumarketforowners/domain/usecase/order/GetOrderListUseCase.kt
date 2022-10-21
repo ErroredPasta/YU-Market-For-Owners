@@ -1,13 +1,13 @@
 package com.example.yumarketforowners.domain.usecase.order
 
-import com.example.yumarketforowners.domain.model.order.OrderState
 import com.example.yumarketforowners.domain.repository.OrderRepository
+import com.example.yumarketforowners.domain.model.order.OrderState
 
-class UpdateOrderState(
+class GetOrderListUseCase(
     private val repository: OrderRepository
 ) {
     suspend operator fun invoke(
-        orderId: Long,
+        marketId: Long,
         orderState: OrderState
-    ) = repository.updateOrderState(orderId, orderState)
+    ) = repository.getOrderListByMarketId(marketId).filter { it.orderState == orderState }
 }

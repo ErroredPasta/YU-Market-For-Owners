@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.presentation.screen.itemmanage
 
 import com.example.yumarketforowners.coroutine.TestCoroutineRule
-import com.example.yumarketforowners.domain.usecase.item.GetItems
+import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
 import com.example.yumarketforowners.entity.createItem
 import com.example.yumarketforowners.presentation.mapper.item.toItemUiState
 import io.mockk.*
@@ -26,7 +26,7 @@ class ItemManagePresenterTest {
 
     // region test doubles =========================================================================
     private lateinit var viewMock: ItemListInnerFragment
-    private lateinit var getItemsMock: GetItems
+    private lateinit var getItemsUseCaseMock: GetItemsUseCase
     private lateinit var scopeProviderMock: Provider<CoroutineScope>
     // endregion test doubles ======================================================================
 
@@ -37,12 +37,12 @@ class ItemManagePresenterTest {
     @Before
     fun setup() {
         viewMock = mockk(relaxed = true)
-        getItemsMock = mockk()
+        getItemsUseCaseMock = mockk()
         scopeProviderMock = mockk()
 
         sut = ItemManagePresenter(
             view = viewMock,
-            getItems = getItemsMock,
+            getItemsUseCase = getItemsUseCaseMock,
             scopeProvider = scopeProviderMock
         )
 
@@ -123,7 +123,7 @@ class ItemManagePresenterTest {
         val returnValue = createItemList(available = available)
 
         coEvery {
-            getItemsMock(marketId = any(), available = available)
+            getItemsUseCaseMock(marketId = any(), available = available)
         } returns returnValue
 
         return returnValue.map {
@@ -135,7 +135,7 @@ class ItemManagePresenterTest {
 
     private fun getItemsFailed() {
         coEvery {
-            getItemsMock(marketId = any(), available = any())
+            getItemsUseCaseMock(marketId = any(), available = any())
         } returns null
     }
 

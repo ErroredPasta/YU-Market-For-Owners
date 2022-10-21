@@ -1,30 +1,29 @@
 package com.example.yumarketforowners.presentation.screen.orderlist
 
-import com.example.yumarketforowners.di.qualifier.LifeCycleScope
-import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType.FRAGMENT
 import com.example.yumarketforowners.domain.model.order.DeliveryType
 import com.example.yumarketforowners.domain.model.order.Order
 import com.example.yumarketforowners.domain.model.order.OrderOptionGroup
 import com.example.yumarketforowners.domain.model.order.OrderState
-import com.example.yumarketforowners.domain.usecase.order.GetOrderList
-import com.example.yumarketforowners.domain.usecase.order.UpdateOrderState
+import com.example.yumarketforowners.domain.usecase.order.UpdateOrderStateUseCase
 import com.example.yumarketforowners.presentation.mapper.order.toOrderUiState
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.viewholder.CellType
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import java.time.LocalTime
-import javax.inject.Inject
 import javax.inject.Provider
 
 class OrderListPresenter(
     private val view: OrderListView,
 //    private val getOrderList: GetOrderList,
-    private val updateOrderState: UpdateOrderState,
-    @LifeCycleScope(FRAGMENT) scopeProvider: Provider<CoroutineScope>,
+    private val updateOrderStateUseCase: UpdateOrderStateUseCase,
+    scopeProvider: Provider<CoroutineScope>,
     private val orderListFlow: Flow<List<Order>>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
@@ -45,17 +44,17 @@ class OrderListPresenter(
                         },
                         onAcceptOrderButtonClicked = {
                             coroutineScope.launch(exceptionHandler) {
-                                updateOrderState(order.id, OrderState.ACCEPTED)
+                                updateOrderStateUseCase(order.id, OrderState.ACCEPTED)
                             }
                         },
                         onRejectOrderButtonClicked = {
                             coroutineScope.launch(exceptionHandler) {
-                                updateOrderState(order.id, OrderState.REJECTED)
+                                updateOrderStateUseCase(order.id, OrderState.REJECTED)
                             }
                         },
                         onDeliveryDoneButtonClicked = {
                             coroutineScope.launch(exceptionHandler) {
-                                updateOrderState(order.id, OrderState.DONE)
+                                updateOrderStateUseCase(order.id, OrderState.DONE)
                             }
                         }
                     )

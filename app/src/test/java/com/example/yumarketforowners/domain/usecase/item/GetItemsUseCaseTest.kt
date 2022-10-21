@@ -9,8 +9,8 @@ import org.junit.Before
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class GetItemsTest {
-    private lateinit var sut: GetItems
+class GetItemsUseCaseTest {
+    private lateinit var sut: GetItemsUseCase
 
     // region test doubles =========================================================================
     private lateinit var fakeRepository: ItemRepository
@@ -20,7 +20,7 @@ class GetItemsTest {
     fun setup() {
         fakeRepository = FakeItemRepository()
 
-        sut = GetItems(fakeRepository)
+        sut = GetItemsUseCase(fakeRepository)
     }
 
     @Test

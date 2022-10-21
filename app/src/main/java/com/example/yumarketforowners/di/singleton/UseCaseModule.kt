@@ -5,13 +5,13 @@ import com.example.yumarketforowners.domain.repository.ItemRepository
 import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.domain.repository.ReviewRepository
 import com.example.yumarketforowners.domain.repository.market.MarketRepository
-import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRooms
-import com.example.yumarketforowners.domain.usecase.item.GetItems
+import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
+import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
 import com.example.yumarketforowners.domain.usecase.market.GetMarketDetailUseCase
 import com.example.yumarketforowners.domain.usecase.market.UpdateMarketUseCase
-import com.example.yumarketforowners.domain.usecase.order.GetOrderList
-import com.example.yumarketforowners.domain.usecase.order.UpdateOrderState
-import com.example.yumarketforowners.domain.usecase.review.GetReviews
+import com.example.yumarketforowners.domain.usecase.order.GetOrderListUseCase
+import com.example.yumarketforowners.domain.usecase.order.UpdateOrderStateUseCase
+import com.example.yumarketforowners.domain.usecase.review.GetReviewsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,16 +21,16 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
     @Provides
-    fun provideGetChatRoomsUseCase(repository: ChatRoomRepository) = GetChatRooms(repository)
+    fun provideGetChatRoomsUseCase(repository: ChatRoomRepository) = GetChatRoomsUseCase(repository)
 
     @Provides
-    fun provideGetItemsUseCase(repository: ItemRepository) = GetItems(repository)
+    fun provideGetItemsUseCase(repository: ItemRepository) = GetItemsUseCase(repository)
 
     @Provides
-    fun provideGetOrderListUseCase(repository: OrderRepository) = GetOrderList(repository)
+    fun provideGetOrderListUseCase(repository: OrderRepository) = GetOrderListUseCase(repository)
 
     @Provides
-    fun provideGetReviewsUseCase(repository: ReviewRepository) = GetReviews(repository)
+    fun provideGetReviewsUseCase(repository: ReviewRepository) = GetReviewsUseCase(repository)
 
     @Provides
     fun provideGetMarketDetailUseCase(repository: MarketRepository) = GetMarketDetailUseCase(repository)
@@ -39,5 +39,5 @@ object UseCaseModule {
     fun provideUpdateMarketUseCase(repository: MarketRepository) = UpdateMarketUseCase(repository)
 
     @Provides
-    fun provideUpdateOrderStateUseCase(repository: OrderRepository) = UpdateOrderState(repository)
+    fun provideUpdateOrderStateUseCase(repository: OrderRepository) = UpdateOrderStateUseCase(repository)
 }

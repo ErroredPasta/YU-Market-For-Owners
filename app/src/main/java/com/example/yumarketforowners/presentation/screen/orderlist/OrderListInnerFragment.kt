@@ -1,10 +1,12 @@
 package com.example.yumarketforowners.presentation.screen.orderlist
 
+import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
 import com.example.yumarketforowners.databinding.InnerFragmentOrderListBinding
 import com.example.yumarketforowners.domain.model.order.OrderState
@@ -36,6 +38,12 @@ class OrderListInnerFragment :
         }
     }
 
+    private var hasCallPhonePermission: Boolean = false
+    private val callPhonePermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
+            hasCallPhonePermission = result
+        }
+
     @Inject
     lateinit var presenter: OrderListPresenter
 
@@ -65,10 +73,14 @@ class OrderListInnerFragment :
     }
 
     override fun navigateToCallScreen(telephoneNumber: String) {
-        startActivity(
-            Intent(Intent.ACTION_CALL).apply {
-                data = Uri.parse("tel:$telephoneNumber")
-            }
-        )
+        if (hasCallPhonePermission) {
+            startActivity(
+                Intent(Intent.ACTION_CALL).apply {
+                    data = Uri.parse("tel:$telephoneNumber")
+                }
+            )
+        } else {
+            callPhonePermissionLauncher.launch(Manifest.permission.CALL_PHONE)
+        }
     }
 }
