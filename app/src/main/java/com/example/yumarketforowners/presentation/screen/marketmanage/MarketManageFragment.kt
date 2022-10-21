@@ -3,11 +3,21 @@ package com.example.yumarketforowners.presentation.screen.marketmanage
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import com.example.yumarketforowners.R
 import com.example.yumarketforowners.databinding.FragmentMarketManageBinding
 import com.example.yumarketforowners.domain.model.user.User
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
+import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketActivity
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), MarketManageListener {
+
+    @Inject
+    lateinit var navController: NavController
 
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -32,8 +42,11 @@ class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), Market
     }
 
     override fun onEditMarketClicked() {
-        // TODO: 2022.06.10 start profile edit activity
-        Toast.makeText(context, "edit market clicked", Toast.LENGTH_SHORT).show()
+        /* TODO: 2022-10-19 수 17:56, pass proper market id */
+        navController.navigate(
+            R.id.action_marketManageFragment_to_editMarketActivity,
+            bundleOf(UpdateMarketActivity.KEY_MARKET_ID to 1L)
+        )
     }
 
     override fun onManageScheduleClicked() {

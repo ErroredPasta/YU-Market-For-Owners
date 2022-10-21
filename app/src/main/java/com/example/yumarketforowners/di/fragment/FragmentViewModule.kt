@@ -2,11 +2,9 @@ package com.example.yumarketforowners.di.fragment
 
 import androidx.fragment.app.Fragment
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageView
-import com.example.yumarketforowners.presentation.screen.orderlist.OrderListInnerFragment
+import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketView
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderListView
-import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomInnerFragment
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomListView
-import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewInnerFragment
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewListView
 import dagger.Module
 import dagger.Provides
@@ -32,4 +30,8 @@ object FragmentViewModule {
     @Provides
     fun provideItemManageView(fragment: Fragment) =
         fragment as ItemManageView
+
+    @Provides
+    fun provideEditMarketView(fragment: Fragment) =
+        fragment as UpdateMarketView
 }

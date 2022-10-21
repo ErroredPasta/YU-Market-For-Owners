@@ -1,17 +1,24 @@
 package com.example.yumarketforowners.data.mapper.market
 
+import com.example.yumarketforowners.data.remote.dto.market.AddressDto
+import com.example.yumarketforowners.data.remote.dto.market.DeliveryFeeDto
 import com.example.yumarketforowners.data.remote.dto.market.MarketDto
+import com.example.yumarketforowners.data.remote.dto.market.UpdateMarketDto
+import com.example.yumarketforowners.domain.model.market.DeliveryFee
 import com.example.yumarketforowners.domain.model.market.Market
+import com.example.yumarketforowners.domain.model.market.UpdateMarket
 
-fun Market.toMarketDto() = MarketDto(
+fun Market.toMarketDto(
+    addressDto: AddressDto
+) = MarketDto(
     id = id,
     name = name,
     marketImage = marketImage,
     marketDetailImages = marketDetailImages,
-    deliveryFees = deliveryFees,
+    deliveryFees = deliveryFees.toDeliveryFeeDtos(),
     marketType = marketType,
     detailMarketType = detailMarketType,
-    address = address,
+    addressDto = addressDto,
     openTime = openTime,
     closedDays = closedDays,
     phoneNumber = phoneNumber
@@ -22,11 +29,36 @@ fun MarketDto.toMarket() = Market(
     name = name,
     marketImage = marketImage,
     marketDetailImages = marketDetailImages,
-    deliveryFees = deliveryFees,
+    deliveryFees = deliveryFees.toDeliveryFees(),
     marketType = marketType,
     detailMarketType = detailMarketType,
-    address = address,
+    address = addressDto.addressString,
+    detailAddress = addressDto.detailAddressString,
     openTime = openTime,
     closedDays = closedDays,
     phoneNumber = phoneNumber
 )
+
+fun UpdateMarket.toUpdateMarketDto(
+    addressDto: AddressDto
+) = UpdateMarketDto(
+    id = id,
+    name = name,
+    marketType = marketType,
+    marketRepresentativeImage = marketRepresentativeImage,
+    marketDetailImage = marketDetailImage,
+    addressDto = addressDto,
+)
+
+private fun List<DeliveryFee>.toDeliveryFeeDtos() = map {
+    DeliveryFeeDto(
+        priceRange = it.priceRange,
+        fee = it.fee
+    )
+}
+private fun List<DeliveryFeeDto>.toDeliveryFees() = map {
+    DeliveryFee(
+        priceRange = it.priceRange,
+        fee = it.fee
+    )
+}

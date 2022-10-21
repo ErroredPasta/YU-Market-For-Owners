@@ -4,6 +4,8 @@ import com.example.yumarketforowners.data.remote.datasource.chatroom.ChatRoomRem
 import com.example.yumarketforowners.data.remote.datasource.chatroom.FakeChatRoomRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.item.FakeItemRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.item.ItemRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.market.FakeMarketRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.market.MarketRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.order.FakeOrderRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.order.OrderRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.review.FakeReviewRemoteDataSource
@@ -15,16 +17,19 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class DataSourceModule {
+interface DataSourceModule {
     @Binds
-    abstract fun bindChatRoomRemoteDataSource(dataSource: FakeChatRoomRemoteDataSource): ChatRoomRemoteDataSource
+    fun bindChatRoomRemoteDataSource(dataSource: FakeChatRoomRemoteDataSource): ChatRoomRemoteDataSource
 
     @Binds
-    abstract fun bindItemRemoteDataSource(dataSource: FakeItemRemoteDataSource): ItemRemoteDataSource
+    fun bindItemRemoteDataSource(dataSource: FakeItemRemoteDataSource): ItemRemoteDataSource
 
     @Binds
-    abstract fun bindOrderRemoteDataSource(dataSource: FakeOrderRemoteDataSource): OrderRemoteDataSource
+    fun bindOrderRemoteDataSource(dataSource: FakeOrderRemoteDataSource): OrderRemoteDataSource
 
     @Binds
-    abstract fun bindReviewRemoteDataSource(dataSource: FakeReviewRemoteDataSource): ReviewRemoteDataSource
+    fun bindReviewRemoteDataSource(dataSource: FakeReviewRemoteDataSource): ReviewRemoteDataSource
+
+    @Binds
+    fun bindMarketRemoteDataSource(dateSource: FakeMarketRemoteDataSource): MarketRemoteDataSource
 }

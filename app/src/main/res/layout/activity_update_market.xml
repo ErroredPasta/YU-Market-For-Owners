@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="updateMarketUiState"
+            type="com.example.yumarketforowners.domain.model.market.UpdateMarket" />
+
+        <variable
+            name="listener"
+            type="com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketListener" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/market_name" />
+
+            <EditText
+                android:id="@+id/updateMarketNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@{updateMarketUiState.name}"
+                tools:ignore="LabelFor" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/select_category" />
+
+            <Spinner
+                android:id="@+id/updateMarketTypeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/market_representative_image" />
+
+            <ImageView
+                android:id="@+id/updateMarketRepresentativeImage"
+                cornerRadius="@{0.0f}"
+                imageUrl="@{updateMarketUiState.marketRepresentativeImage}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="@{() -> listener.onRepresentativeImageClicked()}"
+                android:contentDescription="@string/market_representative_image"
+                tools:src="@drawable/calendar_icon" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/market_detail_image" />
+
+            <ImageView
+                android:id="@+id/updateMarketDetailImage"
+                cornerRadius="@{0.0f}"
+                imageUrl="@{updateMarketUiState.marketDetailImage}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:onClick="@{() -> listener.onDetailImageClicked()}"
+                android:contentDescription="@string/market_detail_image"
+                tools:src="@drawable/calendar_icon" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/address" />
+
+            <EditText
+                android:id="@+id/updateMarketAddressEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{updateMarketUiState.address}"
+                android:importantForAutofill="no"
+                android:inputType="none"
+                android:onClick="@{() -> listener.onAddressEditTextClicked()}"
+                tools:ignore="LabelFor" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/detail_address" />
+
+            <EditText
+                android:id="@+id/updateMarketDetailAddressEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{updateMarketUiState.detailAddress}"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="LabelFor" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> listener.onConfirmButtonClicked()}"
+                android:backgroundTint="@color/interactive_color"
+                android:text="@string/confirm" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> listener.onCancelButtonClicked()}"
+                android:backgroundTint="@color/unfocused_color"
+                android:text="@string/cancel" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

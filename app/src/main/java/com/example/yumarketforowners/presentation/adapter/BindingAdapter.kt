@@ -7,8 +7,11 @@ import androidx.databinding.BindingAdapter
 import com.example.yumarketforowners.presentation.extension.load
 
 @BindingAdapter(value = ["imageUrl", "cornerRadius"], requireAll = false)
-fun setImageByUrl(imageView: ImageView, imageUrl: String, corner: Float) =
+fun setImageByUrl(imageView: ImageView, imageUrl: String?, corner: Float) {
+    if (imageUrl == null) return
+
     imageView.load(imageUrl, corner)
+}
 
 
 @BindingAdapter("showIf")
