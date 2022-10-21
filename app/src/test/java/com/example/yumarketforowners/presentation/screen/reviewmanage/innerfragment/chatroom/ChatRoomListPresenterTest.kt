@@ -1,9 +1,12 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom
 
 import com.example.yumarketforowners.coroutine.TestCoroutineRule
+import com.example.yumarketforowners.domain.model.chatroom.ChatRoom
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
 import com.example.yumarketforowners.entity.createChatRoom
+import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoom
 import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoomUiState
+import com.google.common.truth.Truth.assertThat
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -75,7 +78,11 @@ class ChatRoomListPresenterTest {
         advanceUntilIdle()
 
         // assert
-        verify { viewMock.onRequestDataSuccess(expected) }
+        val slot = slot<List<ChatRoomUiState>>()
+        verify { viewMock.onRequestDataSuccess(capture(slot)) }
+
+        val capturedValue = slot.captured.map { it.toChatRoom() }
+        assertThat(capturedValue).isEqualTo(expected)
     }
 
     @Test
@@ -93,17 +100,12 @@ class ChatRoomListPresenterTest {
 
     // region helper methods =======================================================================
 
-    private fun getChatRoomsReturns(): List<ChatRoomUiState> {
+    private fun getChatRoomsReturns(): List<ChatRoom> {
         val returnValue = createChatRoomList()
 
         coEvery { getChatRoomsUseCaseMock(marketId = any()) } returns returnValue
 
-        return returnValue.map {
-            it.toChatRoomUiState(
-                onClicked = {},
-                onRemoveClicked = {}
-            )
-        }
+        return returnValue
     }
 
     private fun getChatRoomsFailed() {

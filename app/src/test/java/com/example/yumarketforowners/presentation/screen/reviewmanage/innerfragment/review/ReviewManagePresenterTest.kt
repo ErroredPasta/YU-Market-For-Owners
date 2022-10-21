@@ -1,9 +1,12 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review
 
 import com.example.yumarketforowners.coroutine.TestCoroutineRule
+import com.example.yumarketforowners.domain.model.review.Review
 import com.example.yumarketforowners.domain.usecase.review.GetReviewsUseCase
 import com.example.yumarketforowners.entity.createReview
+import com.example.yumarketforowners.presentation.mapper.review.toReview
 import com.example.yumarketforowners.presentation.mapper.review.toReviewUiState
+import com.google.common.truth.Truth.assertThat
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -75,7 +78,11 @@ class ReviewManagePresenterTest {
         advanceUntilIdle()
 
         // assert
-        verify { viewMock.onRequestDataSuccess(expected) }
+        val slot = slot<List<ReviewUiState>>()
+        verify { viewMock.onRequestDataSuccess(capture(slot)) }
+
+        val capturedValue = slot.captured.map { it.toReview() }
+        assertThat(capturedValue).isEqualTo(expected)
     }
 
     @Test
@@ -93,16 +100,12 @@ class ReviewManagePresenterTest {
 
     // region helper methods =======================================================================
 
-    private fun getReviewsReturns(): List<ReviewUiState> {
+    private fun getReviewsReturns(): List<Review> {
         val returnValue = createReviewList()
 
         coEvery { getReviewsUseCaseMock(marketId = any()) } returns returnValue
 
-        return returnValue.map {
-            it.toReviewUiState(
-                onReplyClicked = {}
-            )
-        }
+        return returnValue
     }
 
     private fun getReviewsFailed() {
