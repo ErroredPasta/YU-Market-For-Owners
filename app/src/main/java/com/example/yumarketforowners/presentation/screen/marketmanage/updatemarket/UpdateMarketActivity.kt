@@ -22,7 +22,9 @@ class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), Update
     }
 
     private val marketId by lazy {
-        intent.extras!!.getLong(KEY_MARKET_ID)
+        checkNotNull(intent.extras?.get(KEY_MARKET_ID)) {
+            "marketId가 null입니다."
+        } as Long
     }
 
     @Inject

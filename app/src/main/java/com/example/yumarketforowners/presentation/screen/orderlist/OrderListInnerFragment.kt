@@ -33,9 +33,9 @@ class OrderListInnerFragment :
     ) = InnerFragmentOrderListBinding.inflate(inflater, container, false)
 
     private val orderState by lazy {
-        checkNotNull(requireArguments().getSerializable(ORDER_STATE_KEY, OrderState::class.java)) {
+        checkNotNull(requireArguments()[ORDER_STATE_KEY]) {
             "orderState가 null입니다."
-        }
+        } as OrderState
     }
 
     private var hasCallPhonePermission: Boolean = false
