@@ -11,6 +11,6 @@ data class Order(
     val deliveryFee: Int,
     val deliveryTime: Pair<LocalTime, LocalTime>,
     val deliveryType: DeliveryType,
-    val orderMakerId: Long,
+    val telephoneNumber: String,
     val request: String
 )

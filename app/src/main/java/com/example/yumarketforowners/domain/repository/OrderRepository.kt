@@ -1,8 +1,12 @@
 package com.example.yumarketforowners.domain.repository
 
 import com.example.yumarketforowners.domain.model.order.Order
+import com.example.yumarketforowners.domain.model.order.OrderState
+import kotlinx.coroutines.flow.Flow
 
 interface OrderRepository {
-    suspend fun getOrderListByMarketId(marketId: Long): List<Order>?
+    val orderListFlow: Flow<List<Order>>
+    suspend fun getOrderListByMarketId(marketId: Long): List<Order>
     suspend fun getOrderById(orderId: Long): Order?
+    suspend fun updateOrderState(orderId: Long, orderState: OrderState)
 }

@@ -9,19 +9,19 @@ import com.example.yumarketforowners.domain.model.order.OrderItem
 import com.example.yumarketforowners.domain.model.order.OrderOption
 import com.example.yumarketforowners.domain.model.order.OrderOptionGroup
 
-fun Order.toOrderDto(marketId: Long) = OrderDto(
-    id = id,
-    marketId = marketId,
-    orderedAt = orderedAt,
-    orderItemDtos = orderItems.toOrderItemDtos(),
-    totalPrice = totalPrice,
-    orderState = orderState,
-    deliveryFee = deliveryFee,
-    deliveryTime = deliveryTime,
-    deliveryType = deliveryType,
-    orderMakerId = orderMakerId,
-    request = request
-)
+//fun Order.toOrderDto(marketId: Long) = OrderDto(
+//    id = id,
+//    marketId = marketId,
+//    orderedAt = orderedAt,
+//    orderItemDtos = orderItems.toOrderItemDtos(),
+//    totalPrice = totalPrice,
+//    orderState = orderState,
+//    deliveryFee = deliveryFee,
+//    deliveryTime = deliveryTime,
+//    deliveryType = deliveryType,
+//    orderMakerId = telephoneNumber,
+//    request = request
+//)
 
 fun OrderDto.toOrder() = Order(
     id,
@@ -32,7 +32,7 @@ fun OrderDto.toOrder() = Order(
     deliveryFee = deliveryFee,
     deliveryTime = deliveryTime,
     deliveryType = deliveryType,
-    orderMakerId = orderMakerId,
+    telephoneNumber = orderMakerId.toString(),
     request = request
 )
 

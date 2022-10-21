@@ -10,6 +10,7 @@ import com.example.yumarketforowners.domain.usecase.item.GetItems
 import com.example.yumarketforowners.domain.usecase.market.GetMarketDetailUseCase
 import com.example.yumarketforowners.domain.usecase.market.UpdateMarketUseCase
 import com.example.yumarketforowners.domain.usecase.order.GetOrderList
+import com.example.yumarketforowners.domain.usecase.order.UpdateOrderState
 import com.example.yumarketforowners.domain.usecase.review.GetReviews
 import dagger.Module
 import dagger.Provides
@@ -36,4 +37,7 @@ object UseCaseModule {
 
     @Provides
     fun provideUpdateMarketUseCase(repository: MarketRepository) = UpdateMarketUseCase(repository)
+
+    @Provides
+    fun provideUpdateOrderStateUseCase(repository: OrderRepository) = UpdateOrderState(repository)
 }

@@ -1,20 +1,31 @@
 package com.example.yumarketforowners.data.remote.datasource.order
 
+import android.util.Log
 import com.example.yumarketforowners.data.remote.dto.order.OrderDto
 import com.example.yumarketforowners.data.remote.dto.order.OrderItemDto
 import com.example.yumarketforowners.data.remote.dto.order.OrderOptionDto
 import com.example.yumarketforowners.data.remote.dto.order.OrderOptionGroupDto
 import com.example.yumarketforowners.domain.model.order.DeliveryType
 import com.example.yumarketforowners.domain.model.order.OrderState
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.withContext
 import java.time.LocalTime
 import javax.inject.Inject
+import javax.inject.Singleton
 
+private const val TAG = "FakeOrderRemoteDataSource"
+
+@Singleton
 class FakeOrderRemoteDataSource @Inject constructor() : OrderRemoteDataSource {
 
-    private val testList = (0..9).map {
+    private val orderList = (0..9).map {
         OrderDto(
             id = it.toLong(),
-            marketId = it.toLong(),
+            marketId = 0L,
             orderedAt = it.toLong(),
             orderItemDtos = createOrderItemDtos((it..it + 1)),
             totalPrice = calculateTotalPrice((it..it + 1)),
@@ -28,11 +39,32 @@ class FakeOrderRemoteDataSource @Inject constructor() : OrderRemoteDataSource {
             orderMakerId = it.toLong(),
             request = "request $it"
         )
+    }.toMutableList()
+
+    private val _orderListFlow = MutableStateFlow(orderList)
+    override val orderListFlow: Flow<List<OrderDto>> = _orderListFlow.asStateFlow()
+
+    override suspend fun getOrderListByMarketId(marketId: Long): List<OrderDto> {
+        TODO("not implemented")
     }
 
-    override suspend fun getOrderListByMarketId(marketId: Long) = testList
+    override suspend fun getOrderByOrderId(orderId: Long) = orderList.find { it.id == orderId }
 
-    override suspend fun getOrderByOrderId(orderId: Long) = testList.find { it.id == orderId }
+    override suspend fun updateOrderState(orderId: Long, orderState: OrderState) =
+        withContext<Unit>(NonCancellable) {
+            val index = orderList.indexOfFirst { it.id == orderId }
+            val updatedOrder = orderList.find { it.id == orderId }?.copy(
+                orderState = orderState
+            )
+
+            updatedOrder?.let {
+                _orderListFlow.update {
+                    it.toMutableList().also { list -> list[index] = updatedOrder }
+                }
+
+                Log.d(TAG, "updateOrderState: ${_orderListFlow.value[index]}")
+            } ?: Log.d(TAG, "updateOrderState: no update")
+        }
 
     // region temporary helper functions ===========================================================
 

@@ -5,12 +5,10 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
-import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.databinding.InnerFragmentOrderListBinding
 import com.example.yumarketforowners.domain.model.order.OrderState
+import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +31,9 @@ class OrderListInnerFragment :
     ) = InnerFragmentOrderListBinding.inflate(inflater, container, false)
 
     private val orderState by lazy {
-        requireArguments()[ORDER_STATE_KEY] as OrderState
+        checkNotNull(requireArguments().getSerializable(ORDER_STATE_KEY, OrderState::class.java)) {
+            "orderState가 null입니다."
+        }
     }
 
     @Inject
@@ -47,13 +47,10 @@ class OrderListInnerFragment :
             addItemDivider(LinearLayout.VERTICAL)
         }
 
-        requestData()
+//        presenter.requestOrderList(marketId = 0, orderState = orderState)
+        presenter.observeOrderList(orderState = orderState)
     }
 
-    private fun requestData() {
-        // TODO: 2022.07.10 request data by market id
-        presenter.requestData(marketId = 0, orderState = orderState)
-    }
 
     override fun loading(isLoading: Boolean) {
         // TODO: 2022.07.10 implement loading
@@ -63,8 +60,8 @@ class OrderListInnerFragment :
         adapter.submitList(data)
     }
 
-    override fun onRequestDataError(@StringRes errorMessage: Int) {
-        Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
+    override fun onError(throwable: Throwable) {
+        throwable.message?.let { showToast(message = it) }
     }
 
     override fun navigateToCallScreen(telephoneNumber: String) {

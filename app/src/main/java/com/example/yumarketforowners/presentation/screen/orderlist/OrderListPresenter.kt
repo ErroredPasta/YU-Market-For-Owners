@@ -1,64 +1,100 @@
 package com.example.yumarketforowners.presentation.screen.orderlist
 
-import android.util.Log
-import com.example.yumarketforowners.R
 import com.example.yumarketforowners.di.qualifier.LifeCycleScope
 import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType.FRAGMENT
 import com.example.yumarketforowners.domain.model.order.DeliveryType
+import com.example.yumarketforowners.domain.model.order.Order
 import com.example.yumarketforowners.domain.model.order.OrderOptionGroup
 import com.example.yumarketforowners.domain.model.order.OrderState
 import com.example.yumarketforowners.domain.usecase.order.GetOrderList
+import com.example.yumarketforowners.domain.usecase.order.UpdateOrderState
 import com.example.yumarketforowners.presentation.mapper.order.toOrderUiState
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
-import com.example.yumarketforowners.presentation.screen.base.Result
 import com.example.yumarketforowners.presentation.viewholder.CellType
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.time.LocalTime
 import javax.inject.Inject
 import javax.inject.Provider
 
-class OrderListPresenter @Inject constructor(
+class OrderListPresenter(
     private val view: OrderListView,
-    private val getOrderList: GetOrderList,
-    @LifeCycleScope(FRAGMENT) scopeProvider: Provider<CoroutineScope>
+//    private val getOrderList: GetOrderList,
+    private val updateOrderState: UpdateOrderState,
+    @LifeCycleScope(FRAGMENT) scopeProvider: Provider<CoroutineScope>,
+    private val orderListFlow: Flow<List<Order>>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
-    fun requestData(marketId: Long, orderState: OrderState) {
-        coroutineScope.launch {
-            view.loading(isLoading = true)
-            /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
-            val result = getOrderList(marketId = marketId, orderState = orderState)?.let {
-                Result.Success(
-                    data = it.map { order ->
-                        order.toOrderUiState(
-                            onTelephoneNumberClicked = {
-                                Log.d("TAG", "onTelephoneNumberClicked: ${order.id}")
-                            },
-                            onAcceptOrderButtonClicked = {
-                                Log.d("TAG", "onAcceptOrderButtonClicked: ${order.id}")
-                            },
-                            onRejectOrderButtonClicked = {
-                                Log.d("TAG", "onRejectOrderButtonClicked: ${order.id}")
-                            },
-                            onDeliveryDoneButtonClicked = {
-                                Log.d("TAG", "onDeliveryDoneButtonClicked: ${order.id}")
-                            }
-                        )
-                    }
-                )
-            } ?: Result.Error(R.string.error_placeholder)
-
-            view.loading(isLoading = false)
-
-            when (result) {
-                is Result.Success -> view.onRequestDataSuccess(result.data)
-                is Result.Error -> view.onRequestDataError(result.errorMessage)
-            }
-        }
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        view.onError(throwable)
+        throwable.printStackTrace()
     }
 
+    fun observeOrderList(orderState: OrderState) {
+        orderListFlow.map {
+            it.filter { order -> order.orderState == orderState }
+        }.onEach {
+            view.onRequestDataSuccess(
+                it.map { order ->
+                    order.toOrderUiState(
+                        onTelephoneNumberClicked = {
+                            view.navigateToCallScreen(order.telephoneNumber)
+                        },
+                        onAcceptOrderButtonClicked = {
+                            coroutineScope.launch(exceptionHandler) {
+                                updateOrderState(order.id, OrderState.ACCEPTED)
+                            }
+                        },
+                        onRejectOrderButtonClicked = {
+                            coroutineScope.launch(exceptionHandler) {
+                                updateOrderState(order.id, OrderState.REJECTED)
+                            }
+                        },
+                        onDeliveryDoneButtonClicked = {
+                            coroutineScope.launch(exceptionHandler) {
+                                updateOrderState(order.id, OrderState.DONE)
+                            }
+                        }
+                    )
+                }
+            )
+        }.launchIn(coroutineScope)
+    }
+
+    /* TODO: 2022-10-22 토 02:40, implement later */
+//    fun requestOrderList(marketId: Long, orderState: OrderState) {
+//        coroutineScope.launch(exceptionHandler) {
+//            view.loading(isLoading = true)
+//            /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
+//            val result = getOrderList(marketId = marketId, orderState = orderState).map { order ->
+//                order.toOrderUiState(
+//                    onTelephoneNumberClicked = {
+//                        view.navigateToCallScreen(order.telephoneNumber)
+//                    },
+//                    onAcceptOrderButtonClicked = {
+//                        coroutineScope.launch(exceptionHandler) {
+//                            updateOrderState(order.id, OrderState.ACCEPTED)
+//                        }
+//                    },
+//                    onRejectOrderButtonClicked = {
+//                        coroutineScope.launch(exceptionHandler) {
+//                            updateOrderState(order.id, OrderState.REJECTED)
+//                        }
+//                    },
+//                    onDeliveryDoneButtonClicked = {
+//                        coroutineScope.launch(exceptionHandler) {
+//                            updateOrderState(order.id, OrderState.DONE)
+//                        }
+//                    }
+//                )
+//            }
+//            view.loading(isLoading = false)
+//
+//            view.onRequestDataSuccess(result)
+//        }
 }
 
 data class OrderUiState(

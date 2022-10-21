@@ -13,7 +13,7 @@ fun createOrder(
     },
     deliveryType = DeliveryType.values()[it % 3],
     orderedAt = it.toLong(),
-    orderMakerId = it.toLong(),
+    telephoneNumber = "telephoneNumber $it",
     request = "request $it",
     orderState = orderState,
     totalPrice = (it * it * 10000) + ((it + 1) * (it + 1) * 10000),

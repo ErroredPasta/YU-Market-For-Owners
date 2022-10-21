@@ -20,7 +20,7 @@ fun Order.toOrderUiState(
     deliveryFee = deliveryFee,
     deliveryTime = deliveryTime,
     deliveryType = deliveryType,
-    telephoneNumber = orderMakerId.toString(),
+    telephoneNumber = telephoneNumber,
     request = request,
     onTelephoneNumberClicked = onTelephoneNumberClicked,
     onAcceptOrderButtonClicked = onAcceptOrderButtonClicked,
