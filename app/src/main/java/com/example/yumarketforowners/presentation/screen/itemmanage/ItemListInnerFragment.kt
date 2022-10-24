@@ -59,11 +59,12 @@ class ItemListInnerFragment :
         adapter.submitList(data)
     }
 
-    override fun onRequestDataError(errorMessage: Int) {
-        Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
-    }
-
     override fun navigateToEditScreen(item: Item) {
         Toast.makeText(context, "Edit item's id : ${item.id}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onError(throwable: Throwable) {
+        /* TODO: 2022-10-22 토 21:30, implement error handling */
+        throwable.message?.let { showToast(message = it) }
     }
 }

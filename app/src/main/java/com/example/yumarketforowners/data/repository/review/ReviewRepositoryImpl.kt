@@ -2,6 +2,7 @@ package com.example.yumarketforowners.data.repository.review
 
 import com.example.yumarketforowners.data.mapper.review.toReview
 import com.example.yumarketforowners.data.remote.datasource.review.ReviewRemoteDataSource
+import com.example.yumarketforowners.domain.model.review.Review
 import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.domain.repository.ReviewRepository
 import javax.inject.Inject
@@ -11,7 +12,7 @@ class ReviewRepositoryImpl @Inject constructor(
     private val orderRepository: OrderRepository
 ) : ReviewRepository {
 
-    override suspend fun getAllReviewsByMarketId(marketId: Long) =
+    override suspend fun getAllReviewsByMarketId(marketId: Long): List<Review> =
         remoteDataSource.getAllReviewsByMarketId(marketId).map {
             it.toReview(
                 writerName = "writerName ${it.id}",

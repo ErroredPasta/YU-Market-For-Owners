@@ -8,5 +8,5 @@ class GetItemsUseCase(
     suspend operator fun invoke(
         marketId: Long,
         available: Boolean
-    ) = repository.getItemsByMarketId(marketId)?.filter { it.available == available }
+    ) = repository.getItemsByMarketId(marketId).filter { it.available == available }
 }

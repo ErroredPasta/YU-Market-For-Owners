@@ -1,10 +1,10 @@
 package com.example.yumarketforowners.presentation.screen.itemmanage
 
 import com.example.yumarketforowners.domain.model.item.Item
+import com.example.yumarketforowners.presentation.screen.base.BaseView
 
-interface ItemManageView {
+interface ItemManageView : BaseView {
     fun loading(isLoading: Boolean)
     fun onRequestDataSuccess(data: List<ItemUiState>)
-    fun onRequestDataError(errorMessage: Int)
     fun navigateToEditScreen(item: Item)
 }

@@ -1,8 +1,6 @@
 package com.example.yumarketforowners.data.repository
 
 import com.example.yumarketforowners.domain.model.item.Item
-import com.example.yumarketforowners.domain.model.item.Option
-import com.example.yumarketforowners.domain.model.item.OptionGroup
 import com.example.yumarketforowners.domain.repository.ItemRepository
 import com.example.yumarketforowners.entity.createItem
 

@@ -7,8 +7,7 @@ import com.example.yumarketforowners.entity.createItem
 import com.example.yumarketforowners.presentation.mapper.item.toItem
 import com.google.common.truth.Truth.assertThat
 import io.mockk.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.*
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
@@ -27,7 +26,7 @@ class ItemManagePresenterTest {
     private lateinit var sut: ItemManagePresenter
 
     // region test doubles =========================================================================
-    private lateinit var viewMock: ItemListInnerFragment
+    private lateinit var viewMock: ItemManageView
     private lateinit var getItemsUseCaseMock: GetItemsUseCase
     private lateinit var scopeProviderMock: Provider<CoroutineScope>
     // endregion test doubles ======================================================================
@@ -45,10 +44,10 @@ class ItemManagePresenterTest {
         sut = ItemManagePresenter(
             view = viewMock,
             getItemsUseCase = getItemsUseCaseMock,
-            scopeProvider = scopeProviderMock
+            scopeProvider = scopeProviderMock,
         )
 
-        every { scopeProviderMock.get() } returns TestScope()
+        every { scopeProviderMock.get() } returns TestScope() + SupervisorJob()
     }
 
     @Test
@@ -94,7 +93,7 @@ class ItemManagePresenterTest {
         advanceUntilIdle()
 
         // assert
-        verify { viewMock.onRequestDataError(any()) }
+        verify { viewMock.onError(any()) }
     }
 
     @Test
@@ -124,7 +123,7 @@ class ItemManagePresenterTest {
         advanceUntilIdle()
 
         // assert
-        verify { viewMock.onRequestDataError(any()) }
+        verify { viewMock.onError(any()) }
     }
 
     // region helper methods =======================================================================
@@ -140,9 +139,10 @@ class ItemManagePresenterTest {
     }
 
     private fun getItemsFailed() {
+        /* TODO: 2022-10-22 토 21:40, throw proper exception */
         coEvery {
             getItemsUseCaseMock(marketId = any(), available = any())
-        } returns null
+        } throws RuntimeException()
     }
 
     private fun createItemList(available: Boolean) = (1..10).map {
