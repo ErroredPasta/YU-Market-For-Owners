@@ -5,11 +5,12 @@ import com.example.yumarketforowners.domain.model.review.Review
 import com.example.yumarketforowners.domain.usecase.review.GetReviewsUseCase
 import com.example.yumarketforowners.entity.createReview
 import com.example.yumarketforowners.presentation.mapper.review.toReview
-import com.example.yumarketforowners.presentation.mapper.review.toReviewUiState
 import com.google.common.truth.Truth.assertThat
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.plus
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
@@ -28,7 +29,7 @@ class ReviewManagePresenterTest {
     private lateinit var sut: ReviewManagePresenter
 
     // region test doubles =========================================================================
-    private lateinit var viewMock: ReviewInnerFragment
+    private lateinit var viewMock: ReviewListView
     private lateinit var getReviewsUseCaseMock: GetReviewsUseCase
     private lateinit var scopeProviderMock: Provider<CoroutineScope>
     // endregion test doubles ======================================================================
@@ -49,7 +50,7 @@ class ReviewManagePresenterTest {
             scopeProvider = scopeProviderMock
         )
 
-        every { scopeProviderMock.get() } returns TestScope()
+        every { scopeProviderMock.get() } returns TestScope() + SupervisorJob()
     }
 
     @Test
@@ -95,7 +96,7 @@ class ReviewManagePresenterTest {
         advanceUntilIdle()
 
         // assert
-        verify { viewMock.onRequestDataError(any()) }
+        verify { viewMock.onError(any()) }
     }
 
     // region helper methods =======================================================================
@@ -109,7 +110,8 @@ class ReviewManagePresenterTest {
     }
 
     private fun getReviewsFailed() {
-        coEvery { getReviewsUseCaseMock(marketId = any()) } returns null
+        /* TODO: 2022-10-22 토 21:40, throw proper exception */
+        coEvery { getReviewsUseCaseMock(marketId = any()) } throws RuntimeException()
     }
 
     private fun createReviewList() = (1..10).map {

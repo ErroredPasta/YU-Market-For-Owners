@@ -28,7 +28,7 @@ class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), Update
     }
 
     @Inject
-    lateinit var presenter: EditMarketPresenter
+    lateinit var presenter: UpdateMarketPresenter
 
     private var representativeImage: String? = null
     private var detailImage: String? = null

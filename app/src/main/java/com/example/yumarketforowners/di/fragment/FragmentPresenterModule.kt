@@ -35,8 +35,8 @@ object FragmentPresenterModule {
     ) = OrderListPresenter(
         view = view,
         updateOrderStateUseCase = updateOrderStateUseCase,
+        orderListFlow = repository.orderListFlow,
         scopeProvider = scopeProvider,
-        orderListFlow = repository.orderListFlow
     )
 
     @Provides

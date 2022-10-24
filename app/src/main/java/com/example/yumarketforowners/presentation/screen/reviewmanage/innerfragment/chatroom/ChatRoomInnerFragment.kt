@@ -49,7 +49,8 @@ class ChatRoomInnerFragment : BaseFragment<InnerFragmentChatRoomListBinding>(),
         adapter.submitList(data)
     }
 
-    override fun onRequestDataError(@StringRes errorMessage: Int) {
-        Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
+    override fun onError(throwable: Throwable) {
+        /* TODO: 2022-10-22 토 20:30, implement error handling */
+        throwable.message?.let { showToast(message = it) }
     }
 }

@@ -49,7 +49,8 @@ class ReviewInnerFragment : BaseFragment<InnerFragmentReviewListBinding>(), Base
         adapter.submitList(data)
     }
 
-    override fun onRequestDataError(@StringRes errorMessage: Int) {
-        Toast.makeText(context, getText(errorMessage), Toast.LENGTH_SHORT).show()
+    override fun onError(throwable: Throwable) {
+        /* TODO: 2022-10-22 토 21:15, implement error handling */
+        throwable.message?.let { showToast(message = it) }
     }
 }

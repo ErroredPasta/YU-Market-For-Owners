@@ -1,9 +1,8 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review
 
-import androidx.annotation.StringRes
+import com.example.yumarketforowners.presentation.screen.base.BaseView
 
-interface ReviewListView {
+interface ReviewListView : BaseView {
     fun loading(isLoading: Boolean)
     fun onRequestDataSuccess(data: List<ReviewUiState>)
-    fun onRequestDataError(@StringRes errorMessage: Int)
 }

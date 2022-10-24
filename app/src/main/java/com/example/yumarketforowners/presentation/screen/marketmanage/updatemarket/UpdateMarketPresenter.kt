@@ -10,20 +10,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Provider
 
-class EditMarketPresenter(
+class UpdateMarketPresenter(
     private val view: UpdateMarketView,
     private val getMarketDetailUseCase: GetMarketDetailUseCase,
     private val updateMarketUseCase: UpdateMarketUseCase,
-    scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(scopeProvider) {
-
-    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        view.onError(throwable)
-        throwable.printStackTrace()
-    }
+    scopeProvider: Provider<CoroutineScope>,
+) : BaseCoroutinePresenter(view, scopeProvider) {
 
     fun requestMarketDetail(marketId: Long) {
-        coroutineScope.launch(exceptionHandler) {
+        coroutineScope.launch {
             view.loading(isLoading = true)
             val result = getMarketDetailUseCase(marketId = marketId).toUpdateMarket()
             view.loading(isLoading = false)
@@ -33,7 +28,7 @@ class EditMarketPresenter(
     }
 
     fun updateMarket(market: UpdateMarket) {
-        coroutineScope.launch(exceptionHandler) {
+        coroutineScope.launch {
             updateMarketUseCase(marketToUpdate = market)
             view.navigateBack()
         }

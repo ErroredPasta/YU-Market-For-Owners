@@ -1,9 +1,8 @@
 package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom
 
-import androidx.annotation.StringRes
+import com.example.yumarketforowners.presentation.screen.base.BaseView
 
-interface ChatRoomListView {
+interface ChatRoomListView : BaseView {
     fun loading(isLoading: Boolean)
     fun onRequestDataSuccess(data: List<ChatRoomUiState>)
-    fun onRequestDataError(@StringRes errorMessage: Int)
 }

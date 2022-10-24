@@ -1,6 +1,7 @@
 package com.example.yumarketforowners.di.fragment
 
 import androidx.fragment.app.Fragment
+import com.example.yumarketforowners.presentation.screen.base.BaseView
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageView
 import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketView
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderListView
@@ -15,23 +16,22 @@ import dagger.hilt.android.components.FragmentComponent
 @InstallIn(FragmentComponent::class)
 @Suppress("UNCHECKED_CAST")
 object FragmentViewModule {
-    @Provides
-    fun provideReviewView(fragment: Fragment) =
-        fragment as ReviewListView
 
     @Provides
-    fun provideChatRoomView(fragment: Fragment) =
-        fragment as ChatRoomListView
+    fun provideBaseView(fragment: Fragment) = fragment as BaseView
 
     @Provides
-    fun provideOrderListView(fragment: Fragment) =
-        fragment as OrderListView
+    fun provideReviewView(fragment: Fragment) = fragment as ReviewListView
 
     @Provides
-    fun provideItemManageView(fragment: Fragment) =
-        fragment as ItemManageView
+    fun provideChatRoomView(fragment: Fragment) = fragment as ChatRoomListView
 
     @Provides
-    fun provideEditMarketView(fragment: Fragment) =
-        fragment as UpdateMarketView
+    fun provideOrderListView(fragment: Fragment) = fragment as OrderListView
+
+    @Provides
+    fun provideItemManageView(fragment: Fragment) = fragment as ItemManageView
+
+    @Provides
+    fun provideEditMarketView(fragment: Fragment) = fragment as UpdateMarketView
 }

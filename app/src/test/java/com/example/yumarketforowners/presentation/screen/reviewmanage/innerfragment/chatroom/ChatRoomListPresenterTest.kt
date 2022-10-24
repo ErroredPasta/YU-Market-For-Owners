@@ -5,17 +5,19 @@ import com.example.yumarketforowners.domain.model.chatroom.ChatRoom
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
 import com.example.yumarketforowners.entity.createChatRoom
 import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoom
-import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoomUiState
 import com.google.common.truth.Truth.assertThat
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.plus
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Provider
 
 
@@ -28,7 +30,7 @@ class ChatRoomListPresenterTest {
     private lateinit var sut: ChatRoomListPresenter
 
     // region test doubles =========================================================================
-    private lateinit var viewMock: ChatRoomInnerFragment
+    private lateinit var viewMock: ChatRoomListView
     private lateinit var getChatRoomsUseCaseMock: GetChatRoomsUseCase
     private lateinit var scopeProviderMock: Provider<CoroutineScope>
     // endregion test doubles ======================================================================
@@ -37,11 +39,16 @@ class ChatRoomListPresenterTest {
     private val testMarketId = 0L
     // endregion constants =========================================================================
 
+    // region test helper fields ===================================================================
+    private lateinit var exceptionThrown: AtomicBoolean
+    // endregion test helper fields ================================================================
+
     @Before
     fun setup() {
         viewMock = mockk(relaxed = true)
         getChatRoomsUseCaseMock = mockk()
         scopeProviderMock = mockk()
+        exceptionThrown = AtomicBoolean(false)
 
         sut = ChatRoomListPresenter(
             view = viewMock,
@@ -49,7 +56,7 @@ class ChatRoomListPresenterTest {
             scopeProvider = scopeProviderMock
         )
 
-        every { scopeProviderMock.get() } returns TestScope()
+        every { scopeProviderMock.get() } returns TestScope() + SupervisorJob()
     }
 
     @Test
@@ -95,7 +102,7 @@ class ChatRoomListPresenterTest {
         advanceUntilIdle()
 
         // assert
-        verify { viewMock.onRequestDataError(any()) }
+        verify { viewMock.onError(any()) }
     }
 
     // region helper methods =======================================================================
@@ -109,7 +116,8 @@ class ChatRoomListPresenterTest {
     }
 
     private fun getChatRoomsFailed() {
-        coEvery { getChatRoomsUseCaseMock(marketId = any()) } returns null
+        /* TODO: 2022-10-22 토 21:40, throw proper exception */
+        coEvery { getChatRoomsUseCaseMock(marketId = any()) } throws RuntimeException()
     }
 
     private fun createChatRoomList() = (1..10).map {

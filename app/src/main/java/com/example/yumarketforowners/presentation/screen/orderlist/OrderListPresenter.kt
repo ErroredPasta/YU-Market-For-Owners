@@ -23,14 +23,9 @@ class OrderListPresenter(
     private val view: OrderListView,
 //    private val getOrderList: GetOrderList,
     private val updateOrderStateUseCase: UpdateOrderStateUseCase,
-    scopeProvider: Provider<CoroutineScope>,
-    private val orderListFlow: Flow<List<Order>>
-) : BaseCoroutinePresenter(scopeProvider) {
-
-    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        view.onError(throwable)
-        throwable.printStackTrace()
-    }
+    private val orderListFlow: Flow<List<Order>>,
+    scopeProvider: Provider<CoroutineScope>
+) : BaseCoroutinePresenter(view, scopeProvider) {
 
     fun observeOrderList(orderState: OrderState) {
         orderListFlow.map {
@@ -43,17 +38,17 @@ class OrderListPresenter(
                             view.navigateToCallScreen(order.telephoneNumber)
                         },
                         onAcceptOrderButtonClicked = {
-                            coroutineScope.launch(exceptionHandler) {
+                            coroutineScope.launch {
                                 updateOrderStateUseCase(order.id, OrderState.ACCEPTED)
                             }
                         },
                         onRejectOrderButtonClicked = {
-                            coroutineScope.launch(exceptionHandler) {
+                            coroutineScope.launch {
                                 updateOrderStateUseCase(order.id, OrderState.REJECTED)
                             }
                         },
                         onDeliveryDoneButtonClicked = {
-                            coroutineScope.launch(exceptionHandler) {
+                            coroutineScope.launch {
                                 updateOrderStateUseCase(order.id, OrderState.DONE)
                             }
                         }

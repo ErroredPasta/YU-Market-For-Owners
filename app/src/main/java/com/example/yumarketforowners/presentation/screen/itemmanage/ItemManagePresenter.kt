@@ -1,13 +1,12 @@
 package com.example.yumarketforowners.presentation.screen.itemmanage
 
-import com.example.yumarketforowners.R
 import com.example.yumarketforowners.domain.model.item.OptionGroup
 import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
 import com.example.yumarketforowners.presentation.mapper.item.toItemUiState
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
-import com.example.yumarketforowners.presentation.screen.base.Result
 import com.example.yumarketforowners.presentation.viewholder.CellType
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Provider
@@ -16,28 +15,20 @@ class ItemManagePresenter(
     private val view: ItemManageView,
     private val getItemsUseCase: GetItemsUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(scopeProvider) {
+) : BaseCoroutinePresenter(view, scopeProvider) {
 
     fun requestData(marketId: Long, available: Boolean) {
         coroutineScope.launch {
             view.loading(isLoading = true)
-            // TODO: 2022.05.27 get item by market id
             /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
-
-            val result = getItemsUseCase(marketId = marketId, available = available)?.let {
-                Result.Success(data = it.map { item ->
-                    item.toItemUiState(
-                        onEditItemButtonClick = { view.navigateToEditScreen(item) }
-                    )
-                })
-            } ?: Result.Error(R.string.error_placeholder)
-
+            val result = getItemsUseCase(marketId = marketId, available = available).map { item ->
+                item.toItemUiState(
+                    onEditItemButtonClick = { view.navigateToEditScreen(item) }
+                )
+            }
             view.loading(isLoading = false)
 
-            when (result) {
-                is Result.Success -> view.onRequestDataSuccess(result.data)
-                is Result.Error -> view.onRequestDataError(result.errorMessage)
-            }
+            view.onRequestDataSuccess(result)
         }
     }
 }
