@@ -4,6 +4,7 @@ import com.example.yumarketforowners.di.qualifier.LifeCycleScope
 import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType.FRAGMENT
 import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
+import com.example.yumarketforowners.domain.usecase.chatroom.RemoveChatRoomUseCase
 import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
 import com.example.yumarketforowners.domain.usecase.order.UpdateOrderStateUseCase
 import com.example.yumarketforowners.domain.usecase.review.GetReviewsUseCase
@@ -54,10 +55,12 @@ object FragmentPresenterModule {
     fun provideChatRoomListPresenter(
         view: ChatRoomListView,
         getChatRoomsUseCase: GetChatRoomsUseCase,
+        removeChatRoomUseCase: RemoveChatRoomUseCase,
         @LifeCycleScope(FRAGMENT) scopeProvider: Provider<CoroutineScope>
     ) = ChatRoomListPresenter(
         view = view,
         getChatRoomsUseCase = getChatRoomsUseCase,
+        removeChatRoomUseCase = removeChatRoomUseCase,
         scopeProvider = scopeProvider
     )
 

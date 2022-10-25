@@ -12,4 +12,6 @@ class ChatRoomRepositoryImpl @Inject constructor(
 
     override suspend fun getAllChatRoomsByMarketId(marketId: Long): List<ChatRoom> =
         dataSource.getChatRoomsByMarketId(marketId).map { it.toChatRoom() }
+
+    override suspend fun deleteChatRoom(chatRoomId: Long) = dataSource.deleteChatRoom(chatRoomId)
 }

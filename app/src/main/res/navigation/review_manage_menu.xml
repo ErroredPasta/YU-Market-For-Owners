@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/review_manage_menu"
     app:startDestination="@id/reviewManageFragment">
 
     <fragment
         android:id="@+id/reviewManageFragment"
         android:name="com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageFragment"
-        android:label="ReviewManageFragment" />
+        android:label="ReviewManageFragment">
+        <action
+            android:id="@+id/action_reviewManageFragment_to_chatRoomDetailActivity"
+            app:destination="@id/chatRoomDetailActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/chatRoomDetailActivity"
+        android:name="com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailActivity"
+        android:label="activity_chat_room_detail"
+        tools:layout="@layout/activity_chat_room_detail" />
 </navigation>

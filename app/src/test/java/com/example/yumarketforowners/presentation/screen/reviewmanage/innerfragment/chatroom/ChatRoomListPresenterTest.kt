@@ -3,6 +3,7 @@ package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfrag
 import com.example.yumarketforowners.coroutine.TestCoroutineRule
 import com.example.yumarketforowners.domain.model.chatroom.ChatRoom
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
+import com.example.yumarketforowners.domain.usecase.chatroom.RemoveChatRoomUseCase
 import com.example.yumarketforowners.entity.createChatRoom
 import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoom
 import com.google.common.truth.Truth.assertThat
@@ -32,6 +33,7 @@ class ChatRoomListPresenterTest {
     // region test doubles =========================================================================
     private lateinit var viewMock: ChatRoomListView
     private lateinit var getChatRoomsUseCaseMock: GetChatRoomsUseCase
+    private lateinit var removeChatRoomUseCaseMock: RemoveChatRoomUseCase
     private lateinit var scopeProviderMock: Provider<CoroutineScope>
     // endregion test doubles ======================================================================
 
@@ -47,12 +49,14 @@ class ChatRoomListPresenterTest {
     fun setup() {
         viewMock = mockk(relaxed = true)
         getChatRoomsUseCaseMock = mockk()
+        removeChatRoomUseCaseMock = mockk()
         scopeProviderMock = mockk()
         exceptionThrown = AtomicBoolean(false)
 
         sut = ChatRoomListPresenter(
             view = viewMock,
             getChatRoomsUseCase = getChatRoomsUseCaseMock,
+            removeChatRoomUseCase = removeChatRoomUseCaseMock,
             scopeProvider = scopeProviderMock
         )
 
@@ -65,7 +69,7 @@ class ChatRoomListPresenterTest {
         getChatRoomsReturns()
 
         // act
-        sut.requestData(marketId = testMarketId)
+        sut.requestChatRooms(marketId = testMarketId)
         advanceUntilIdle()
 
         // assert
@@ -81,12 +85,12 @@ class ChatRoomListPresenterTest {
         val expected = getChatRoomsReturns()
 
         // act
-        sut.requestData(marketId = testMarketId)
+        sut.requestChatRooms(marketId = testMarketId)
         advanceUntilIdle()
 
         // assert
         val slot = slot<List<ChatRoomUiState>>()
-        verify { viewMock.onRequestDataSuccess(capture(slot)) }
+        verify { viewMock.onRequestChatRoomsSuccess(capture(slot)) }
 
         val capturedValue = slot.captured.map { it.toChatRoom() }
         assertThat(capturedValue).isEqualTo(expected)
@@ -98,7 +102,7 @@ class ChatRoomListPresenterTest {
         getChatRoomsFailed()
 
         // act
-        sut.requestData(marketId = testMarketId)
+        sut.requestChatRooms(marketId = testMarketId)
         advanceUntilIdle()
 
         // assert

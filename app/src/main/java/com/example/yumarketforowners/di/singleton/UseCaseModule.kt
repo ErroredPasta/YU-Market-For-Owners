@@ -6,6 +6,7 @@ import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.domain.repository.ReviewRepository
 import com.example.yumarketforowners.domain.repository.market.MarketRepository
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
+import com.example.yumarketforowners.domain.usecase.chatroom.RemoveChatRoomUseCase
 import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
 import com.example.yumarketforowners.domain.usecase.market.GetMarketDetailUseCase
 import com.example.yumarketforowners.domain.usecase.market.UpdateMarketUseCase
@@ -40,4 +41,7 @@ object UseCaseModule {
 
     @Provides
     fun provideUpdateOrderStateUseCase(repository: OrderRepository) = UpdateOrderStateUseCase(repository)
+
+    @Provides
+    fun provideRemoveChatRoomUseCase(repository: ChatRoomRepository) = RemoveChatRoomUseCase(repository)
 }

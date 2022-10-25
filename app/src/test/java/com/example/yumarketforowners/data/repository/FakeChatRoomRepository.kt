@@ -10,4 +10,7 @@ class FakeChatRoomRepository : ChatRoomRepository {
     }.toMutableList()
 
     override suspend fun getAllChatRoomsByMarketId(marketId: Long): List<ChatRoom> = chatRooms
+    override suspend fun deleteChatRoom(chatRoomId: Long) {
+        chatRooms.removeIf { it.id == chatRoomId }
+    }
 }
