@@ -22,14 +22,16 @@ fun createItem(
 private fun createOptionGroups(range: IntRange) = range.map {
     OptionGroup(
         id = it.toLong(),
+        name = "name $it",
         options = createOptions((it..it + 3)),
-        selectRange = Pair(it, it + 2)
+        selectRange = it..it + 2
     )
 }
 
 private fun createOptions(range: IntRange) = range.map {
     Option(
         id = it.toLong(),
-        name = "name $it"
+        name = "name $it",
+        additionalPrice = it * 1000
     )
 }
