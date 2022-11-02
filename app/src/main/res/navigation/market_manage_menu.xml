@@ -9,15 +9,15 @@
         android:name="com.example.yumarketforowners.presentation.screen.marketmanage.MarketManageFragment"
         android:label="MarketManageFragment">
         <action
-            android:id="@+id/action_marketManageFragment_to_editMarketActivity"
-            app:destination="@id/editMarketActivity" />
+            android:id="@+id/action_marketManageFragment_to_updateMarketActivity"
+            app:destination="@id/updateMarketActivity" />
     </fragment>
 
 
     <activity
-        android:id="@+id/editMarketActivity"
+        android:id="@+id/updateMarketActivity"
         android:name="com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketActivity"
-        android:label="EditMarketActivity">
+        android:label="UpdateMarketActivity">
 
     </activity>
 

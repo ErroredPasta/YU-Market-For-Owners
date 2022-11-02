@@ -33,5 +33,5 @@ object FragmentViewModule {
     fun provideItemManageView(fragment: Fragment) = fragment as ItemManageView
 
     @Provides
-    fun provideEditMarketView(fragment: Fragment) = fragment as UpdateMarketView
+    fun provideUpdateMarketView(fragment: Fragment) = fragment as UpdateMarketView
 }

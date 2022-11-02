@@ -22,6 +22,7 @@ class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), Update
     }
 
     private val marketId by lazy {
+        @Suppress("DEPRECATION")
         checkNotNull(intent.extras?.get(KEY_MARKET_ID)) {
             "marketId가 null입니다."
         } as Long
@@ -85,7 +86,7 @@ class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), Update
     }
 
     override fun onCancelButtonClicked() {
-        presenter.cancelEditMarket()
+        presenter.cancelUpdateMarket()
     }
 
     override fun loading(isLoading: Boolean) {

@@ -41,10 +41,10 @@ class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), Market
         Toast.makeText(context, "$user edit clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onEditMarketClicked() {
+    override fun onUpdateMarketClicked() {
         /* TODO: 2022-10-19 수 17:56, pass proper market id */
         navController.navigate(
-            R.id.action_marketManageFragment_to_editMarketActivity,
+            R.id.action_marketManageFragment_to_updateMarketActivity,
             bundleOf(UpdateMarketActivity.KEY_MARKET_ID to 1L)
         )
     }

@@ -4,9 +4,7 @@ import com.example.yumarketforowners.domain.model.user.User
 
 interface MarketManageListener {
     fun onEditProfileClicked(user: User)
-
-    // TODO: 2022.06.10 define parameters
-    fun onEditMarketClicked()
+    fun onUpdateMarketClicked()
     fun onManageScheduleClicked()
     fun onManageReviewClicked()
     fun onNoticeClicked()

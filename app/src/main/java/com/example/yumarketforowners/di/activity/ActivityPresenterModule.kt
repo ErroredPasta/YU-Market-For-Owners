@@ -22,7 +22,7 @@ import javax.inject.Provider
 object ActivityPresenterModule {
 
     @Provides
-    fun provideEditMarketPresenter(
+    fun provideUpdateMarketPresenter(
         view: UpdateMarketView,
         getMarketDetailUseCase: GetMarketDetailUseCase,
         updateMarketUseCase: UpdateMarketUseCase,
