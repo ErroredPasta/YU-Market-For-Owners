@@ -3,6 +3,8 @@ package com.example.yumarketforowners.presentation.viewholder
 import androidx.annotation.LayoutRes
 import com.example.yumarketforowners.R
 import com.example.yumarketforowners.presentation.viewholder.itemmanage.ItemViewHolder
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionGroupViewHolder
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionViewHolder
 import com.example.yumarketforowners.presentation.viewholder.orderlist.OrderItemViewHolder
 import com.example.yumarketforowners.presentation.viewholder.orderlist.OrderViewHolder
 import com.example.yumarketforowners.presentation.viewholder.reviewmanage.ChatRoomViewHolder
@@ -18,4 +20,6 @@ enum class CellType(
     CHAT_ROOM_CELL(ChatRoomViewHolder::class, R.layout.view_holder_chat_room),
     ORDER_CELL(OrderViewHolder::class, R.layout.view_holder_order),
     ORDER_ITEM_CELL(OrderItemViewHolder::class, R.layout.view_holder_order_item),
+    OPTION_GROUP_CELL(OptionGroupViewHolder::class, R.layout.view_holder_option_group),
+    OPTION_CELL(OptionViewHolder::class, R.layout.view_holder_option),
 }

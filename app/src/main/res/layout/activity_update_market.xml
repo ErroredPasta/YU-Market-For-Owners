@@ -66,8 +66,8 @@
                 imageUrl="@{updateMarketUiState.marketRepresentativeImage}"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:onClick="@{() -> listener.onRepresentativeImageClicked()}"
                 android:contentDescription="@string/market_representative_image"
+                android:onClick="@{() -> listener.onRepresentativeImageClicked()}"
                 tools:src="@drawable/calendar_icon" />
 
             <Space
@@ -85,8 +85,8 @@
                 imageUrl="@{updateMarketUiState.marketDetailImage}"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:onClick="@{() -> listener.onDetailImageClicked()}"
                 android:contentDescription="@string/market_detail_image"
+                android:onClick="@{() -> listener.onDetailImageClicked()}"
                 tools:src="@drawable/calendar_icon" />
 
             <Space
@@ -102,10 +102,10 @@
                 android:id="@+id/updateMarketAddressEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{updateMarketUiState.address}"
                 android:importantForAutofill="no"
                 android:inputType="none"
                 android:onClick="@{() -> listener.onAddressEditTextClicked()}"
+                android:text="@{updateMarketUiState.address}"
                 tools:ignore="LabelFor" />
 
             <Space
@@ -121,9 +121,9 @@
                 android:id="@+id/updateMarketDetailAddressEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{updateMarketUiState.detailAddress}"
                 android:importantForAutofill="no"
                 android:inputType="text"
+                android:text="@{updateMarketUiState.detailAddress}"
                 tools:ignore="LabelFor" />
 
             <Space
@@ -133,15 +133,15 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> listener.onConfirmButtonClicked()}"
                 android:backgroundTint="@color/interactive_color"
+                android:onClick="@{() -> listener.onConfirmButtonClicked()}"
                 android:text="@string/confirm" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> listener.onCancelButtonClicked()}"
                 android:backgroundTint="@color/unfocused_color"
+                android:onClick="@{() -> listener.onCancelButtonClicked()}"
                 android:text="@string/cancel" />
 
         </LinearLayout>

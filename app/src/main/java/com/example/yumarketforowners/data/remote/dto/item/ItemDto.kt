@@ -15,11 +15,13 @@ data class ItemDto(
 
 data class OptionGroupDto(
     val id: Long,
+    val name: String,
     val options: List<OptionDto>,
-    val selectRange: Pair<Int, Int>
+    val selectRange: IntRange
 )
 
 data class OptionDto(
     val id: Long,
-    val name: String
+    val name: String,
+    val additionalPrice: Int
 )

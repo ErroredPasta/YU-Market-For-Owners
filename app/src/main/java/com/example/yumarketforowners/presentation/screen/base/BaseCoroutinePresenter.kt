@@ -7,7 +7,7 @@ import javax.inject.Provider
 
 abstract class BaseCoroutinePresenter(
     baseView: BaseView,
-    protected val scopeProvider: Provider<CoroutineScope>
+    private val scopeProvider: Provider<CoroutineScope>
 ) {
     /**
      * 기본적으로 Provider<CoroutineScope>에서 가져오는 scope와 exception handler를 합친 CoroutineScope

@@ -3,13 +3,15 @@ package com.example.yumarketforowners.presentation.screen.itemmanage
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import com.example.yumarketforowners.R
 import com.example.yumarketforowners.databinding.InnerFragmentItemListBinding
 import com.example.yumarketforowners.domain.model.item.Item
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
+import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,9 +29,13 @@ class ItemListInnerFragment :
     @Inject
     lateinit var presenter: ItemManagePresenter
 
+    @Inject
+    lateinit var navController: NavController
+
     private val adapter by lazy { ModelRecyclerAdapter<ItemUiState>() }
 
     private val available by lazy {
+        @Suppress("DEPRECATION")
         requireArguments()[AVAILABILITY_KEY] as Boolean
     }
 
@@ -60,7 +66,10 @@ class ItemListInnerFragment :
     }
 
     override fun navigateToEditScreen(item: Item) {
-        Toast.makeText(context, "Edit item's id : ${item.id}", Toast.LENGTH_SHORT).show()
+        navController.navigate(
+            R.id.action_itemManageFragment_to_updateItemActivity,
+            bundleOf(UpdateItemActivity.KEY_ITEM_ID to item.id)
+        )
     }
 
     override fun onError(throwable: Throwable) {

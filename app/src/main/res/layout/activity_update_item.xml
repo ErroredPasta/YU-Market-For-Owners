@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="updateItemUiState"
+            type="com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemUiState" />
+
+        <variable
+            name="listener"
+            type="com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemListener" />
+
+        <import type="com.example.yumarketforowners.presentation.util.EditTextConverter" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/item_name" />
+
+            <EditText
+                android:id="@+id/updateItemNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:text="@={updateItemUiState.name}"
+                tools:ignore="LabelFor" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/item_original_price" />
+
+            <EditText
+                android:id="@+id/updateItemOriginalPriceEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:text="@={EditTextConverter.intToString(updateItemUiState.price)}"
+                tools:ignore="LabelFor" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/item_discounted_price" />
+
+            <EditText
+                android:id="@+id/updateItemDiscountedPriceEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:text="@={EditTextConverter.intToString(updateItemUiState.discountedPrice)}"
+                tools:ignore="LabelFor" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/item_stock" />
+
+            <EditText
+                android:id="@+id/updateItemStockEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:text="@={EditTextConverter.intToString(updateItemUiState.stock)}"
+                tools:ignore="LabelFor" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/item_state" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@={updateItemUiState.available}"
+                android:text="@string/item_available"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/item_image" />
+
+            <ImageView
+                android:id="@+id/updateItemRepresentativeImageView"
+                cornerRadius="@{0.0f}"
+                imageUrl="@{updateItemUiState.imageUrl}"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="@string/item_image"
+                android:onClick="@{() -> listener.onItemImageViewClicked()}"
+                tools:src="@drawable/calendar_icon" />
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/item_description" />
+
+            <EditText
+                android:id="@+id/updateItemDescriptionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@={updateItemUiState.description}"
+                tools:ignore="LabelFor" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/item_option" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/updateItemOptionGroupRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:orientation="vertical"
+                android:paddingHorizontal="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <Button
+                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:onClick="@{() -> listener.onAddOptionGroupButtonClicked()}"
+                android:text="@string/add_option_group"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textColor="@color/interactive_color"
+                app:icon="@drawable/ic_baseline_add_24"
+                app:iconTint="@color/interactive_color"
+                app:strokeColor="@color/interactive_color" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/interactive_color"
+                android:onClick="@{() -> listener.onConfirmButtonClicked()}"
+                android:text="@string/confirm"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/unfocused_color"
+                android:onClick="@{() -> listener.onCancelButtonClicked()}"
+                android:text="@string/cancel"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

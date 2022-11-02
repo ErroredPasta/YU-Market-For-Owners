@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="optionUiState"
+            type="com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.OptionUiState" />
+
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <import type="com.example.yumarketforowners.presentation.util.EditTextConverter" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="2"
+            android:hint="@string/option_name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:text="@={optionUiState.name}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            tools:ignore="LabelFor"
+            tools:text="Option Name" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:hint="@string/option_name"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:text="@={EditTextConverter.intToString(optionUiState.additionalPrice)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            tools:ignore="LabelFor"
+            tools:text="Option Name" />
+
+        <ImageView
+            android:id="@+id/removeOptionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/delete_option"
+            android:minWidth="30dp"
+            android:minHeight="30dp"
+            android:onClick="@{() -> optionUiState.onDeleteOptionButtonClicked.invoke(optionUiState)}"
+            android:src="@drawable/ic_baseline_delete_24"
+            app:tint="@color/gray_4b" />
+
+    </LinearLayout>
+</layout>

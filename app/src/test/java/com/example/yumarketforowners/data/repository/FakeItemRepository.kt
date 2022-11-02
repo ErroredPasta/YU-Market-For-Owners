@@ -10,4 +10,17 @@ class FakeItemRepository : ItemRepository {
     }.toMutableList()
 
     override suspend fun getItemsByMarketId(marketId: Long): List<Item> = items
+    override suspend fun getSingleItemById(itemId: Long): Item {
+        val foundItem = items.find { it.id == itemId }
+
+        return checkNotNull(foundItem) { "id가 ${itemId}인 Item이 없습니다." }
+    }
+
+    override suspend fun updateItem(updatedItem: Item) {
+        val index = items.indexOfFirst { it.id == updatedItem.id }
+
+        if (index != -1) {
+            items[index] = updatedItem
+        }
+    }
 }

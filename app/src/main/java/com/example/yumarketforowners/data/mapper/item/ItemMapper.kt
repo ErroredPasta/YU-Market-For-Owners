@@ -34,13 +34,15 @@ fun ItemDto.toItem() = Item(
 private fun List<Option>.toOptionDtos() = map {
     OptionDto(
         id = it.id,
-        name = it.name
+        name = it.name,
+        additionalPrice = it.additionalPrice
     )
 }
 
 private fun List<OptionGroup>.toOptionGroupDtos() = map {
     OptionGroupDto(
         id = it.id,
+        name = it.name,
         options = it.options.toOptionDtos(),
         selectRange = it.selectRange
     )
@@ -49,13 +51,15 @@ private fun List<OptionGroup>.toOptionGroupDtos() = map {
 private fun List<OptionDto>.toOptions() = map {
     Option(
         id = it.id,
-        name = it.name
+        name = it.name,
+        additionalPrice = it.additionalPrice
     )
 }
 
 private fun List<OptionGroupDto>.toOptionGroups() = map {
     OptionGroup(
         id = it.id,
+        name = it.name,
         options = it.options.toOptions(),
         selectRange = it.selectRange
     )

@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.screen.marketmanage.updatemarket.UpdateMarketActivity" />
+        <activity android:name=".presentation.screen.itemmanage.updateitem.UpdateItemActivity" />
     </application>
 
 </manifest>

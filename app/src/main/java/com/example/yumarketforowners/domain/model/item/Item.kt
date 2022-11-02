@@ -14,11 +14,13 @@ data class Item(
 
 data class OptionGroup(
     val id: Long,
+    val name: String,
     val options: List<Option>,
-    val selectRange: Pair<Int, Int>
+    val selectRange: IntRange
 )
 
 data class Option(
     val id: Long,
     val name: String,
+    val additionalPrice: Int
 )
