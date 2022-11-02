@@ -1,12 +1,15 @@
 package com.example.yumarketforowners.domain.usecase.item
 
 import com.example.yumarketforowners.domain.repository.ItemRepository
+import kotlinx.coroutines.flow.map
 
 class GetItemsUseCase(
     private val repository: ItemRepository
 ) {
-    suspend operator fun invoke(
+    operator fun invoke(
         marketId: Long,
         available: Boolean
-    ) = repository.getItemsByMarketId(marketId).filter { it.available == available }
+    ) = repository.getItemsByMarketId(marketId).map { items ->
+        items.filter { item -> item.available == available }
+    }
 }

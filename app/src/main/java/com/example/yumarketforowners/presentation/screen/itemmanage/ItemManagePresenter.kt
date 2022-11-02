@@ -6,9 +6,11 @@ import com.example.yumarketforowners.presentation.mapper.item.toItemUiState
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.viewholder.CellType
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Provider
 
 class ItemManagePresenter(
@@ -18,18 +20,19 @@ class ItemManagePresenter(
 ) : BaseCoroutinePresenter(view, scopeProvider) {
 
     fun requestData(marketId: Long, available: Boolean) {
-        coroutineScope.launch {
-            view.loading(isLoading = true)
-            /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
-            val result = getItemsUseCase(marketId = marketId, available = available).map { item ->
-                item.toItemUiState(
-                    onEditItemButtonClick = { view.navigateToEditScreen(item) }
-                )
-            }
-            view.loading(isLoading = false)
-
-            view.onRequestDataSuccess(result)
-        }
+        /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
+        getItemsUseCase(marketId = marketId, available = available)
+            .onStart { view.loading(isLoading = true) }
+            .onEach {
+                val result = it.map { item ->
+                    item.toItemUiState(
+                        onEditItemButtonClick = { view.navigateToEditScreen(item) }
+                    )
+                }
+                view.loading(isLoading = false)
+                view.onRequestDataSuccess(result)
+            }.catch { cause -> view.onError(cause) }
+            .launchIn(coroutineScope)
     }
 }
 

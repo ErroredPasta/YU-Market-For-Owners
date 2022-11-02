@@ -4,6 +4,11 @@ import android.util.Log
 import com.example.yumarketforowners.data.remote.dto.item.ItemDto
 import com.example.yumarketforowners.data.remote.dto.item.OptionDto
 import com.example.yumarketforowners.data.remote.dto.item.OptionGroupDto
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -12,7 +17,7 @@ private const val TAG = "FakeItemRemoteDataSource"
 @Singleton
 class FakeItemRemoteDataSource @Inject constructor() : ItemRemoteDataSource {
 
-    private val itemList = (0..9).map {
+    private var itemList = (0..9).map {
         ItemDto(
             id = it.toLong(),
             name = "name $it",
@@ -26,17 +31,22 @@ class FakeItemRemoteDataSource @Inject constructor() : ItemRemoteDataSource {
         )
     }.toMutableList()
 
-    override suspend fun getItemsByMarketId(marketId: Long) = itemList
+    private val _itemListFlow = MutableStateFlow(itemList)
+
+    override fun getItemsByMarketId(marketId: Long) = _itemListFlow.asStateFlow()
     override suspend fun getSingleItemById(itemId: Long) =
         checkNotNull(itemList.find { it.id == itemId }) {
             "id가 ${itemId}인 item이 없습니다."
         }
 
-    override suspend fun updateItem(updatedItem: ItemDto) {
+    override suspend fun updateItem(updatedItem: ItemDto) = withContext<Unit>(NonCancellable) {
         val index = itemList.indexOfFirst { it.id == updatedItem.id }
 
         if (index != -1) {
-            itemList[index] = updatedItem
+            _itemListFlow.update {
+                it.toMutableList().apply { this[index] = updatedItem }
+            }
+            itemList = _itemListFlow.value
             Log.d(TAG, "updateItem: ${itemList[index]}")
         } else {
             Log.d(TAG, "updateItem: no update")
