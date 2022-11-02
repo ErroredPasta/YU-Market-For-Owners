@@ -57,4 +57,6 @@
     <string name="item_state">상품 상태</string>
     <string name="item_available">판매중</string>
     <string name="remove_option_group">해당 옵션 그룹 삭제</string>
+    <string name="option_additional_price">옵션 추가 요금</string>
+    <string name="krw">원</string>
 </resources>
