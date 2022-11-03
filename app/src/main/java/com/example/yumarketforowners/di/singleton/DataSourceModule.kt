@@ -6,6 +6,8 @@ import com.example.yumarketforowners.data.remote.datasource.item.FakeItemRemoteD
 import com.example.yumarketforowners.data.remote.datasource.item.ItemRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.market.FakeMarketRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.market.MarketRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.notice.FakeNoticeRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.notice.NoticeRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.order.FakeOrderRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.order.OrderRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.review.FakeReviewRemoteDataSource
@@ -32,4 +34,7 @@ interface DataSourceModule {
 
     @Binds
     fun bindMarketRemoteDataSource(dateSource: FakeMarketRemoteDataSource): MarketRemoteDataSource
+
+    @Binds
+    fun bindNoticeRemoteDataSource(dataSource: FakeNoticeRemoteDataSource): NoticeRemoteDataSource
 }

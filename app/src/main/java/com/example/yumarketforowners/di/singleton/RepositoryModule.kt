@@ -4,12 +4,14 @@ import com.example.yumarketforowners.data.repository.item.ItemRepositoryImpl
 import com.example.yumarketforowners.data.repository.order.OrderRepositoryImpl
 import com.example.yumarketforowners.data.repository.chatroom.ChatRoomRepositoryImpl
 import com.example.yumarketforowners.data.repository.market.MarketRepositoryImpl
+import com.example.yumarketforowners.data.repository.notice.NoticeRepositoryImpl
 import com.example.yumarketforowners.data.repository.review.ReviewRepositoryImpl
 import com.example.yumarketforowners.domain.repository.ChatRoomRepository
 import com.example.yumarketforowners.domain.repository.ItemRepository
 import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.domain.repository.ReviewRepository
 import com.example.yumarketforowners.domain.repository.market.MarketRepository
+import com.example.yumarketforowners.domain.repository.notice.NoticeRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -32,4 +34,7 @@ interface RepositoryModule {
 
      @Binds
      fun bindMarketRepository(repository: MarketRepositoryImpl): MarketRepository
+
+     @Binds
+     fun bindNoticeRepository(repository: NoticeRepositoryImpl): NoticeRepository
 }

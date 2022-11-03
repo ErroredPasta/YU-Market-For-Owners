@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.di.activity
 
 import com.example.yumarketforowners.di.qualifier.LifeCycleScope
-import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType
+import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType.*
 import com.example.yumarketforowners.domain.usecase.item.GetSingleItemUseCase
 import com.example.yumarketforowners.domain.usecase.item.UpdateItemUseCase
 import com.example.yumarketforowners.domain.usecase.market.GetMarketDetailUseCase
@@ -26,7 +26,7 @@ object ActivityPresenterModule {
         view: UpdateMarketView,
         getMarketDetailUseCase: GetMarketDetailUseCase,
         updateMarketUseCase: UpdateMarketUseCase,
-        @LifeCycleScope(LifeCycleScopeType.ACTIVITY) scopeProvider: Provider<CoroutineScope>
+        @LifeCycleScope(ACTIVITY) scopeProvider: Provider<CoroutineScope>
     ) = UpdateMarketPresenter(
         view = view,
         getMarketDetailUseCase = getMarketDetailUseCase,
@@ -34,13 +34,12 @@ object ActivityPresenterModule {
         scopeProvider = scopeProvider,
     )
 
-    /* TODO: 2022-10-27 목 04:11, fill parameters */
     @Provides
     fun provideUpdateItemPresenter(
         view: UpdateItemView,
         getSingleItemUseCase: GetSingleItemUseCase,
         updateItemUseCase: UpdateItemUseCase,
-        @LifeCycleScope(LifeCycleScopeType.ACTIVITY) scopeProvider: Provider<CoroutineScope>
+        @LifeCycleScope(ACTIVITY) scopeProvider: Provider<CoroutineScope>
     ) = UpdateItemPresenter(
         view = view,
         getSingleItemUseCase = getSingleItemUseCase,

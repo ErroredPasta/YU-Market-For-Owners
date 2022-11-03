@@ -5,6 +5,7 @@ import com.example.yumarketforowners.R
 import com.example.yumarketforowners.presentation.viewholder.itemmanage.ItemViewHolder
 import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionGroupViewHolder
 import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionViewHolder
+import com.example.yumarketforowners.presentation.viewholder.notice.NoticeViewHolder
 import com.example.yumarketforowners.presentation.viewholder.orderlist.OrderItemViewHolder
 import com.example.yumarketforowners.presentation.viewholder.orderlist.OrderViewHolder
 import com.example.yumarketforowners.presentation.viewholder.reviewmanage.ChatRoomViewHolder
@@ -22,4 +23,5 @@ enum class CellType(
     ORDER_ITEM_CELL(OrderItemViewHolder::class, R.layout.view_holder_order_item),
     OPTION_GROUP_CELL(OptionGroupViewHolder::class, R.layout.view_holder_option_group),
     OPTION_CELL(OptionViewHolder::class, R.layout.view_holder_option),
+    NOTICE_CELL(NoticeViewHolder::class, R.layout.view_holder_notice),
 }

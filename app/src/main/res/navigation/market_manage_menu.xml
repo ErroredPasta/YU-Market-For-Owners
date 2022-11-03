@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_marketManageFragment_to_updateMarketActivity"
             app:destination="@id/updateMarketActivity" />
+        <action
+            android:id="@+id/action_marketManageFragment_to_noticeActivity"
+            app:destination="@id/noticeActivity" />
     </fragment>
 
 
@@ -20,6 +23,11 @@
         android:label="UpdateMarketActivity">
 
     </activity>
+
+    <activity
+        android:id="@+id/noticeActivity"
+        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.notice.NoticeActivity"
+        android:label="NoticeActivity" />
 
 
 </navigation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/notice_nav_graph"
+    app:startDestination="@id/noticeListFragment">
+
+    <fragment
+        android:id="@+id/noticeListFragment"
+        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.notice.list.NoticeListFragment"
+        android:label="NoticeListFragment" />
+</navigation>

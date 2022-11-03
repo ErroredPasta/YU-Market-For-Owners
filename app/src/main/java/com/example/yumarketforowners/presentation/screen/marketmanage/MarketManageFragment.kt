@@ -60,8 +60,7 @@ class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), Market
     }
 
     override fun onNoticeClicked() {
-        // TODO: 2022.06.10 start notice activity
-        Toast.makeText(context, "notice clicked", Toast.LENGTH_SHORT).show()
+        navController.navigate(R.id.action_marketManageFragment_to_noticeActivity)
     }
 
     override fun onServiceCenterClicked() {
