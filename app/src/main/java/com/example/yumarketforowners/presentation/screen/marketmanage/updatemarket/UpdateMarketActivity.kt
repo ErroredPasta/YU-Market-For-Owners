@@ -37,15 +37,15 @@ class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), Update
     private val representativeImageContract =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             uri?.let {
-                representativeImage = uri.toString()
-                binding.updateMarketRepresentativeImage.setImageURI(uri)
+                representativeImage = it.path
+                binding.updateMarketRepresentativeImage.setImageURI(it)
             } ?: showToast("Representative image select canceled")
         }
 
     private val detailImageContract =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             uri?.let {
-                detailImage = it.toString()
+                detailImage = it.path
                 binding.updateMarketDetailImage.setImageURI(it)
             } ?: showToast("Detail image select canceled")
         }

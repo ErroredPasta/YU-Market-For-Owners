@@ -16,21 +16,16 @@ private val factory = DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(tru
 fun ImageView.clear() = Glide.with(this).clear(this)
 
 fun ImageView.load(
-    url: String,
+    uri: String,
     corner: Float = 0f,
     scaleType: Transformation<Bitmap> = CenterInside()
-) =
-    Glide.with(this)
-        .load(url)
-        .transition(DrawableTransitionOptions.withCrossFade(factory)) // fade-in 애니메이션
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .run {
-            // 이미지의 라운딩 처리
-            if (corner > 0f) {
-                transform(
-                    scaleType, RoundedCorners(corner.fromDpToPx())
-                )
-            } else {
-                this
-            }
-        }.into(this)
+) = Glide.with(this)
+    .load(uri)
+    .transition(DrawableTransitionOptions.withCrossFade(factory)) // fade-in 애니메이션
+    .diskCacheStrategy(DiskCacheStrategy.ALL)
+    .apply {
+        // 이미지의 라운딩 처리
+        if (corner > 0f) {
+            transform(scaleType, RoundedCorners(corner.fromDpToPx()))
+        }
+    }.into(this)

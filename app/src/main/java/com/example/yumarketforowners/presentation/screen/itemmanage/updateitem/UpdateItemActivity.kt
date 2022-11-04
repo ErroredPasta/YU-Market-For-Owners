@@ -34,7 +34,7 @@ class UpdateItemActivity : BaseActivity<ActivityUpdateItemBinding>(), UpdateItem
     private val itemImageContract =
         registerForActivityResult(PickVisualMedia()) { uri ->
             uri?.let {
-                binding.updateItemUiState!!.imageUrl = it.toString()
+                binding.updateItemUiState!!.imageUrl = it.path
                 binding.updateItemRepresentativeImageView.setImageURI(it)
             } ?: showToast(message = "Item image select canceled")
         }
