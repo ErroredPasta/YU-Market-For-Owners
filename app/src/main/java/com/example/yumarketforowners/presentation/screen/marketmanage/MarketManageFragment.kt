@@ -55,8 +55,7 @@ class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), Market
     }
 
     override fun onManageReviewClicked() {
-        // TODO: 2022.06.10 start review manage activity
-        Toast.makeText(context, "manage review clicked", Toast.LENGTH_SHORT).show()
+        navController.navigate(R.id.review_manage_menu)
     }
 
     override fun onNoticeClicked() {
