@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/noticeListFragment"
         android:name="com.example.yumarketforowners.presentation.screen.marketmanage.notice.list.NoticeListFragment"
-        android:label="NoticeListFragment" />
+        android:label="NoticeListFragment">
+        <action
+            android:id="@+id/action_noticeListFragment_to_noticeDetailFragment"
+            app:destination="@id/noticeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noticeDetailFragment"
+        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.notice.detail.NoticeDetailFragment"
+        android:label="NoticeDetailFragment">
+        <argument
+            android:name="noticeId"
+            app:argType="long" />
+    </fragment>
 </navigation>

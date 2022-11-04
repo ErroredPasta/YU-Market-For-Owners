@@ -3,6 +3,7 @@ package com.example.yumarketforowners.di.fragment
 import androidx.fragment.app.Fragment
 import com.example.yumarketforowners.presentation.screen.base.BaseView
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageView
+import com.example.yumarketforowners.presentation.screen.marketmanage.notice.detail.NoticeDetailView
 import com.example.yumarketforowners.presentation.screen.marketmanage.notice.list.NoticeListView
 import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketView
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderListView
@@ -38,4 +39,7 @@ object FragmentViewModule {
 
     @Provides
     fun provideNoticeListView(fragment: Fragment) = fragment as NoticeListView
+
+    @Provides
+    fun provideNoticeDetailView(fragment: Fragment) = fragment as NoticeDetailView
 }

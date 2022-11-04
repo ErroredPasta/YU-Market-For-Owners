@@ -7,10 +7,13 @@ import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.RemoveChatRoomUseCase
 import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
 import com.example.yumarketforowners.domain.usecase.notice.GetAllNoticesUseCase
+import com.example.yumarketforowners.domain.usecase.notice.GetNoticeByIdUseCase
 import com.example.yumarketforowners.domain.usecase.order.UpdateOrderStateUseCase
 import com.example.yumarketforowners.domain.usecase.review.GetReviewsUseCase
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManagePresenter
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageView
+import com.example.yumarketforowners.presentation.screen.marketmanage.notice.detail.NoticeDetailPresenter
+import com.example.yumarketforowners.presentation.screen.marketmanage.notice.detail.NoticeDetailView
 import com.example.yumarketforowners.presentation.screen.marketmanage.notice.list.NoticeListPresenter
 import com.example.yumarketforowners.presentation.screen.marketmanage.notice.list.NoticeListView
 import com.example.yumarketforowners.presentation.screen.orderlist.OrderListPresenter
@@ -86,6 +89,17 @@ object FragmentPresenterModule {
     ) = NoticeListPresenter(
         view = view,
         getAllNoticesUseCase = getAllNoticesUseCase,
+        scopeProvider = scopeProvider
+    )
+
+    @Provides
+    fun provideNoticeDetailPresenter(
+        view: NoticeDetailView,
+        getNoticeByIdUseCase: GetNoticeByIdUseCase,
+        @LifeCycleScope(FRAGMENT) scopeProvider: Provider<CoroutineScope>
+    ) = NoticeDetailPresenter(
+        view = view,
+        getNoticeByIdUseCase = getNoticeByIdUseCase,
         scopeProvider = scopeProvider
     )
 }

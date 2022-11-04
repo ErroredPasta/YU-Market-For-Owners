@@ -13,9 +13,9 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class NoticeListFragment : BaseFragment<FragmentNoticeListBinding>(), NoticeListView {
+
     override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
+        inflater: LayoutInflater, container: ViewGroup?
     ) = FragmentNoticeListBinding.inflate(inflater, container, false)
 
     private val navController by lazy { findNavController() }
@@ -40,8 +40,9 @@ class NoticeListFragment : BaseFragment<FragmentNoticeListBinding>(), NoticeList
     }
 
     override fun navigateToNoticeDetailScreen(noticeId: Long) {
-        /* TODO: 2022-11-3 목 14:24, implement navigation */
-        showToast(message = noticeId.toString())
+        navController.navigate(
+            NoticeListFragmentDirections.actionNoticeListFragmentToNoticeDetailFragment(noticeId = noticeId)
+        )
     }
 
     override fun loading(isLoading: Boolean) {

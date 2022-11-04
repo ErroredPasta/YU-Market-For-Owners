@@ -12,4 +12,7 @@ class NoticeRepositoryImpl @Inject constructor(
 
     override suspend fun getAllNotices(): List<Notice> =
         remoteDataSource.getAllNotices().map { it.toNotice() }
+
+    override suspend fun getNoticeById(noticeId: Long): Notice =
+        remoteDataSource.getNoticeById(noticeId = noticeId).toNotice()
 }

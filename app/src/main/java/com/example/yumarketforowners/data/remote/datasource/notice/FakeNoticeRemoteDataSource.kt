@@ -16,4 +16,9 @@ class FakeNoticeRemoteDataSource @Inject constructor() : NoticeRemoteDataSource 
     }
 
     override suspend fun getAllNotices(): List<NoticeDto> = noticeList
+    override suspend fun getNoticeById(noticeId: Long): NoticeDto {
+        val notice = noticeList.find { it.id == noticeId }
+
+        return checkNotNull(notice) { "id가 ${noticeId}인 공지가 없습니다." }
+    }
 }

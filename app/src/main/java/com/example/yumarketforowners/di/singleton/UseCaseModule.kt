@@ -14,6 +14,7 @@ import com.example.yumarketforowners.domain.usecase.item.UpdateItemUseCase
 import com.example.yumarketforowners.domain.usecase.market.GetMarketDetailUseCase
 import com.example.yumarketforowners.domain.usecase.market.UpdateMarketUseCase
 import com.example.yumarketforowners.domain.usecase.notice.GetAllNoticesUseCase
+import com.example.yumarketforowners.domain.usecase.notice.GetNoticeByIdUseCase
 import com.example.yumarketforowners.domain.usecase.order.GetOrderListUseCase
 import com.example.yumarketforowners.domain.usecase.order.UpdateOrderStateUseCase
 import com.example.yumarketforowners.domain.usecase.review.GetReviewsUseCase
@@ -57,4 +58,7 @@ object UseCaseModule {
 
     @Provides
     fun provideGetAllNoticesUseCase(repository: NoticeRepository) = GetAllNoticesUseCase(repository)
+
+    @Provides
+    fun provideGetNoticeByIdUseCase(repository: NoticeRepository) = GetNoticeByIdUseCase(repository)
 }
