@@ -13,9 +13,9 @@ abstract class BaseCoroutinePresenter(
      * 기본적으로 Provider<CoroutineScope>에서 가져오는 scope와 exception handler를 합친 CoroutineScope
      * 필요시 override할 수 있도록 open으로 설정
      */
-    protected open val coroutineScope: CoroutineScope by lazy {
-        scopeProvider.get() + exceptionHandler
-    }
+    protected open val coroutineScope: CoroutineScope
+        get() = scopeProvider.get() + exceptionHandler
+
 
     /**
      * 기본적인 CoroutineExceptionHandler
