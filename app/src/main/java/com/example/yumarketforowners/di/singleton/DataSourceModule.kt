@@ -12,6 +12,8 @@ import com.example.yumarketforowners.data.remote.datasource.order.FakeOrderRemot
 import com.example.yumarketforowners.data.remote.datasource.order.OrderRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.review.FakeReviewRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.review.ReviewRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.user.FakeUserRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.user.UserRemoteDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -37,4 +39,7 @@ interface DataSourceModule {
 
     @Binds
     fun bindNoticeRemoteDataSource(dataSource: FakeNoticeRemoteDataSource): NoticeRemoteDataSource
+
+    @Binds
+    fun bindUserRemoteDataSource(dataSource: FakeUserRemoteDataSource): UserRemoteDataSource
 }

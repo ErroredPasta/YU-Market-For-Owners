@@ -6,10 +6,11 @@ import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.domain.repository.ReviewRepository
 import com.example.yumarketforowners.domain.repository.market.MarketRepository
 import com.example.yumarketforowners.domain.repository.notice.NoticeRepository
+import com.example.yumarketforowners.domain.repository.user.UserRepository
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.RemoveChatRoomUseCase
-import com.example.yumarketforowners.domain.usecase.item.GetSingleItemUseCase
 import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
+import com.example.yumarketforowners.domain.usecase.item.GetSingleItemUseCase
 import com.example.yumarketforowners.domain.usecase.item.UpdateItemUseCase
 import com.example.yumarketforowners.domain.usecase.market.GetMarketDetailUseCase
 import com.example.yumarketforowners.domain.usecase.market.UpdateMarketUseCase
@@ -18,6 +19,8 @@ import com.example.yumarketforowners.domain.usecase.notice.GetNoticeByIdUseCase
 import com.example.yumarketforowners.domain.usecase.order.GetOrderListUseCase
 import com.example.yumarketforowners.domain.usecase.order.UpdateOrderStateUseCase
 import com.example.yumarketforowners.domain.usecase.review.GetReviewsUseCase
+import com.example.yumarketforowners.domain.usecase.user.GetCurrentUserUseCase
+import com.example.yumarketforowners.domain.usecase.user.UpdateUserUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,16 +42,19 @@ object UseCaseModule {
     fun provideGetReviewsUseCase(repository: ReviewRepository) = GetReviewsUseCase(repository)
 
     @Provides
-    fun provideGetMarketDetailUseCase(repository: MarketRepository) = GetMarketDetailUseCase(repository)
+    fun provideGetMarketDetailUseCase(repository: MarketRepository) =
+        GetMarketDetailUseCase(repository)
 
     @Provides
     fun provideUpdateMarketUseCase(repository: MarketRepository) = UpdateMarketUseCase(repository)
 
     @Provides
-    fun provideUpdateOrderStateUseCase(repository: OrderRepository) = UpdateOrderStateUseCase(repository)
+    fun provideUpdateOrderStateUseCase(repository: OrderRepository) =
+        UpdateOrderStateUseCase(repository)
 
     @Provides
-    fun provideRemoveChatRoomUseCase(repository: ChatRoomRepository) = RemoveChatRoomUseCase(repository)
+    fun provideRemoveChatRoomUseCase(repository: ChatRoomRepository) =
+        RemoveChatRoomUseCase(repository)
 
     @Provides
     fun provideGetSingleItemUseCase(repository: ItemRepository) = GetSingleItemUseCase(repository)
@@ -61,4 +67,10 @@ object UseCaseModule {
 
     @Provides
     fun provideGetNoticeByIdUseCase(repository: NoticeRepository) = GetNoticeByIdUseCase(repository)
+
+    @Provides
+    fun provideGetCurrentUserUseCase(repository: UserRepository) = GetCurrentUserUseCase(repository)
+
+    @Provides
+    fun provideUpdateUserUseCase(repository: UserRepository) = UpdateUserUseCase(repository)
 }

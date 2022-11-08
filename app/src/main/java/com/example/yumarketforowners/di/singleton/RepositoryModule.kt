@@ -1,17 +1,19 @@
 package com.example.yumarketforowners.di.singleton
 
-import com.example.yumarketforowners.data.repository.item.ItemRepositoryImpl
-import com.example.yumarketforowners.data.repository.order.OrderRepositoryImpl
 import com.example.yumarketforowners.data.repository.chatroom.ChatRoomRepositoryImpl
+import com.example.yumarketforowners.data.repository.item.ItemRepositoryImpl
 import com.example.yumarketforowners.data.repository.market.MarketRepositoryImpl
 import com.example.yumarketforowners.data.repository.notice.NoticeRepositoryImpl
+import com.example.yumarketforowners.data.repository.order.OrderRepositoryImpl
 import com.example.yumarketforowners.data.repository.review.ReviewRepositoryImpl
+import com.example.yumarketforowners.data.repository.user.UserRepositoryImpl
 import com.example.yumarketforowners.domain.repository.ChatRoomRepository
 import com.example.yumarketforowners.domain.repository.ItemRepository
 import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.domain.repository.ReviewRepository
 import com.example.yumarketforowners.domain.repository.market.MarketRepository
 import com.example.yumarketforowners.domain.repository.notice.NoticeRepository
+import com.example.yumarketforowners.domain.repository.user.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,20 +23,23 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 interface RepositoryModule {
     @Binds
-     fun bindReviewRepository(repository: ReviewRepositoryImpl): ReviewRepository
+    fun bindReviewRepository(repository: ReviewRepositoryImpl): ReviewRepository
 
     @Binds
-     fun bindChatRoomRepository(repository: ChatRoomRepositoryImpl): ChatRoomRepository
+    fun bindChatRoomRepository(repository: ChatRoomRepositoryImpl): ChatRoomRepository
 
     @Binds
-     fun bindItemManageRepository(repository: ItemRepositoryImpl): ItemRepository
+    fun bindItemManageRepository(repository: ItemRepositoryImpl): ItemRepository
 
     @Binds
-     fun bindOrderListRepository(repository: OrderRepositoryImpl): OrderRepository
+    fun bindOrderListRepository(repository: OrderRepositoryImpl): OrderRepository
 
-     @Binds
-     fun bindMarketRepository(repository: MarketRepositoryImpl): MarketRepository
+    @Binds
+    fun bindMarketRepository(repository: MarketRepositoryImpl): MarketRepository
 
-     @Binds
-     fun bindNoticeRepository(repository: NoticeRepositoryImpl): NoticeRepository
+    @Binds
+    fun bindNoticeRepository(repository: NoticeRepositoryImpl): NoticeRepository
+
+    @Binds
+    fun bindUserRepository(repository: UserRepositoryImpl): UserRepository
 }

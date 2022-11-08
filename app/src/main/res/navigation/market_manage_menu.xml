@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_marketManageFragment_to_noticeActivity"
             app:destination="@id/noticeActivity" />
+        <action
+            android:id="@+id/action_marketManageFragment_to_updateProfileActivity"
+            app:destination="@id/updateProfileActivity" />
     </fragment>
 
 
@@ -28,6 +31,10 @@
         android:id="@+id/noticeActivity"
         android:name="com.example.yumarketforowners.presentation.screen.marketmanage.notice.NoticeActivity"
         android:label="NoticeActivity" />
+    <activity
+        android:id="@+id/updateProfileActivity"
+        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfileActivity"
+        android:label="UpdateProfileActivity" />
 
 
 </navigation>

@@ -4,10 +4,7 @@ import com.example.yumarketforowners.data.remote.dto.user.UserDto
 import com.example.yumarketforowners.domain.model.user.User
 
 
-fun User.toUserDto(
-    telephoneNumber: String,
-    businessRegistrationNumber: String
-) = UserDto(
+fun User.toUserDto() = UserDto(
     id = id,
     telephoneNumber = telephoneNumber,
     userName = userName,
@@ -15,11 +12,10 @@ fun User.toUserDto(
     businessRegistrationNumber = businessRegistrationNumber
 )
 
-fun UserDto.toUser(
-    marketName: String,
-) = User(
+fun UserDto.toUser() = User(
     id = id,
+    telephoneNumber = telephoneNumber,
     userName = userName,
-    marketName = marketName,
-    profileImage = profileImage
+    profileImage = profileImage,
+    businessRegistrationNumber = businessRegistrationNumber
 )

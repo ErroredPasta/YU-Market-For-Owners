@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="userUiState"
+            type="com.example.yumarketforowners.domain.model.user.User" />
+
+        <variable
+            name="listener"
+            type="com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfileListener" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/updateProfileImageView"
+            cornerRadius="@{75.0f}"
+            imageUrl="@{userUiState.profileImage}"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/profile_image"
+            android:onClick="@{() -> listener.onProfileImageClicked()}"
+            tools:src="@drawable/review_manage_icon" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/updateProfileUserNameTextField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:hint="@string/user_name"
+            app:boxStrokeColor="@color/interactive_color"
+            tools:layout_editor_absoluteX="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@{userUiState.userName}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/updateProfileConfirmButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="120dp"
+            android:layout_marginTop="20dp"
+            android:onClick="@{() -> listener.onConfirmButtonClicked()}"
+            android:text="@string/change_profile"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:textColor="@color/interactive_color"
+            app:strokeColor="@color/interactive_color" />
+
+        <Button
+            android:id="@+id/updateProfileCancelButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="120dp"
+            android:onClick="@{() -> listener.onCancelButtonClicked()}"
+            android:text="@string/cancel"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:textColor="@color/gray_4b"
+            app:strokeColor="@color/gray_4b" />
+
+
+    </LinearLayout>
+</layout>

@@ -29,16 +29,17 @@ class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), Market
     override fun initState() {
         binding.listener = this
         binding.userModel = User(
+            id = 1L,
             userName = "user",
-            marketName = "market",
             profileImage = "https://picsum.photos/200",
-            id = 100L
+            telephoneNumber = "010-0101-1010",
+            businessRegistrationNumber = "121122121"
         )
     }
 
     override fun onEditProfileClicked(user: User) {
-        // TODO: 2022.06.10 start profile edit activity
-        Toast.makeText(context, "$user edit clicked", Toast.LENGTH_SHORT).show()
+        /* TODO: 2022-11-8 화 05:42, pass proper user id */
+        navController.navigate(R.id.action_marketManageFragment_to_updateProfileActivity)
     }
 
     override fun onUpdateMarketClicked() {
