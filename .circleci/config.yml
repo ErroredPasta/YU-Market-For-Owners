@@ -19,7 +19,24 @@ commands:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
+  
+  import-fire-base-json:
+    executor: 
+      name: android/android-docker
+      tag: 2022.09.2
 
+    steps:
+      - run:
+          # Export base64 encoded google-services.json
+          # into local bash variables
+          name: Export Google Services Json
+          command: echo 'export GOOGLE_SERVICES_JSON="$FIRE_BASE"' >> $BASH_ENV
+
+      - run:
+          # Decode the base64 string
+          name: Decode Google Services Json
+          command: echo $GOOGLE_SERVICES_JSON | base64 -di > /home/circleci/project/app/google-services.json
+          
   unit-test:
     executor: 
       name: android/android-docker
@@ -33,11 +50,11 @@ jobs:
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
       - run:
-            name: Save test results
-            command: |
-                mkdir -p ~/test-results/junit/
-                find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
-            when: always
+          name: Save test results
+          command: |
+              mkdir -p ~/test-results/junit/
+              find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
       - store_test_results:
           path: ~/test-results
       - store_artifacts:
@@ -62,6 +79,7 @@ workflows:
   automated-test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.           
     jobs:
+      - import-fire-base-json
       - unit-test
       # 나중에 instrumented-test 추가
 
