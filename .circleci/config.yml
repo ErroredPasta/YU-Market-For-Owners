@@ -80,7 +80,9 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.           
     jobs:
       - import-fire-base-json
-      - unit-test
+      - unit-test:
+          requires: 
+            - import-fire-base-json
       # 나중에 instrumented-test 추가
 
 
