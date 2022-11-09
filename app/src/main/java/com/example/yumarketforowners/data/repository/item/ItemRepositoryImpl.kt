@@ -23,4 +23,8 @@ class ItemRepositoryImpl @Inject constructor(
 
     override suspend fun updateItem(updatedItem: Item) =
         remoteDataSource.updateItem(updatedItem = updatedItem.toItemDto())
+
+    override suspend fun addItem(itemToAdd: Item) {
+        remoteDataSource.addItem(itemToAdd.toItemDto())
+    }
 }

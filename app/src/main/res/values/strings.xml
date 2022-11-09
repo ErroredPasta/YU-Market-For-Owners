@@ -67,4 +67,5 @@
     <string name="manage_market">마켓 관리</string>
     <string name="manage_item">상품 관리</string>
     <string name="review_and_inquiry_chat">리뷰 및 문의 채팅</string>
+    <string name="add_item_button">상품 추가 버튼</string>
 </resources>
