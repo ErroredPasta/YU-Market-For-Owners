@@ -11,10 +11,17 @@
         <action
             android:id="@+id/action_itemManageFragment_to_updateItemActivity"
             app:destination="@id/updateItemActivity" />
+        <action
+            android:id="@+id/action_itemManageFragment_to_addItemActivity"
+            app:destination="@id/addItemActivity" />
     </fragment>
     <activity
         android:id="@+id/updateItemActivity"
         android:name="com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemActivity"
         android:label="UpdateItemActivity" />
+    <activity
+        android:id="@+id/addItemActivity"
+        android:name="com.example.yumarketforowners.presentation.screen.itemmanage.additem.AddItemActivity"
+        android:label="AddItemActivity" />
 
 </navigation>

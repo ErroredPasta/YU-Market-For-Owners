@@ -7,4 +7,5 @@ interface ItemRemoteDataSource {
     fun getItemsByMarketId(marketId: Long): Flow<List<ItemDto>>
     suspend fun getSingleItemById(itemId: Long): ItemDto
     suspend fun updateItem(updatedItem: ItemDto)
+    suspend fun addItem(itemToAdd: ItemDto)
 }

@@ -2,6 +2,7 @@ package com.example.yumarketforowners.di.activity
 
 import android.app.Activity
 import com.example.yumarketforowners.presentation.screen.base.BaseView
+import com.example.yumarketforowners.presentation.screen.itemmanage.additem.AddItemView
 import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemView
 import com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfileView
 import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketView
@@ -29,4 +30,7 @@ object ActivityViewModule {
 
     @Provides
     fun provideChatRoomDetailView(activity: Activity) = activity as ChatRoomDetailView
+
+    @Provides
+    fun provideAddItemView(activity: Activity) = activity as AddItemView
 }

@@ -17,18 +17,8 @@ private const val TAG = "FakeItemRemoteDataSource"
 @Singleton
 class FakeItemRemoteDataSource @Inject constructor() : ItemRemoteDataSource {
 
-    private var itemList = (0..9).map {
-        ItemDto(
-            id = it.toLong(),
-            name = "name $it",
-            description = "description $it",
-            stock = it,
-            price = it * 20000,
-            discountedPrice = it * 10000,
-            imageUrl = "https://picsum.photos/200",
-            optionGroups = createOptionGroupDtos((it..it + 3)),
-            available = it % 2 == 0
-        )
+    private var itemList = (1..10).map {
+        createItemDto(it)
     }.toMutableList()
 
     private val _itemListFlow = MutableStateFlow(itemList)
@@ -53,7 +43,28 @@ class FakeItemRemoteDataSource @Inject constructor() : ItemRemoteDataSource {
         }
     }
 
+    override suspend fun addItem(itemToAdd: ItemDto) {
+        _itemListFlow.update {
+            itemList.toMutableList().apply { add(itemToAdd.copy(id = itemList.size + 1L)) }
+        }
+
+        itemList = _itemListFlow.value
+        Log.d(TAG, "addItem: ${itemList.last()}")
+    }
+
     // region temporary helper functions ===========================================================
+
+    private fun createItemDto(it: Int) = ItemDto(
+        id = it.toLong(),
+        name = "name $it",
+        description = "description $it",
+        stock = it,
+        price = it * 20000,
+        discountedPrice = it * 10000,
+        imageUrl = "https://picsum.photos/200",
+        optionGroups = createOptionGroupDtos((it..it + 3)),
+        available = it % 2 == 0
+    )
 
     private fun createOptionGroupDtos(range: IntRange) = range.map {
         OptionGroupDto(

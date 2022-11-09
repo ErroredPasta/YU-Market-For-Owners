@@ -2,6 +2,8 @@ package com.example.yumarketforowners.presentation.screen.itemmanage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.yumarketforowners.R
 import com.example.yumarketforowners.databinding.FragmentItemManageBinding
 import com.example.yumarketforowners.presentation.screen.base.BaseViewPagerFragment
 
@@ -15,6 +17,8 @@ class ItemManageFragment :
         inflater, container, false
     )
 
+    private val navController by lazy { findNavController() }
+
     override val tabStrings = ItemAvailabilityType.values().map {
         it.tabString
     }
@@ -27,5 +31,9 @@ class ItemManageFragment :
                 ItemListInnerFragment.newInstance(it.available)
             }
         )
+
+        binding.itemManageFragmentAddItemButton.setOnClickListener {
+            navController.navigate(R.id.action_itemManageFragment_to_addItemActivity)
+        }
     }
 }

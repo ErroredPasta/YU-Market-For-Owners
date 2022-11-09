@@ -65,7 +65,7 @@ private fun List<Option>.toOptionUiStates(
     )
 }
 
-private fun List<OptionGroupUiState>.toOptionGroups() = map {
+fun List<OptionGroupUiState>.toOptionGroups() = map {
     OptionGroup(
         id = it.id,
         name = it.name,

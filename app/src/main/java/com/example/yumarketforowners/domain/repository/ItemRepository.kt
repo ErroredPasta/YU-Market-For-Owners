@@ -7,4 +7,5 @@ interface ItemRepository {
     fun getItemsByMarketId(marketId: Long): Flow<List<Item>>
     suspend fun getSingleItemById(itemId: Long): Item
     suspend fun updateItem(updatedItem: Item)
+    suspend fun addItem(itemToAdd: Item)
 }

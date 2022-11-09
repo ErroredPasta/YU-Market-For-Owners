@@ -4,12 +4,15 @@ import com.example.yumarketforowners.di.qualifier.LifeCycleScope
 import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType.*
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatsByChatRoomIdUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.SendChatUseCase
+import com.example.yumarketforowners.domain.usecase.item.AddItemUseCase
 import com.example.yumarketforowners.domain.usecase.item.GetSingleItemUseCase
 import com.example.yumarketforowners.domain.usecase.item.UpdateItemUseCase
 import com.example.yumarketforowners.domain.usecase.market.GetMarketDetailUseCase
 import com.example.yumarketforowners.domain.usecase.market.UpdateMarketUseCase
 import com.example.yumarketforowners.domain.usecase.user.GetCurrentUserUseCase
 import com.example.yumarketforowners.domain.usecase.user.UpdateUserUseCase
+import com.example.yumarketforowners.presentation.screen.itemmanage.additem.AddItemPresenter
+import com.example.yumarketforowners.presentation.screen.itemmanage.additem.AddItemView
 import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemPresenter
 import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemView
 import com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfilePresenter
@@ -78,6 +81,17 @@ object ActivityPresenterModule {
         view = view,
         getChatsByChatRoomIdUseCase = getChatsByChatRoomIdUseCase,
         sendChatUseCase = sendChatUseCase,
+        scopeProvider = scopeProvider
+    )
+
+    @Provides
+    fun provideAddItemPresenter(
+        view: AddItemView,
+        addItemUseCase: AddItemUseCase,
+        @LifeCycleScope(ACTIVITY) scopeProvider: Provider<CoroutineScope>
+    ) = AddItemPresenter(
+        view = view,
+        addItemUseCase = addItemUseCase,
         scopeProvider = scopeProvider
     )
 }
