@@ -15,16 +15,7 @@ commands:
     steps:
       - run: chmod +x ./gradlew
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-jobs:
-  # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  
-  import-fire-base-json:
-    executor: 
-      name: android/android-docker
-      tag: 2022.09.2
-
+  import-firebase-json:
     steps:
       - run:
           # Export base64 encoded google-services.json
@@ -35,8 +26,13 @@ jobs:
       - run:
           # Decode the base64 string
           name: Decode Google Services Json
-          command: mkdir /home/circleci/project/app && echo $GOOGLE_SERVICES_JSON | base64 -di > /home/circleci/project/app/google-services.json
-          
+          command: echo $GOOGLE_SERVICES_JSON | base64 -di > /home/circleci/project/app/google-services.json
+
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+jobs:
+  # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
   unit-test:
     executor: 
       name: android/android-docker
@@ -45,6 +41,7 @@ jobs:
     steps:
       - checkout
       - add-execution-permission
+      - import-firebase-json
       - android/restore-gradle-cache
       # The next step will run the unit tests
       - android/run-tests:
@@ -68,6 +65,7 @@ jobs:
     steps:
       - checkout
       - add-execution-permission
+      - import-firebase-json
       # Then start the emulator and run the Instrumentation tests!
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
@@ -79,10 +77,7 @@ workflows:
   automated-test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.           
     jobs:
-      - import-fire-base-json
-      - unit-test:
-          requires: 
-            - import-fire-base-json
+      - unit-test
       # 나중에 instrumented-test 추가
 
 
