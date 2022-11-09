@@ -21,6 +21,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/focused_color">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/manage_market"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/white" />
+
+        </Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/space_divider_color" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +49,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/marketManageProfileImage"
-                imageUrl="@{userModel.profileImage ?? ``}"
+                imageUrl="@{userModel.profileImage}"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:src="@drawable/market_manage_icon"

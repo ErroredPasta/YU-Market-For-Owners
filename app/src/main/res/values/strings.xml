@@ -64,4 +64,7 @@
     <string name="user_name">유저 이름</string>
     <string name="inquiry_chat">문의 채팅</string>
     <string name="enter_message">메시지를 입력하세요.</string>
+    <string name="manage_market">마켓 관리</string>
+    <string name="manage_item">상품 관리</string>
+    <string name="review_and_inquiry_chat">리뷰 및 문의 채팅</string>
 </resources>
