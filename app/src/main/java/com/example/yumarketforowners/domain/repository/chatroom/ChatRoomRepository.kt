@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.domain.repository
+package com.example.yumarketforowners.domain.repository.chatroom
 
 import com.example.yumarketforowners.domain.model.chatroom.ChatRoom
 

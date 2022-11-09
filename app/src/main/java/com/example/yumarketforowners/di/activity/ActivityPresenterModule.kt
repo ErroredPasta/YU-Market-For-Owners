@@ -2,6 +2,8 @@ package com.example.yumarketforowners.di.activity
 
 import com.example.yumarketforowners.di.qualifier.LifeCycleScope
 import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType.*
+import com.example.yumarketforowners.domain.usecase.chatroom.GetChatsByChatRoomIdUseCase
+import com.example.yumarketforowners.domain.usecase.chatroom.SendChatUseCase
 import com.example.yumarketforowners.domain.usecase.item.GetSingleItemUseCase
 import com.example.yumarketforowners.domain.usecase.item.UpdateItemUseCase
 import com.example.yumarketforowners.domain.usecase.market.GetMarketDetailUseCase
@@ -14,6 +16,8 @@ import com.example.yumarketforowners.presentation.screen.marketmanage.profile.Up
 import com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfileView
 import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketPresenter
 import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketView
+import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailPresenter
+import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailView
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -61,6 +65,19 @@ object ActivityPresenterModule {
         view = view,
         getCurrentUserUseCase = getCurrentUserUseCase,
         updateUserUseCase = updateUserUseCase,
+        scopeProvider = scopeProvider
+    )
+
+    @Provides
+    fun provideChatRoomDetailPresenter(
+        view: ChatRoomDetailView,
+        getChatsByChatRoomIdUseCase: GetChatsByChatRoomIdUseCase,
+        sendChatUseCase: SendChatUseCase,
+        @LifeCycleScope(ACTIVITY) scopeProvider: Provider<CoroutineScope>
+    ) = ChatRoomDetailPresenter(
+        view = view,
+        getChatsByChatRoomIdUseCase = getChatsByChatRoomIdUseCase,
+        sendChatUseCase = sendChatUseCase,
         scopeProvider = scopeProvider
     )
 }

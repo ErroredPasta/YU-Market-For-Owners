@@ -62,4 +62,6 @@
     <string name="change_profile">프로필 변경</string>
     <string name="profile_image">프로필 이미지</string>
     <string name="user_name">유저 이름</string>
+    <string name="inquiry_chat">문의 채팅</string>
+    <string name="enter_message">메시지를 입력하세요.</string>
 </resources>

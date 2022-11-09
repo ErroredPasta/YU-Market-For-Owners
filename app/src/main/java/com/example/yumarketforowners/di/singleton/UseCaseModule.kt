@@ -1,14 +1,17 @@
 package com.example.yumarketforowners.di.singleton
 
-import com.example.yumarketforowners.domain.repository.ChatRoomRepository
 import com.example.yumarketforowners.domain.repository.ItemRepository
 import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.domain.repository.ReviewRepository
+import com.example.yumarketforowners.domain.repository.chatroom.ChatRepository
+import com.example.yumarketforowners.domain.repository.chatroom.ChatRoomRepository
 import com.example.yumarketforowners.domain.repository.market.MarketRepository
 import com.example.yumarketforowners.domain.repository.notice.NoticeRepository
 import com.example.yumarketforowners.domain.repository.user.UserRepository
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
+import com.example.yumarketforowners.domain.usecase.chatroom.GetChatsByChatRoomIdUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.RemoveChatRoomUseCase
+import com.example.yumarketforowners.domain.usecase.chatroom.SendChatUseCase
 import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
 import com.example.yumarketforowners.domain.usecase.item.GetSingleItemUseCase
 import com.example.yumarketforowners.domain.usecase.item.UpdateItemUseCase
@@ -73,4 +76,11 @@ object UseCaseModule {
 
     @Provides
     fun provideUpdateUserUseCase(repository: UserRepository) = UpdateUserUseCase(repository)
+
+    @Provides
+    fun provideGetChatsByChatRoomIdUseCase(repository: ChatRepository) =
+        GetChatsByChatRoomIdUseCase(repository)
+
+    @Provides
+    fun provideSendChatUseCase(repository: ChatRepository) = SendChatUseCase(repository)
 }

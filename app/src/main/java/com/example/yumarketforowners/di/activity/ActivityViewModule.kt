@@ -5,6 +5,7 @@ import com.example.yumarketforowners.presentation.screen.base.BaseView
 import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemView
 import com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfileView
 import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketView
+import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailView
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,4 +26,7 @@ object ActivityViewModule {
 
     @Provides
     fun provideUpdateProfileView(activity: Activity) = activity as UpdateProfileView
+
+    @Provides
+    fun provideChatRoomDetailView(activity: Activity) = activity as ChatRoomDetailView
 }

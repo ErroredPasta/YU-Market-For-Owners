@@ -7,13 +7,55 @@
     tools:context=".presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailActivity">
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <Toolbar
+        android:id="@+id/chatRoomDetailToolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/focused_color"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/inquiry_chat"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            android:textColor="@color/white" />
+
+    </Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRoomDetailRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/chatRoomDetailMessageEditText"
+        app:layout_constraintTop_toBottomOf="@id/chatRoomDetailToolbar" />
+
+    <EditText
+        android:id="@+id/chatRoomDetailMessageEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/edit_text_color"
+        android:hint="@string/enter_message"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textCursorDrawable="@drawable/edit_text_cursor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/chatRoomDetailSendButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/chatRoomDetailSendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:paddingHorizontal="10dp"
+        android:src="@drawable/ic_baseline_send_24"
+        android:tint="@color/interactive_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/chatRoomDetailMessageEditText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

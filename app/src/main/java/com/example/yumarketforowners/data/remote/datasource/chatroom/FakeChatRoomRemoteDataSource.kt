@@ -10,7 +10,7 @@ private const val TAG = "FakeChatRoomRemoteDataSource"
 @Singleton
 class FakeChatRoomRemoteDataSource @Inject constructor() : ChatRoomRemoteDataSource {
 
-    private val chatRoomList = (0..9).map {
+    private val chatRoomList = (1..10).map {
         ChatRoomDto(
             id = it.toLong(),
             opponentName = "opponentName $it",
@@ -32,4 +32,6 @@ class FakeChatRoomRemoteDataSource @Inject constructor() : ChatRoomRemoteDataSou
 //        foundChatRoom?.let { chatRoomList.remove(it) }
         Log.d(TAG, "deleteChatRoom: $chatRoomList")
     }
+
+
 }

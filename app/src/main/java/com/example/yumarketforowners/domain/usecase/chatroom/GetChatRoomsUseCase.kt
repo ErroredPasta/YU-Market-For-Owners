@@ -1,6 +1,6 @@
 package com.example.yumarketforowners.domain.usecase.chatroom
 
-import com.example.yumarketforowners.domain.repository.ChatRoomRepository
+import com.example.yumarketforowners.domain.repository.chatroom.ChatRoomRepository
 
 class GetChatRoomsUseCase(
     private val repository: ChatRoomRepository

@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.data.repository
 
 import com.example.yumarketforowners.domain.model.chatroom.ChatRoom
-import com.example.yumarketforowners.domain.repository.ChatRoomRepository
+import com.example.yumarketforowners.domain.repository.chatroom.ChatRoomRepository
 import com.example.yumarketforowners.entity.createChatRoom
 
 class FakeChatRoomRepository : ChatRoomRepository {
