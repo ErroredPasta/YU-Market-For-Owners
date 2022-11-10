@@ -3,8 +3,8 @@ package com.example.yumarketforowners.presentation.screen.itemmanage.additem
 import com.example.yumarketforowners.domain.usecase.item.AddItemUseCase
 import com.example.yumarketforowners.presentation.mapper.item.toItem
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
-import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.OptionGroupUiState
-import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.OptionUiState
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionGroupUiState
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Provider

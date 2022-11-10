@@ -12,6 +12,7 @@ import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemActivity
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.ItemUiState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

@@ -12,6 +12,7 @@ import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.BaseReviewInnerFragment
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailActivity
+import com.example.yumarketforowners.presentation.viewholder.reviewmanage.ChatRoomUiState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

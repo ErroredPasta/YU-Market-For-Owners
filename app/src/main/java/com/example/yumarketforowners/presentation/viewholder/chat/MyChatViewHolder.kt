@@ -1,7 +1,6 @@
 package com.example.yumarketforowners.presentation.viewholder.chat
 
 import com.example.yumarketforowners.databinding.ViewHolderMyChatBinding
-import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatUiState
 import com.example.yumarketforowners.presentation.viewholder.BaseViewHolder
 
 class MyChatViewHolder(

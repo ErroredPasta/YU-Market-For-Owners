@@ -3,13 +3,12 @@ package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfrag
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.annotation.StringRes
 import com.example.yumarketforowners.databinding.InnerFragmentReviewListBinding
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.BaseReviewInnerFragment
+import com.example.yumarketforowners.presentation.viewholder.reviewmanage.ReviewUiState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

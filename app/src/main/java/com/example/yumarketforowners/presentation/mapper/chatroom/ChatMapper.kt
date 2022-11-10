@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.presentation.mapper.chatroom
 
 import com.example.yumarketforowners.domain.model.chatroom.Chat
-import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatUiState
+import com.example.yumarketforowners.presentation.viewholder.chat.ChatUiState
 import com.example.yumarketforowners.presentation.viewholder.CellType
 
 fun Chat.toChatUiState(

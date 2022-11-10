@@ -2,7 +2,7 @@ package com.example.yumarketforowners.presentation.mapper.item
 
 import com.example.yumarketforowners.domain.model.item.Item
 import com.example.yumarketforowners.presentation.screen.itemmanage.additem.AddItemUiState
-import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.OptionGroupUiState
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionGroupUiState
 
 fun AddItemUiState.toItem(
     optionGroups: List<OptionGroupUiState>

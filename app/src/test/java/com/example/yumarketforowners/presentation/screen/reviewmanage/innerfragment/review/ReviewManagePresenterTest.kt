@@ -5,6 +5,7 @@ import com.example.yumarketforowners.domain.model.review.Review
 import com.example.yumarketforowners.domain.usecase.review.GetReviewsUseCase
 import com.example.yumarketforowners.entity.createReview
 import com.example.yumarketforowners.presentation.mapper.review.toReview
+import com.example.yumarketforowners.presentation.viewholder.reviewmanage.ReviewUiState
 import com.google.common.truth.Truth.assertThat
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope

@@ -7,7 +7,7 @@
 
         <variable
             name="noticeUiState"
-            type="com.example.yumarketforowners.presentation.screen.marketmanage.notice.list.NoticeUiState" />
+            type="com.example.yumarketforowners.presentation.viewholder.notice.NoticeUiState" />
 
         <import type="kotlin.jvm.functions.Function0" />
     </data>

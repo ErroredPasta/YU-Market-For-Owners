@@ -6,8 +6,8 @@ import com.example.yumarketforowners.presentation.mapper.item.toItem
 import com.example.yumarketforowners.presentation.mapper.item.toOptionGroupUiStates
 import com.example.yumarketforowners.presentation.mapper.item.toUpdateItemUiState
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
-import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
-import com.example.yumarketforowners.presentation.viewholder.CellType
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionGroupUiState
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Provider
@@ -107,22 +107,3 @@ data class UpdateItemUiState(
     var imageUrl: String?,
     var available: Boolean
 )
-
-data class OptionGroupUiState(
-    override val id: Long,
-    var name: String = "",
-    var optionUiStates: List<OptionUiState> = emptyList(),
-    var minSelect: Int = 0,
-    var maxSelect: Int = 1,
-    val onDeleteOptionGroupButtonClicked: OptionGroupUiState.() -> Unit,
-    val onAddOptionButtonClicked: OptionGroupUiState.() -> Unit,
-    var updateOptionUiStates: () -> Unit = {}
-) : BaseViewHolderState(id, CellType.OPTION_GROUP_CELL)
-
-data class OptionUiState(
-    override val id: Long,
-    var name: String = "",
-    var additionalPrice: Int,
-    val optionGroupUiState: OptionGroupUiState,
-    val onDeleteOptionButtonClicked: OptionUiState.() -> Unit,
-) : BaseViewHolderState(id, CellType.OPTION_CELL)

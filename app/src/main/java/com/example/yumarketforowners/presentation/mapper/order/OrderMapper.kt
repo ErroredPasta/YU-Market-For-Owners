@@ -2,8 +2,8 @@ package com.example.yumarketforowners.presentation.mapper.order
 
 import com.example.yumarketforowners.domain.model.order.Order
 import com.example.yumarketforowners.domain.model.order.OrderItem
-import com.example.yumarketforowners.presentation.screen.orderlist.OrderItemUiState
-import com.example.yumarketforowners.presentation.screen.orderlist.OrderUiState
+import com.example.yumarketforowners.presentation.viewholder.orderlist.OrderItemUiState
+import com.example.yumarketforowners.presentation.viewholder.orderlist.OrderUiState
 
 fun Order.toOrderUiState(
     onTelephoneNumberClicked: () -> Unit,

@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.presentation.mapper.chatroom
 
 import com.example.yumarketforowners.domain.model.chatroom.ChatRoom
-import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomUiState
+import com.example.yumarketforowners.presentation.viewholder.reviewmanage.ChatRoomUiState
 
 fun ChatRoom.toChatRoomUiState(
     onClicked: () -> Unit,

@@ -6,6 +6,7 @@ import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.RemoveChatRoomUseCase
 import com.example.yumarketforowners.entity.createChatRoom
 import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoom
+import com.example.yumarketforowners.presentation.viewholder.reviewmanage.ChatRoomUiState
 import com.google.common.truth.Truth.assertThat
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope

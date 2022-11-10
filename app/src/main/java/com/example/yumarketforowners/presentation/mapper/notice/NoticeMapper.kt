@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.presentation.mapper.notice
 
 import com.example.yumarketforowners.domain.model.notice.Notice
-import com.example.yumarketforowners.presentation.screen.marketmanage.notice.list.NoticeUiState
+import com.example.yumarketforowners.presentation.viewholder.notice.NoticeUiState
 
 fun Notice.toNoticeUiState(
     onNoticeClicked: () -> Unit

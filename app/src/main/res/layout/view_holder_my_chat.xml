@@ -6,7 +6,7 @@
 
         <variable
             name="chatUiState"
-            type="com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatUiState" />
+            type="com.example.yumarketforowners.presentation.viewholder.chat.ChatUiState" />
 
     </data>
 

@@ -13,6 +13,7 @@ import com.example.yumarketforowners.domain.model.order.OrderState
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.extension.addItemDivider
 import com.example.yumarketforowners.presentation.screen.base.BaseFragment
+import com.example.yumarketforowners.presentation.viewholder.orderlist.OrderUiState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

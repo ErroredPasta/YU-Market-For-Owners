@@ -5,12 +5,10 @@ import com.example.yumarketforowners.domain.usecase.chatroom.GetChatsByChatRoomI
 import com.example.yumarketforowners.domain.usecase.chatroom.SendChatUseCase
 import com.example.yumarketforowners.presentation.mapper.chatroom.toChatUiState
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
-import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.viewholder.CellType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 import javax.inject.Provider
 
 class ChatRoomDetailPresenter(
@@ -43,11 +41,3 @@ class ChatRoomDetailPresenter(
         }
     }
 }
-
-data class ChatUiState(
-    override val id: Long,
-    override val cellType: CellType,
-    val senderId: Long,
-    val message: String,
-    val sentAt: LocalDateTime
-) : BaseViewHolderState(id, cellType)

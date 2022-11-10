@@ -3,9 +3,9 @@ package com.example.yumarketforowners.presentation.mapper.item
 import com.example.yumarketforowners.domain.model.item.Item
 import com.example.yumarketforowners.domain.model.item.Option
 import com.example.yumarketforowners.domain.model.item.OptionGroup
-import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.OptionGroupUiState
-import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.OptionUiState
 import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemUiState
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionGroupUiState
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionUiState
 
 fun Item.toUpdateItemUiState() = UpdateItemUiState(
     id = id,

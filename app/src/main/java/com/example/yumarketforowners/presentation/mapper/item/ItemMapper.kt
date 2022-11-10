@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.presentation.mapper.item
 
 import com.example.yumarketforowners.domain.model.item.Item
-import com.example.yumarketforowners.presentation.screen.itemmanage.ItemUiState
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.ItemUiState
 
 fun Item.toItemUiState(
     onEditItemButtonClick: () -> Unit

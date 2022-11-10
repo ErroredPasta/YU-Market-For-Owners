@@ -4,8 +4,6 @@ import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.RemoveChatRoomUseCase
 import com.example.yumarketforowners.presentation.mapper.chatroom.toChatRoomUiState
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
-import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
-import com.example.yumarketforowners.presentation.viewholder.CellType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Provider
@@ -39,14 +37,3 @@ class ChatRoomListPresenter(
         }
     }
 }
-
-data class ChatRoomUiState(
-    override val id: Long,
-    val opponentName: String,
-    val opponentImageUrl: String?,
-    val lastMessage: String,
-    val createdTime: Long,
-    val unreadMessageCount: Int,
-    val onClicked: () -> Unit,
-    val onRemoveClicked: () -> Unit
-) : BaseViewHolderState(id, CellType.CHAT_ROOM_CELL)

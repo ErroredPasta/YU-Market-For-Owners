@@ -7,7 +7,7 @@
 
         <variable
             name="reviewUiState"
-            type="com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewUiState" />
+            type="com.example.yumarketforowners.presentation.viewholder.reviewmanage.ReviewUiState" />
 
         <import type="kotlin.jvm.functions.Function0" />
         

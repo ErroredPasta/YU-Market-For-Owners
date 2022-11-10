@@ -1,8 +1,9 @@
 package com.example.yumarketforowners.presentation.viewholder.itemmanage
 
 import com.example.yumarketforowners.databinding.ViewHolderOptionBinding
-import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.OptionUiState
+import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
 import com.example.yumarketforowners.presentation.viewholder.BaseViewHolder
+import com.example.yumarketforowners.presentation.viewholder.CellType
 
 class OptionViewHolder(
     binding: ViewHolderOptionBinding
@@ -13,3 +14,11 @@ class OptionViewHolder(
         optionUiState = model
     }
 }
+
+data class OptionUiState(
+    override val id: Long,
+    var name: String = "",
+    var additionalPrice: Int,
+    val optionGroupUiState: OptionGroupUiState,
+    val onDeleteOptionButtonClicked: OptionUiState.() -> Unit,
+) : BaseViewHolderState(id, CellType.OPTION_CELL)

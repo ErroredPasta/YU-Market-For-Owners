@@ -7,7 +7,7 @@
 
         <variable
             name="orderUiState"
-            type="com.example.yumarketforowners.presentation.screen.orderlist.OrderUiState" />
+            type="com.example.yumarketforowners.presentation.viewholder.orderlist.OrderUiState" />
 
         <import type="com.example.yumarketforowners.domain.model.order.OrderState" />
 

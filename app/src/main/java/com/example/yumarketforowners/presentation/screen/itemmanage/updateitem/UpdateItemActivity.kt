@@ -5,6 +5,7 @@ import androidx.activity.result.contract.ActivityResultContracts.*
 import com.example.yumarketforowners.databinding.ActivityUpdateItemBinding
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.screen.base.BaseActivity
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionGroupUiState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

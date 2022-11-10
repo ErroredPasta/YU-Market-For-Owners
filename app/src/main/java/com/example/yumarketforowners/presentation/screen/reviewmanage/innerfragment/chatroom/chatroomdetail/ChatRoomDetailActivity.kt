@@ -5,6 +5,7 @@ import com.example.yumarketforowners.domain.model.chatroom.Chat
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.screen.base.BaseActivity
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
+import com.example.yumarketforowners.presentation.viewholder.chat.ChatUiState
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 import javax.inject.Inject

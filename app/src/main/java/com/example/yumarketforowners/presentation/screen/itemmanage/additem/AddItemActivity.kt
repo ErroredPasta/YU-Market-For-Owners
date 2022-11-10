@@ -5,7 +5,7 @@ import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import com.example.yumarketforowners.databinding.ActivityAddItemBinding
 import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.screen.base.BaseActivity
-import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.OptionGroupUiState
+import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionGroupUiState
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

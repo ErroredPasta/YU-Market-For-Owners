@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.presentation.mapper.review
 
 import com.example.yumarketforowners.domain.model.review.Review
-import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewUiState
+import com.example.yumarketforowners.presentation.viewholder.reviewmanage.ReviewUiState
 
 fun Review.toReviewUiState(
     onReplyClicked: () -> Unit

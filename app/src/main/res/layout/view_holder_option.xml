@@ -7,7 +7,7 @@
 
         <variable
             name="optionUiState"
-            type="com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.OptionUiState" />
+            type="com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionUiState" />
 
         <import type="kotlin.jvm.functions.Function1" />
 
