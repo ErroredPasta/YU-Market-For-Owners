@@ -4,31 +4,32 @@ import java.time.DayOfWeek
 import java.time.LocalTime
 
 data class Market(
-    val id: Long,
+    val id: String,
     val name: String,
-    val marketImage: String,
+    val marketRepresentativeImage: String,
     val marketDetailImages: List<String>,
     val deliveryFees: List<DeliveryFee>,
     val marketType: MarketType,
     val detailMarketType: DetailMarketType,
     val address: String,
     val detailAddress: String,
-    val openTime: Pair<LocalTime, LocalTime>,
+    val openTimeRange: ClosedRange<LocalTime>,
     val closedDays: List<DayOfWeek>,
     val phoneNumber: String
 )
 
 data class UpdateMarket(
-    val id: Long,
+    val id: String,
     val name: String,
-    val marketType: MarketType,
     val marketRepresentativeImage: String,
     val marketDetailImage: String?,
-    val address: String,
-    val detailAddress: String
+    val deliveryFees: List<DeliveryFee>,
+    val openTimeRange: ClosedRange<LocalTime>,
+    val closedDays: List<DayOfWeek>,
+    val phoneNumber: String
 )
 
 data class DeliveryFee(
-    val priceRange: Pair<Int, Int>,
+    val priceRange: IntRange,
     val fee: Int
 )

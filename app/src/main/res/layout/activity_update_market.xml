@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -14,9 +15,10 @@
 
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,19 +39,6 @@
                 android:text="@{updateMarketUiState.name}"
                 tools:ignore="LabelFor" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/select_category" />
-
-            <Spinner
-                android:id="@+id/updateMarketTypeSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
 
             <Space
                 android:layout_width="match_parent"
@@ -62,7 +51,6 @@
 
             <ImageView
                 android:id="@+id/updateMarketRepresentativeImage"
-                cornerRadius="@{0.0f}"
                 imageUrl="@{updateMarketUiState.marketRepresentativeImage}"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -81,7 +69,6 @@
 
             <ImageView
                 android:id="@+id/updateMarketDetailImage"
-                cornerRadius="@{0.0f}"
                 imageUrl="@{updateMarketUiState.marketDetailImage}"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -96,17 +83,31 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/address" />
+                android:text="@string/delivery_fee" />
 
-            <EditText
-                android:id="@+id/updateMarketAddressEditText"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/updateMarketDeliveryFeeRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:importantForAutofill="no"
-                android:inputType="none"
-                android:onClick="@{() -> listener.onAddressEditTextClicked()}"
-                android:text="@{updateMarketUiState.address}"
-                tools:ignore="LabelFor" />
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <Button
+                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:onClick="@{() -> listener.onAddDeliveryFeeButtonClicked()}"
+                android:text="@string/add_delivery_fee"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:textColor="@color/interactive_color"
+                app:icon="@drawable/ic_baseline_add_24"
+                app:iconTint="@color/interactive_color"
+                app:strokeColor="@color/interactive_color" />
 
             <Space
                 android:layout_width="match_parent"
@@ -115,15 +116,83 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/detail_address" />
+                android:text="@string/open_time" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/updateMarketOpenTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> listener.onOpenTimeClicked()}"
+                    android:text="@{updateMarketUiState.openTimeRange.start.toString()}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="20sp"
+                    tools:text="09:00" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:text="@string/tilde"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/updateMarketClosedTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> listener.onClosedTimeClicked()}"
+                    android:text="@{updateMarketUiState.openTimeRange.endInclusive.toString()}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textSize="20sp"
+                    tools:text="21:00" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/closed_days" />
+
+            <TextView
+                android:id="@+id/updateMarketClosedDayTextView"
+                daysOfWeek="@{updateMarketUiState.closedDays}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="@{() -> listener.onClosedDayClicked()}"
+                android:padding="10dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textSize="20sp"
+                tools:text="일요일, 월요일" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone_number" />
 
             <EditText
-                android:id="@+id/updateMarketDetailAddressEditText"
+                android:id="@+id/updateMarketPhoneNumberEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:importantForAutofill="no"
-                android:inputType="text"
-                android:text="@{updateMarketUiState.detailAddress}"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:text="@{updateMarketUiState.phoneNumber}"
                 tools:ignore="LabelFor" />
 
             <Space
@@ -135,16 +204,18 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/interactive_color"
                 android:onClick="@{() -> listener.onConfirmButtonClicked()}"
-                android:text="@string/confirm" />
+                android:text="@string/confirm"
+                app:cornerRadius="100dp" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/unfocused_color"
                 android:onClick="@{() -> listener.onCancelButtonClicked()}"
-                android:text="@string/cancel" />
+                android:text="@string/cancel"
+                app:cornerRadius="100dp" />
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

@@ -14,7 +14,6 @@ class UpdateMarketUseCase(
     private fun validateUpdateInfo(marketToUpdate: UpdateMarket) {
         if (
             marketToUpdate.name.isEmpty() ||
-            marketToUpdate.address.isEmpty() ||
             marketToUpdate.marketRepresentativeImage.isEmpty()
         ) {
             throw IllegalArgumentException("필요한 정보들을 모두 입력하세요.")

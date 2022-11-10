@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="deliveryFeeUiState"
+            type="com.example.yumarketforowners.presentation.viewholder.deliveryfee.DeliveryFeeUiState" />
+
+        <import type="com.example.yumarketforowners.presentation.util.EditTextConverter" />
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/deliveryFeeStart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:text="@={EditTextConverter.intToString(deliveryFeeUiState.startPrice)}"
+            app:layout_constraintEnd_toStartOf="@+id/deliveryFeeStartKrw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/deliveryFeeStartKrw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/krw"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintBottom_toBottomOf="@id/deliveryFeeStart"
+            app:layout_constraintEnd_toStartOf="@id/deliveryFeeTilde"
+            app:layout_constraintTop_toTopOf="@id/deliveryFeeStart" />
+
+        <TextView
+            android:id="@+id/deliveryFeeTilde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:text="@string/tilde"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintBottom_toBottomOf="@id/deliveryFeeStart"
+            app:layout_constraintEnd_toEndOf="@id/deliveryFeeEndKrw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/deliveryFeeStart" />
+
+        <EditText
+            android:id="@+id/deliveryFeeEnd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:text="@={EditTextConverter.intToString(deliveryFeeUiState.endPrice)}"
+            app:layout_constraintEnd_toStartOf="@id/deliveryFeeEndKrw"
+            app:layout_constraintStart_toEndOf="@id/deliveryFeeTilde"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/deliveryFeeEndKrw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="@string/krw"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintBottom_toBottomOf="@id/deliveryFeeStart"
+            app:layout_constraintEnd_toStartOf="@id/deliveryFeeDeleteButton"
+            app:layout_constraintTop_toTopOf="@id/deliveryFeeStart" />
+
+        <Button
+            android:id="@+id/deliveryFeeDeleteButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> deliveryFeeUiState.onDeleteButtonClicked.invoke() }"
+            android:text="@string/delete"
+            android:textColor="@color/gray_4b"
+            app:cornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/gray_4b" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/deliveryFeePrice"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/minimum_select_number"
+            app:boxStrokeColor="@color/focused_color"
+            app:layout_constraintEnd_toStartOf="@id/deliveryFeeDeleteButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deliveryFeeStart">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={EditTextConverter.intToString(deliveryFeeUiState.deliveryFee)}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

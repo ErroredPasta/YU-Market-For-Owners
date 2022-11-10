@@ -17,9 +17,9 @@ class FakeMarketRemoteDataSource @Inject constructor() : MarketRemoteDataSource 
 
     private val marketList = (0..9).map {
         MarketDto(
-            id = it.toLong(),
+            id = it.toString(),
             name = "name $it",
-            marketImage = "https://picsum.photos/200",
+            marketRepresentativeImage = "https://picsum.photos/200",
             marketDetailImages = emptyList(), /* TODO: 2022-10-21 금 01:29, empty list */
             deliveryFees = emptyList(), /* TODO: 2022-10-21 금 01:29, empty list */
             marketType = MarketType.values()[it % MarketType.values().size],
@@ -31,13 +31,13 @@ class FakeMarketRemoteDataSource @Inject constructor() : MarketRemoteDataSource 
                 addressString = "서울특별시 중구 을지로2가 11",
                 detailAddressString = ""
             ),
-            openTime = LocalTime.of(it % 24, 0) to LocalTime.of(it + 1 % 24, 0),
+            openTime = LocalTime.of(it % 24, 0)..LocalTime.of(it + 1 % 24, 0),
             closedDays = emptyList(), /* TODO: 2022-10-21 금 01:29, empty list */
             phoneNumber = "010-0101-0101"
         )
     }.toMutableList()
 
-    override suspend fun getMarketDetailById(marketId: Long): MarketDto {
+    override suspend fun getMarketDetailById(marketId: String): MarketDto {
         val foundMarket = marketList.find { it.id == marketId }
         Log.d(TAG, "getMarketDetailById: $foundMarket")
 
@@ -49,8 +49,7 @@ class FakeMarketRemoteDataSource @Inject constructor() : MarketRemoteDataSource 
     override suspend fun updateMarket(market: UpdateMarketDto) {
         val updatedMarket = marketList.find { it.id == market.id }?.copy(
             name = market.name,
-            marketType = market.marketType,
-            marketImage = market.marketRepresentativeImage,
+            marketRepresentativeImage = market.marketRepresentativeImage,
             marketDetailImages = market.marketDetailImage?.let { listOf(it) } ?: emptyList()
         )
 

@@ -16,7 +16,7 @@ class UpdateMarketPresenter(
     scopeProvider: Provider<CoroutineScope>,
 ) : BaseCoroutinePresenter(view, scopeProvider) {
 
-    fun requestMarketDetail(marketId: Long) {
+    fun requestMarketDetail(marketId: String) {
         coroutineScope.launch {
             view.loading(isLoading = true)
             val result = getMarketDetailUseCase(marketId = marketId).toUpdateMarket()
@@ -35,5 +35,9 @@ class UpdateMarketPresenter(
 
     fun cancelUpdateMarket() {
         view.navigateBack()
+    }
+
+    fun addDeliveryFee() {
+        TODO("Not yet implemented")
     }
 }

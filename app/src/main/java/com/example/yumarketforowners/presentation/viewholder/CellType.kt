@@ -4,6 +4,7 @@ import androidx.annotation.LayoutRes
 import com.example.yumarketforowners.R
 import com.example.yumarketforowners.presentation.viewholder.chat.MyChatViewHolder
 import com.example.yumarketforowners.presentation.viewholder.chat.OpponentChatViewHolder
+import com.example.yumarketforowners.presentation.viewholder.deliveryfee.DeliveryFeeViewHolder
 import com.example.yumarketforowners.presentation.viewholder.itemmanage.ItemViewHolder
 import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionGroupViewHolder
 import com.example.yumarketforowners.presentation.viewholder.itemmanage.OptionViewHolder
@@ -28,4 +29,5 @@ enum class CellType(
     NOTICE_CELL(NoticeViewHolder::class, R.layout.view_holder_notice),
     OPPONENT_CHAT_CELL(OpponentChatViewHolder::class, R.layout.view_holder_opponent_chat),
     MY_CHAT_CELL(MyChatViewHolder::class, R.layout.view_holder_my_chat),
+    DELIVERY_FEE_CELL(DeliveryFeeViewHolder::class, R.layout.view_holder_delivery_fee),
 }

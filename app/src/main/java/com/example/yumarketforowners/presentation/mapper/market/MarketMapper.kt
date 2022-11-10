@@ -6,9 +6,10 @@ import com.example.yumarketforowners.domain.model.market.UpdateMarket
 fun Market.toUpdateMarket() = UpdateMarket(
     id = id,
     name = name,
-    marketType = marketType,
-    marketRepresentativeImage = marketImage,
+    marketRepresentativeImage = marketRepresentativeImage,
     marketDetailImage = marketDetailImages.firstOrNull(),
-    address = address,
-    detailAddress = detailAddress
+    deliveryFees = deliveryFees,
+    openTimeRange = openTimeRange,
+    closedDays = closedDays,
+    phoneNumber = phoneNumber
 )
