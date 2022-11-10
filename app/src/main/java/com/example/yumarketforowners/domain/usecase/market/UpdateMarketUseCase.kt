@@ -2,6 +2,7 @@ package com.example.yumarketforowners.domain.usecase.market
 
 import com.example.yumarketforowners.domain.model.market.UpdateMarket
 import com.example.yumarketforowners.domain.repository.market.MarketRepository
+import com.example.yumarketforowners.domain.validator.DeliveryFeeValidator
 
 class UpdateMarketUseCase(
     private val repository: MarketRepository
@@ -12,12 +13,9 @@ class UpdateMarketUseCase(
     }
 
     private fun validateUpdateInfo(marketToUpdate: UpdateMarket) {
-        if (
-            marketToUpdate.name.isEmpty() ||
-            marketToUpdate.address.isEmpty() ||
-            marketToUpdate.marketRepresentativeImage.isEmpty()
-        ) {
-            throw IllegalArgumentException("필요한 정보들을 모두 입력하세요.")
-        }
+        check(marketToUpdate.name.isNotEmpty()) { "가게 이름을 입력해 주세요." }
+        check(marketToUpdate.marketRepresentativeImage.isNotEmpty()) { "가게 대표 이미지를 선택해 주세요." }
+
+        DeliveryFeeValidator.validateDeliveryFees(deliveryFees = marketToUpdate.deliveryFees)
     }
 }

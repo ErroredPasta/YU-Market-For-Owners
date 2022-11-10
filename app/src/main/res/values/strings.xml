@@ -68,4 +68,12 @@
     <string name="manage_item">상품 관리</string>
     <string name="review_and_inquiry_chat">리뷰 및 문의 채팅</string>
     <string name="add_item_button">상품 추가 버튼</string>
+    <string name="delivery_fee">배달비</string>
+    <string name="open_time">영업 시간</string>
+    <string name="closed_days">휴무일</string>
+    <string name="phone_number">전화번호</string>
+    <string name="tilde">~</string>
+    <string name="no_closed_days">휴무일을 지정하지 않았습니다.</string>
+    <string name="delete">삭제</string>
+    <string name="add_delivery_fee">배달 요금 추가하기</string>
 </resources>

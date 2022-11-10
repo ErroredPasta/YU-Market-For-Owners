@@ -7,26 +7,28 @@ import java.time.LocalTime
 
 // CRUD
 data class MarketDto(
-    val id: Long, // not updatable
+    val id: String, // not updatable
     val name: String,
-    val marketImage: String,
+    val marketRepresentativeImage: String,
     val marketDetailImages: List<String>,
     val deliveryFees: List<DeliveryFeeDto>,
     val marketType: MarketType,
     val detailMarketType: DetailMarketType,
     val addressDto: AddressDto,
-    val openTime: Pair<LocalTime, LocalTime>,
+    val openTime: ClosedRange<LocalTime>,
     val closedDays: List<DayOfWeek>,
     val phoneNumber: String
 )
 
 data class UpdateMarketDto(
-    val id: Long,
+    val id: String,
     val name: String,
-    val marketType: MarketType,
     val marketRepresentativeImage: String,
     val marketDetailImage: String?,
-    val addressDto: AddressDto
+    val deliveryFees: List<DeliveryFeeDto>,
+    val openTimeRange: ClosedRange<LocalTime>,
+    val closedDays: List<DayOfWeek>,
+    val phoneNumber: String
 )
 
 data class AddressDto(
@@ -37,6 +39,7 @@ data class AddressDto(
 )
 
 data class DeliveryFeeDto(
-    val priceRange: Pair<Int, Int>,
+    val id: Long,
+    val priceRange: IntRange,
     val fee: Int
 )

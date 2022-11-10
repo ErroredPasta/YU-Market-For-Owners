@@ -1,18 +1,23 @@
 package com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket
 
-import android.widget.ArrayAdapter
 import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia
 import com.example.yumarketforowners.databinding.ActivityUpdateMarketBinding
-import com.example.yumarketforowners.domain.model.market.MarketType
 import com.example.yumarketforowners.domain.model.market.UpdateMarket
+import com.example.yumarketforowners.presentation.adapter.ModelRecyclerAdapter
 import com.example.yumarketforowners.presentation.screen.base.BaseActivity
+import com.example.yumarketforowners.presentation.screen.marketmanage.DayPickerDialog
+import com.example.yumarketforowners.presentation.screen.marketmanage.TimePickerDialog
+import com.example.yumarketforowners.presentation.viewholder.deliveryfee.DeliveryFeeUiState
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.DayOfWeek
+import java.time.LocalTime
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), UpdateMarketListener,
     UpdateMarketView {
+
     override val binding: ActivityUpdateMarketBinding by lazy {
         ActivityUpdateMarketBinding.inflate(layoutInflater)
     }
@@ -25,7 +30,31 @@ class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), Update
         @Suppress("DEPRECATION")
         checkNotNull(intent.extras?.get(KEY_MARKET_ID)) {
             "marketId가 null입니다."
-        } as Long
+        } as String
+    }
+
+    private val openTimePicker by lazy {
+        TimePickerDialog(
+            context = this,
+            layoutInflater = layoutInflater,
+            onPositiveButtonClicked = { openTimePicked(it) }
+        )
+    }
+
+    private val closedTimePicker by lazy {
+        TimePickerDialog(
+            context = this,
+            layoutInflater = layoutInflater,
+            onPositiveButtonClicked = { closedTimePicked(it) }
+        )
+    }
+
+    private val closedDaysPicker by lazy {
+        DayPickerDialog(
+            context = this,
+            preCheckedDaysOfWeek = binding.updateMarketUiState!!.closedDays,
+            onPositiveButtonClicked = { closedDaysPicked(it) }
+        )
     }
 
     @Inject
@@ -34,8 +63,10 @@ class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), Update
     private var representativeImage: String? = null
     private var detailImage: String? = null
 
+    private val adapter = ModelRecyclerAdapter<DeliveryFeeUiState>()
+
     private val representativeImageContract =
-        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        registerForActivityResult(PickVisualMedia()) { uri ->
             uri?.let {
                 representativeImage = it.path
                 binding.updateMarketRepresentativeImage.setImageURI(it)
@@ -43,44 +74,37 @@ class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), Update
         }
 
     private val detailImageContract =
-        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        registerForActivityResult(PickVisualMedia()) { uri ->
             uri?.let {
                 detailImage = it.path
                 binding.updateMarketDetailImage.setImageURI(it)
             } ?: showToast("Detail image select canceled")
         }
 
-    private val spinnerAdapter by lazy {
-        ArrayAdapter(
-            this,
-            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-            MarketType.values().map { it.typeString }
-        )
-    }
-
     override fun initState() {
         super.initState()
 
         binding.apply {
-            updateMarketAddressEditText.keyListener = null
             listener = this@UpdateMarketActivity
-            updateMarketTypeSpinner.adapter = spinnerAdapter
+            updateMarketDeliveryFeeRecyclerView.adapter = adapter
         }
-
         presenter.requestMarketDetail(marketId = marketId)
     }
 
     override fun onConfirmButtonClicked() = with(binding) {
+        val uiState = updateMarketUiState!!
+
         presenter.updateMarket(
             UpdateMarket(
-                id = updateMarketUiState!!.id,
+                id = uiState.id,
                 name = updateMarketNameEditText.text.toString().trim(),
-                marketType = MarketType.values()[updateMarketTypeSpinner.selectedItemPosition],
                 marketRepresentativeImage = representativeImage
-                    ?: updateMarketUiState!!.marketRepresentativeImage,
+                    ?: uiState.marketRepresentativeImage,
                 marketDetailImage = detailImage,
-                address = updateMarketAddressEditText.toString().trim(),
-                detailAddress = updateMarketDetailAddressEditText.toString().trim()
+                deliveryFees = emptyList(),
+                openTimeRange = uiState.openTimeRange,
+                closedDays = uiState.closedDays,
+                phoneNumber = updateMarketPhoneNumberEditText.text.toString(),
             )
         )
     }
@@ -97,8 +121,12 @@ class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), Update
         binding.updateMarketUiState = market
     }
 
+    override fun showDeliveryFees(deliveryFees: List<DeliveryFeeUiState>) {
+        adapter.submitList(deliveryFees)
+    }
+
     override fun onError(throwable: Throwable) {
-        /* TODO: 2022-10-19 수 22:01, implement error */
+        /* TODO: 2022-10-19 수 22:01, implement error handling */
         throwable.message?.let { showToast(message = it) }
     }
 
@@ -108,29 +136,62 @@ class UpdateMarketActivity : BaseActivity<ActivityUpdateMarketBinding>(), Update
 
     override fun onRepresentativeImageClicked() {
         representativeImageContract.launch(
-            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+            PickVisualMediaRequest(PickVisualMedia.ImageOnly)
         )
     }
 
     override fun onDetailImageClicked() {
         detailImageContract.launch(
-            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+            PickVisualMediaRequest(PickVisualMedia.ImageOnly)
         )
     }
 
-    override fun onAddressEditTextClicked() {
-        /* TODO: 2022-10-20 목 00:12, navigate to address search screen */
-        // expected
-        // - latitude : 37.553686
-        // - longitude : 126.925571
-        binding.updateMarketAddressEditText.setText("서울시 마포구 와우산로29가길 69")
+    override fun onOpenTimeClicked() {
+        openTimePicker.show()
+    }
+
+    override fun onClosedTimeClicked() {
+        closedTimePicker.show()
+    }
+
+    override fun onClosedDayClicked() {
+        closedDaysPicker.show()
+    }
+
+    private fun openTimePicked(openTime: LocalTime) = with(binding) {
+        val uiState = updateMarketUiState!!
+
+        updateMarketUiState = uiState.copy(
+            openTimeRange = openTime..uiState.openTimeRange.endInclusive
+        )
+    }
+
+    private fun closedTimePicked(closedTime: LocalTime) = with(binding) {
+        val uiState = updateMarketUiState!!
+
+        updateMarketUiState = uiState.copy(
+            openTimeRange = uiState.openTimeRange.start..closedTime
+        )
+    }
+
+    private fun closedDaysPicked(closedDays: List<DayOfWeek>) = with(binding) {
+        updateMarketUiState = updateMarketUiState!!.copy(
+            closedDays = closedDays
+        )
+    }
+
+    override fun onAddDeliveryFeeButtonClicked() {
+        presenter.addDeliveryFee()
     }
 }
 
 interface UpdateMarketListener {
     fun onConfirmButtonClicked()
     fun onCancelButtonClicked()
-    fun onAddressEditTextClicked()
     fun onRepresentativeImageClicked()
     fun onDetailImageClicked()
+    fun onOpenTimeClicked()
+    fun onClosedTimeClicked()
+    fun onClosedDayClicked()
+    fun onAddDeliveryFeeButtonClicked()
 }
