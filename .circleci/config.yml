@@ -15,11 +15,24 @@ commands:
     steps:
       - run: chmod +x ./gradlew
 
+  import-firebase-json:
+    steps:
+      - run:
+          # Export base64 encoded google-services.json
+          # into local bash variables
+          name: Export Google Services Json
+          command: echo 'export GOOGLE_SERVICES_JSON="$FIRE_BASE"' >> $BASH_ENV
+
+      - run:
+          # Decode the base64 string
+          name: Decode Google Services Json
+          command: echo $GOOGLE_SERVICES_JSON | base64 -di > /home/circleci/project/app/google-services.json
+
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-
   unit-test:
     executor: 
       name: android/android-docker
@@ -28,16 +41,17 @@ jobs:
     steps:
       - checkout
       - add-execution-permission
+      - import-firebase-json
       - android/restore-gradle-cache
       # The next step will run the unit tests
       - android/run-tests:
           test-command: ./gradlew lint testDebug --continue
       - run:
-            name: Save test results
-            command: |
-                mkdir -p ~/test-results/junit/
-                find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
-            when: always
+          name: Save test results
+          command: |
+              mkdir -p ~/test-results/junit/
+              find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
       - store_test_results:
           path: ~/test-results
       - store_artifacts:
@@ -51,6 +65,7 @@ jobs:
     steps:
       - checkout
       - add-execution-permission
+      - import-firebase-json
       # Then start the emulator and run the Instrumentation tests!
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
