@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.concurrent.atomic.AtomicLong
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -23,6 +24,9 @@ class FirebaseItemRemoteDataSource @Inject constructor(
     @Dispatcher(DispatcherType.IO) private val ioDispatcher: CoroutineDispatcher
 ) : ItemRemoteDataSource {
 
+    private val nextItemId = AtomicLong(0L)
+
+    @Volatile
     private lateinit var reference: DatabaseReference
 
     override fun getItemsByMarketId(marketId: String): Flow<List<ItemDto>> {
@@ -31,7 +35,11 @@ class FirebaseItemRemoteDataSource @Inject constructor(
         return callbackFlow {
             reference.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    trySend(snapshot.getValue<List<ItemDto>>() ?: emptyList())
+                    val itemList = (snapshot.getValue<List<ItemDto>>() ?: emptyList()).also {
+                        nextItemId.set(it.size.toLong())
+                    }
+
+                    trySend(itemList)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -44,11 +52,8 @@ class FirebaseItemRemoteDataSource @Inject constructor(
     }
 
     override suspend fun getSingleItemById(itemId: Long): ItemDto = withContext(ioDispatcher) {
-        val resultValue = reference.child(itemId.toString()).get().await()
+        return@withContext reference.child(itemId.toString()).get().await()
             .getValue(ItemDto::class.java) as ItemDto
-
-        Log.d(TAG, "getSingleItemById: $resultValue")
-        return@withContext resultValue
     }
 
     override suspend fun updateItem(updatedItem: ItemDto) = withContext<Unit>(ioDispatcher) {
@@ -67,6 +72,7 @@ class FirebaseItemRemoteDataSource @Inject constructor(
     }
 
     override suspend fun addItem(itemToAdd: ItemDto) = withContext<Unit>(ioDispatcher) {
-        reference.child(itemToAdd.id.toString()).setValue(itemToAdd)
+        val item = itemToAdd.copy(id = nextItemId.getAndIncrement())
+        reference.child(item.id.toString()).setValue(item)
     }
 }
