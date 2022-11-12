@@ -76,4 +76,7 @@
     <string name="no_closed_days">휴무일을 지정하지 않았습니다.</string>
     <string name="delete">삭제</string>
     <string name="add_delivery_fee">배달 요금 추가하기</string>
+    <string name="id_hint"><font size="15">아이디를 입력해주세요</font></string>
+    <string name="pw_hint"><font size="15">비밀번호를 입력해주세요</font></string>
+    <string name="failed_to_login">로그인에 실패했습니다.</string>
 </resources>

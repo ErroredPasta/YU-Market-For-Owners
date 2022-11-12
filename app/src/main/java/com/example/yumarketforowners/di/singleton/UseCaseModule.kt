@@ -8,6 +8,7 @@ import com.example.yumarketforowners.domain.repository.chatroom.ChatRoomReposito
 import com.example.yumarketforowners.domain.repository.market.MarketRepository
 import com.example.yumarketforowners.domain.repository.notice.NoticeRepository
 import com.example.yumarketforowners.domain.repository.user.UserRepository
+import com.example.yumarketforowners.domain.usecase.auth.LoginUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatsByChatRoomIdUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.RemoveChatRoomUseCase
@@ -87,4 +88,7 @@ object UseCaseModule {
 
     @Provides
     fun provideAddItemUseCase(repository: ItemRepository) = AddItemUseCase(repository)
+
+    @Provides
+    fun provideLoginUseCase(repository: UserRepository) = LoginUseCase(repository)
 }

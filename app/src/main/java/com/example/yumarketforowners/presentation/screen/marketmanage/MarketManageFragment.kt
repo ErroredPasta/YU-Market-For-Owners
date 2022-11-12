@@ -29,7 +29,7 @@ class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), Market
     override fun initState() {
         binding.listener = this
         binding.userModel = User(
-            id = 1L,
+            id = "1",
             userName = "user",
             profileImage = "https://picsum.photos/200",
             telephoneNumber = "010-0101-1010",

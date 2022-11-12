@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRemoteDataSource {
     val currentUser: Flow<UserDto?>
-    suspend fun getUserById(userId: Long)
+    suspend fun getUserById(userId: String)
     suspend fun updateUser(updatedUser: UserDto)
 }

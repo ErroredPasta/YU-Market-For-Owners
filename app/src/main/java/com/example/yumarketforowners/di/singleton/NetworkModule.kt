@@ -4,6 +4,9 @@ import com.example.yumarketforowners.BuildConfig
 import com.example.yumarketforowners.data.remote.api.MarketApi
 import com.example.yumarketforowners.data.remote.api.TMapApi
 import com.example.yumarketforowners.data.remote.api.TMapApiStub
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -25,7 +28,7 @@ interface NetworkModule {
 
     companion object {
         @Provides
-        fun provideGsonConverterFactory() = GsonConverterFactory.create()
+        fun provideGsonConverterFactory(): GsonConverterFactory = GsonConverterFactory.create()
 
         @Provides
         fun provideOkHttpClient() = OkHttpClient.Builder()
@@ -56,5 +59,9 @@ interface NetworkModule {
         fun provideMarketApi(
             retrofit: Retrofit
         ) = retrofit.create(MarketApi::class.java)
+
+        @Provides
+        @Singleton
+        fun provideFirebaseAuth(): FirebaseAuth = Firebase.auth
     }
 }

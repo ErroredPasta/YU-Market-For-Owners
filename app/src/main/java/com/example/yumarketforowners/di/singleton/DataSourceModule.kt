@@ -1,5 +1,7 @@
 package com.example.yumarketforowners.di.singleton
 
+import com.example.yumarketforowners.data.remote.datasource.auth.FirebaseLoginRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.auth.LoginRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.chatroom.ChatRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.chatroom.ChatRoomRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.chatroom.FakeChatRemoteDateSource
@@ -47,4 +49,7 @@ interface DataSourceModule {
 
     @Binds
     fun bindChatRemoteDataSource(dataSource: FakeChatRemoteDateSource): ChatRemoteDataSource
+
+    @Binds
+    fun bindLoginRemoteDataSource(authManager: FirebaseLoginRemoteDataSource): LoginRemoteDataSource
 }

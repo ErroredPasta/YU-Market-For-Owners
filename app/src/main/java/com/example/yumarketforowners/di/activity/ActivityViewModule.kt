@@ -4,6 +4,7 @@ import android.app.Activity
 import com.example.yumarketforowners.presentation.screen.base.BaseView
 import com.example.yumarketforowners.presentation.screen.itemmanage.additem.AddItemView
 import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemView
+import com.example.yumarketforowners.presentation.screen.login.LoginView
 import com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfileView
 import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketView
 import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailView
@@ -33,4 +34,7 @@ object ActivityViewModule {
 
     @Provides
     fun provideAddItemView(activity: Activity) = activity as AddItemView
+
+    @Provides
+    fun provideLoginView(activity: Activity) = activity as LoginView
 }

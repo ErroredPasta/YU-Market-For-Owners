@@ -15,10 +15,7 @@
         android:theme="@style/Theme.YUMarketForOwners"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.example.yumarketforowners.presentation.screen.MainActivity"
+            android:name=".presentation.screen.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailActivity" />
+        <activity android:name=".presentation.screen.MainActivity" />
         <activity android:name=".presentation.screen.marketmanage.updatemarket.UpdateMarketActivity" />
         <activity android:name=".presentation.screen.itemmanage.updateitem.UpdateItemActivity" />
         <activity android:name=".presentation.screen.marketmanage.notice.NoticeActivity" />
