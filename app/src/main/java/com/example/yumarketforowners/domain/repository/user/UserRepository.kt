@@ -5,6 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
     val currentUser: Flow<User?>
-    suspend fun login(id: String, password: String)
     suspend fun updateUser(updatedUser: User)
 }

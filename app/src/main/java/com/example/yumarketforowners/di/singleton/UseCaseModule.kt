@@ -1,13 +1,18 @@
 package com.example.yumarketforowners.di.singleton
 
+import com.example.yumarketforowners.di.qualifier.LoginRepositoryQualifier
+import com.example.yumarketforowners.di.qualifier.LoginRepositoryType
 import com.example.yumarketforowners.domain.repository.ItemRepository
 import com.example.yumarketforowners.domain.repository.OrderRepository
 import com.example.yumarketforowners.domain.repository.ReviewRepository
+import com.example.yumarketforowners.domain.repository.auth.LoginRepository
 import com.example.yumarketforowners.domain.repository.chatroom.ChatRepository
 import com.example.yumarketforowners.domain.repository.chatroom.ChatRoomRepository
 import com.example.yumarketforowners.domain.repository.market.MarketRepository
 import com.example.yumarketforowners.domain.repository.notice.NoticeRepository
 import com.example.yumarketforowners.domain.repository.user.UserRepository
+import com.example.yumarketforowners.domain.usecase.auth.GoogleLoginUseCase
+import com.example.yumarketforowners.domain.usecase.auth.KakaoLoginUseCase
 import com.example.yumarketforowners.domain.usecase.auth.LoginUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatsByChatRoomIdUseCase
@@ -90,5 +95,17 @@ object UseCaseModule {
     fun provideAddItemUseCase(repository: ItemRepository) = AddItemUseCase(repository)
 
     @Provides
-    fun provideLoginUseCase(repository: UserRepository) = LoginUseCase(repository)
+    fun provideLoginUseCase(
+        @LoginRepositoryQualifier(LoginRepositoryType.DEFAULT) repository: LoginRepository
+    ) = LoginUseCase(repository)
+
+    @Provides
+    fun provideKakaoLoginUseCase(
+        @LoginRepositoryQualifier(LoginRepositoryType.KAKAO) repository: LoginRepository
+    ) = KakaoLoginUseCase(repository)
+
+    @Provides
+    fun provideGoogleLoginUseCase(
+        @LoginRepositoryQualifier(LoginRepositoryType.GOOGLE) repository: LoginRepository
+    ) = GoogleLoginUseCase(repository)
 }

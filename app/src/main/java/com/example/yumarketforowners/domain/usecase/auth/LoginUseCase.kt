@@ -1,9 +1,9 @@
 package com.example.yumarketforowners.domain.usecase.auth
 
-import com.example.yumarketforowners.domain.repository.user.UserRepository
+import com.example.yumarketforowners.domain.repository.auth.LoginRepository
 
 class LoginUseCase(
-    private val userRepository: UserRepository
+    private val userRepository: LoginRepository
 ) {
 
     suspend operator fun invoke(id: String, password: String) {

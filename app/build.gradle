@@ -13,6 +13,10 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+final String KAKAO_NATIVE_KEY = properties.getProperty('KAKAO_NATIVE_KEY')
+
 android {
     compileSdk 33
 
@@ -24,6 +28,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [KAKAO_NATIVE_KEY: KAKAO_NATIVE_KEY]
+        buildConfigField "String", "KAKAO_API_KEY", properties["KAKAO_API_KEY"]
     }
 
     buildTypes {
@@ -132,4 +139,7 @@ dependencies {
     // ================================================================================ //
 
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
+
+    implementation 'com.google.android.gms:play-services-auth:20.3.0'
+    implementation "com.kakao.sdk:v2-user:2.11.2"
 }

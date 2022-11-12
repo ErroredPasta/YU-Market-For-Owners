@@ -2,6 +2,8 @@ package com.example.yumarketforowners.di.activity
 
 import com.example.yumarketforowners.di.qualifier.LifeCycleScope
 import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType.ACTIVITY
+import com.example.yumarketforowners.domain.usecase.auth.GoogleLoginUseCase
+import com.example.yumarketforowners.domain.usecase.auth.KakaoLoginUseCase
 import com.example.yumarketforowners.domain.usecase.auth.LoginUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatsByChatRoomIdUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.SendChatUseCase
@@ -45,7 +47,7 @@ object ActivityPresenterModule {
         view = view,
         getMarketDetailUseCase = getMarketDetailUseCase,
         updateMarketUseCase = updateMarketUseCase,
-        scopeProvider = scopeProvider,
+        scopeProvider = scopeProvider
     )
 
     @Provides
@@ -102,10 +104,14 @@ object ActivityPresenterModule {
     fun provideLoginPresenter(
         view: LoginView,
         loginUseCase: LoginUseCase,
+        kakaoLoginUseCase: KakaoLoginUseCase,
+        googleLoginUseCase: GoogleLoginUseCase,
         @LifeCycleScope(ACTIVITY) scopeProvider: Provider<CoroutineScope>
     ) = LoginPresenter(
         view = view,
         loginUseCase = loginUseCase,
+        kakaoLoginUseCase = kakaoLoginUseCase,
+        googleLoginUseCase = googleLoginUseCase,
         scopeProvider = scopeProvider
     )
 }
