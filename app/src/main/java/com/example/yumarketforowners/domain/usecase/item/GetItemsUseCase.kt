@@ -7,7 +7,7 @@ class GetItemsUseCase(
     private val repository: ItemRepository
 ) {
     operator fun invoke(
-        marketId: Long,
+        marketId: String,
         available: Boolean
     ) = repository.getItemsByMarketId(marketId).map { items ->
         items.filter { item -> item.available == available }

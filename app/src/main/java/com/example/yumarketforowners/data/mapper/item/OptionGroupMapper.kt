@@ -10,7 +10,8 @@ fun List<OptionGroup>.toOptionGroupDtos() = map {
         id = it.id,
         name = it.name,
         options = it.options.toOptionDtos(),
-        selectRange = it.selectRange
+        minSelect = it.selectRange.first,
+        maxSelect = it.selectRange.last
     )
 }
 
@@ -27,7 +28,7 @@ fun List<OptionGroupDto>.toOptionGroups() = map {
         id = it.id,
         name = it.name,
         options = it.options.toOptions(),
-        selectRange = it.selectRange
+        selectRange = it.minSelect..it.maxSelect
     )
 }
 

@@ -2,26 +2,27 @@ package com.example.yumarketforowners.data.remote.dto.item
 
 // CRUD
 data class ItemDto(
-    val id: Long, // not updatable
-    val name: String, // not updatable
-    val description: String,
-    val stock: Int,
-    val price: Int,
-    val discountedPrice: Int,
-    val imageUrl: String? = null,
-    val optionGroups: List<OptionGroupDto>,
-    val available: Boolean
+    var id: Long = 0L, // not updatable
+    var name: String = "",
+    var description: String = "",
+    var stock: Int = 0,
+    var price: Int = 0,
+    var discountedPrice: Int = 0,
+    var imageUrl: String? = null,
+    var optionGroups: List<OptionGroupDto> = emptyList(),
+    var available: Boolean = false
 )
 
 data class OptionGroupDto(
-    val id: Long,
-    val name: String,
-    val options: List<OptionDto>,
-    val selectRange: IntRange
+    var id: Long = 0L,
+    var name: String = "",
+    var options: List<OptionDto> = emptyList(),
+    var minSelect: Int = 0,
+    var maxSelect: Int = 0
 )
 
 data class OptionDto(
-    val id: Long,
-    val name: String,
-    val additionalPrice: Int
+    var id: Long = 0L,
+    var name: String = "",
+    var additionalPrice: Int = 0
 )

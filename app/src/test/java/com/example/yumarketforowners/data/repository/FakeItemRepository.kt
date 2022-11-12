@@ -10,7 +10,7 @@ class FakeItemRepository : ItemRepository {
         createItem(it)
     }.toMutableList()
 
-    override fun getItemsByMarketId(marketId: Long): Flow<List<Item>> {
+    override fun getItemsByMarketId(marketId: String): Flow<List<Item>> {
         TODO("Not yet implemented")
     }
     override suspend fun getSingleItemById(itemId: Long): Item {

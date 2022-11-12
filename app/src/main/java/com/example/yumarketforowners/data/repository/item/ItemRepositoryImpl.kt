@@ -13,7 +13,7 @@ class ItemRepositoryImpl @Inject constructor(
     private val remoteDataSource: ItemRemoteDataSource
 ) : ItemRepository {
 
-    override fun getItemsByMarketId(marketId: Long): Flow<List<Item>> =
+    override fun getItemsByMarketId(marketId: String): Flow<List<Item>> =
         remoteDataSource.getItemsByMarketId(marketId).map {
             it.map { itemDto -> itemDto.toItem() }
         }

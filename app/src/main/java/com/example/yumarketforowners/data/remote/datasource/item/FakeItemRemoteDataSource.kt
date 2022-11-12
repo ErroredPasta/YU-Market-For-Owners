@@ -23,7 +23,7 @@ class FakeItemRemoteDataSource @Inject constructor() : ItemRemoteDataSource {
 
     private val _itemListFlow = MutableStateFlow(itemList)
 
-    override fun getItemsByMarketId(marketId: Long) = _itemListFlow.asStateFlow()
+    override fun getItemsByMarketId(marketId: String) = _itemListFlow.asStateFlow()
     override suspend fun getSingleItemById(itemId: Long) =
         checkNotNull(itemList.find { it.id == itemId }) {
             "id가 ${itemId}인 item이 없습니다."
@@ -71,7 +71,9 @@ class FakeItemRemoteDataSource @Inject constructor() : ItemRemoteDataSource {
             id = it.toLong(),
             name = "name $it",
             options = createOptionDtos((it..it + 3)),
-            selectRange = it..it + 1
+            minSelect = it,
+            maxSelect = it + 1
+//            selectRange = it..it + 1
         )
     }
 

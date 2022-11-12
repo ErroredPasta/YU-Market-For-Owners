@@ -16,7 +16,7 @@ class ItemManagePresenter(
     scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(view, scopeProvider) {
 
-    fun requestData(marketId: Long, available: Boolean) {
+    fun requestData(marketId: String, available: Boolean) {
         /* TODO: 2022-09-21 수 01:34, error 처리 구현 */
         getItemsUseCase(marketId = marketId, available = available)
             .onStart { view.loading(isLoading = true) }

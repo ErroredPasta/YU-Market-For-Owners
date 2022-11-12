@@ -50,7 +50,10 @@ class ItemListInnerFragment :
     }
 
     private fun requestData() {
-        presenter.requestData(marketId = 0L, available = available)
+        presenter.requestData(
+            marketId = "cc898844-8f2f-451e-bccf-2e84cb195c46",
+            available = available
+        )
     }
 
     override fun getViewBinding(

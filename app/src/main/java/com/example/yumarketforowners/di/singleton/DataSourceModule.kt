@@ -6,7 +6,7 @@ import com.example.yumarketforowners.data.remote.datasource.chatroom.ChatRemoteD
 import com.example.yumarketforowners.data.remote.datasource.chatroom.ChatRoomRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.chatroom.FakeChatRemoteDateSource
 import com.example.yumarketforowners.data.remote.datasource.chatroom.FakeChatRoomRemoteDataSource
-import com.example.yumarketforowners.data.remote.datasource.item.FakeItemRemoteDataSource
+import com.example.yumarketforowners.data.remote.datasource.item.FirebaseItemRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.item.ItemRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.market.MarketRemoteDataSource
 import com.example.yumarketforowners.data.remote.datasource.market.MarketRemoteDataSourceImpl
@@ -22,6 +22,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -30,7 +31,7 @@ interface DataSourceModule {
     fun bindChatRoomRemoteDataSource(dataSource: FakeChatRoomRemoteDataSource): ChatRoomRemoteDataSource
 
     @Binds
-    fun bindItemRemoteDataSource(dataSource: FakeItemRemoteDataSource): ItemRemoteDataSource
+    fun bindItemRemoteDataSource(dataSource: FirebaseItemRemoteDataSource): ItemRemoteDataSource
 
     @Binds
     fun bindOrderRemoteDataSource(dataSource: FakeOrderRemoteDataSource): OrderRemoteDataSource
@@ -45,6 +46,7 @@ interface DataSourceModule {
     fun bindNoticeRemoteDataSource(dataSource: FakeNoticeRemoteDataSource): NoticeRemoteDataSource
 
     @Binds
+    @Singleton
     fun bindUserRemoteDataSource(dataSource: FakeUserRemoteDataSource): UserRemoteDataSource
 
     @Binds
