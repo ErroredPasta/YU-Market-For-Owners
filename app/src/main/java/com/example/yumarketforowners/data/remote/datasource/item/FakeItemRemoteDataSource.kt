@@ -71,7 +71,9 @@ class FakeItemRemoteDataSource @Inject constructor() : ItemRemoteDataSource {
             id = it.toLong(),
             name = "name $it",
             options = createOptionDtos((it..it + 3)),
-            selectRange = it..it + 1
+            minSelect = it,
+            maxSelect = it + 1
+//            selectRange = it..it + 1
         )
     }
 

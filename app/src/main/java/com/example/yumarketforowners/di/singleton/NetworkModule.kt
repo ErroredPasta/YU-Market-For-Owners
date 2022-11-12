@@ -4,8 +4,8 @@ import com.example.yumarketforowners.BuildConfig
 import com.example.yumarketforowners.data.remote.api.MarketApi
 import com.example.yumarketforowners.data.remote.api.TMapApi
 import com.example.yumarketforowners.data.remote.api.TMapApiStub
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import dagger.Binds
 import dagger.Module
@@ -58,10 +58,10 @@ interface NetworkModule {
         @Singleton
         fun provideMarketApi(
             retrofit: Retrofit
-        ) = retrofit.create(MarketApi::class.java)
+        ): MarketApi = retrofit.create(MarketApi::class.java)
 
         @Provides
         @Singleton
-        fun provideFirebaseAuth(): FirebaseAuth = Firebase.auth
+        fun provideFirebaseDatabase(): FirebaseDatabase = Firebase.database
     }
 }
