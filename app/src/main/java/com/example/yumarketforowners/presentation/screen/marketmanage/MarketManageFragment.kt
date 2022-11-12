@@ -46,7 +46,7 @@ class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), Market
         /* TODO: 2022-10-19 수 17:56, pass proper market id */
         navController.navigate(
             R.id.action_marketManageFragment_to_updateMarketActivity,
-            bundleOf(UpdateMarketActivity.KEY_MARKET_ID to "1")
+            bundleOf(UpdateMarketActivity.KEY_MARKET_ID to "cc898844-8f2f-451e-bccf-2e84cb195c46")
         )
     }
 

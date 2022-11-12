@@ -1,45 +1,45 @@
 package com.example.yumarketforowners.data.remote.dto.market
 
-import com.example.yumarketforowners.domain.model.market.DetailMarketType
-import com.example.yumarketforowners.domain.model.market.MarketType
-import java.time.DayOfWeek
-import java.time.LocalTime
 
-// CRUD
+import com.google.gson.annotations.SerializedName
+
 data class MarketDto(
-    val id: String, // not updatable
-    val name: String,
-    val marketRepresentativeImage: String,
-    val marketDetailImages: List<String>,
-    val deliveryFees: List<DeliveryFeeDto>,
-    val marketType: MarketType,
-    val detailMarketType: DetailMarketType,
-    val addressDto: AddressDto,
-    val openTime: ClosedRange<LocalTime>,
-    val closedDays: List<DayOfWeek>,
-    val phoneNumber: String
-)
+    @SerializedName("addressInfo")
+    val addressInfo: AddressInfo,
 
-data class UpdateMarketDto(
-    val id: String,
-    val name: String,
-    val marketRepresentativeImage: String,
-    val marketDetailImage: String?,
-    val deliveryFees: List<DeliveryFeeDto>,
-    val openTimeRange: ClosedRange<LocalTime>,
-    val closedDays: List<DayOfWeek>,
-    val phoneNumber: String
-)
+    @SerializedName("branchInfo")
+    val branchInfo: BranchInfo,
 
-data class AddressDto(
-    val latitude: Double,
-    val longitude: Double,
-    val addressString: String,
-    val detailAddressString: String
-)
+    @SerializedName("businessNumber")
+    val businessNumber: String, // 1234-5678-9999
 
-data class DeliveryFeeDto(
-    val id: Long,
-    val priceRange: IntRange,
-    val fee: Int
+    @SerializedName("categoryInfo")
+    val categoryInfo: CategoryInfo,
+
+    @SerializedName("deliveryTipPerDistanceList")
+    val deliveryTipPerDistanceList: List<DeliveryTipPerDistance>,
+
+    @SerializedName("latLon")
+    val latLon: LatLon,
+
+    @SerializedName("reviewNumber")
+    val reviewNumber: Int, // 0
+
+    @SerializedName("salesInfo")
+    val salesInfo: SalesInfo,
+
+    @SerializedName("shopDescription")
+    val shopDescription: String, // 공부맛집입니다..
+
+    @SerializedName("shopId")
+    val shopId: String, // cc898844-8f2f-451e-bccf-2e84cb195c46
+
+    @SerializedName("shopImageInfo")
+    val shopImageInfo: ShopImageInfo,
+
+    @SerializedName("shopName")
+    val shopName: String, // 롯데리아 영남대DT점
+
+    @SerializedName("totalScore")
+    val totalScore: Double, // 0.0
 )

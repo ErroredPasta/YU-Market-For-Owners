@@ -37,7 +37,9 @@ fun setOpponentName(textView: TextView, name: String) {
 }
 
 @BindingAdapter("daysOfWeek")
-fun setDaysOfWeek(textView: TextView, daysOfWeek: List<DayOfWeek>) {
+fun setDaysOfWeek(textView: TextView, daysOfWeek: List<DayOfWeek>?) {
+    if (daysOfWeek == null) return
+
     val context = textView.context
 
     textView.text = if (daysOfWeek.isEmpty()) {
