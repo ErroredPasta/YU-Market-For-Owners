@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface OrderRepository {
     val orderListFlow: Flow<List<Order>>
-    suspend fun getOrderListByMarketId(marketId: Long): List<Order>
+    suspend fun getOrderListByMarketId(marketId: String): List<Order>
     suspend fun getOrderById(orderId: Long): Order?
     suspend fun updateOrderState(orderId: Long, orderState: OrderState)
 }

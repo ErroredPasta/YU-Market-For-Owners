@@ -3,23 +3,23 @@ package com.example.yumarketforowners.data.remote.dto.order
 // CR
 // non-updatable entity
 data class OrderItemDto(
-    val id: Long,
-    val name: String,
-    val imageUrl: String? = null,
-    val amount: Int,
-    val pricePerItem: Int,
-    val orderOptionGroupDtos: List<OrderOptionGroupDto>
+    var id: Long = 0L,
+    var name: String = "",
+    var imageUrl: String? = null,
+    var amount: Int = 0,
+    var pricePerItem: Int = 0,
+    var orderOptionGroupDtos: List<OrderOptionGroupDto> = emptyList()
 )
 
 // non-updatable entity
 data class OrderOptionGroupDto(
-    val id: Long,
-    val orderOptionDtos: List<OrderOptionDto>
+    var id: Long = 0L,
+    var orderOptionDtos: List<OrderOptionDto> = emptyList()
 )
 
 // non-updatable entity
 data class OrderOptionDto(
-    val id: Long,
-    val name: String,
-    val checked: Boolean
+    var id: Long = 0L,
+    var name: String = "",
+    var checked: Boolean = false
 )

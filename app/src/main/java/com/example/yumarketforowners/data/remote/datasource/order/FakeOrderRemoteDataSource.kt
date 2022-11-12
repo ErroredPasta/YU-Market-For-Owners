@@ -7,6 +7,7 @@ import com.example.yumarketforowners.data.remote.dto.order.OrderOptionDto
 import com.example.yumarketforowners.data.remote.dto.order.OrderOptionGroupDto
 import com.example.yumarketforowners.domain.model.order.DeliveryType
 import com.example.yumarketforowners.domain.model.order.OrderState
+import com.google.gson.Gson
 import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,13 +30,13 @@ class FakeOrderRemoteDataSource @Inject constructor() : OrderRemoteDataSource {
             orderedAt = it.toLong(),
             orderItemDtos = createOrderItemDtos((it..it + 1)),
             totalPrice = calculateTotalPrice((it..it + 1)),
-            orderState = OrderState.values()[it % OrderState.values().size],
+            orderState = OrderState.values()[it % OrderState.values().size].name,
             deliveryFee = it,
             deliveryTime = Pair(
                 LocalTime.of(it % 24, it % 61),
                 LocalTime.of((it + 1) % 24, it % 61)
             ),
-            deliveryType = DeliveryType.values()[it % DeliveryType.values().size],
+            deliveryType = DeliveryType.values()[it % DeliveryType.values().size].name,
             orderMakerId = it.toLong(),
             request = "request $it"
         )
@@ -44,17 +45,19 @@ class FakeOrderRemoteDataSource @Inject constructor() : OrderRemoteDataSource {
     private val _orderListFlow = MutableStateFlow(orderList)
     override val orderListFlow: Flow<List<OrderDto>> = _orderListFlow.asStateFlow()
 
-    override suspend fun getOrderListByMarketId(marketId: Long): List<OrderDto> {
+    override suspend fun getOrderListByMarketId(marketId: String): List<OrderDto> {
         TODO("not implemented")
     }
 
-    override suspend fun getOrderByOrderId(orderId: Long) = orderList.find { it.id == orderId }
+    override suspend fun getOrderByOrderId(orderId: Long) = orderList.find { it.id == orderId }.also {
+        Log.d(TAG, "getOrderByOrderId: ${Gson().toJson(it)}")
+    }
 
     override suspend fun updateOrderState(orderId: Long, orderState: OrderState) =
         withContext<Unit>(NonCancellable) {
             val index = orderList.indexOfFirst { it.id == orderId }
             val updatedOrder = orderList.find { it.id == orderId }?.copy(
-                orderState = orderState
+                orderState = orderState.name
             )
 
             updatedOrder?.let {

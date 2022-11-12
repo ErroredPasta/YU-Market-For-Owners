@@ -4,10 +4,7 @@ import com.example.yumarketforowners.data.remote.dto.order.OrderDto
 import com.example.yumarketforowners.data.remote.dto.order.OrderItemDto
 import com.example.yumarketforowners.data.remote.dto.order.OrderOptionDto
 import com.example.yumarketforowners.data.remote.dto.order.OrderOptionGroupDto
-import com.example.yumarketforowners.domain.model.order.Order
-import com.example.yumarketforowners.domain.model.order.OrderItem
-import com.example.yumarketforowners.domain.model.order.OrderOption
-import com.example.yumarketforowners.domain.model.order.OrderOptionGroup
+import com.example.yumarketforowners.domain.model.order.*
 
 //fun Order.toOrderDto(marketId: Long) = OrderDto(
 //    id = id,
@@ -28,10 +25,10 @@ fun OrderDto.toOrder() = Order(
     orderedAt = orderedAt,
     orderItems = orderItemDtos.toOrderItems(),
     totalPrice = totalPrice,
-    orderState = orderState,
+    orderState = OrderState.valueOf(orderState),
     deliveryFee = deliveryFee,
     deliveryTime = deliveryTime,
-    deliveryType = deliveryType,
+    deliveryType = DeliveryType.valueOf(deliveryType),
     telephoneNumber = orderMakerId.toString(),
     request = request
 )

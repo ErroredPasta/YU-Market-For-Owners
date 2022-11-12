@@ -12,7 +12,7 @@ class FakeOrderRepository : OrderRepository {
     override val orderListFlow: Flow<List<Order>>
         get() = TODO("Not yet implemented")
 
-    override suspend fun getOrderListByMarketId(marketId: Long): List<Order> = orders
+    override suspend fun getOrderListByMarketId(marketId: String): List<Order> = orders
     override suspend fun getOrderById(orderId: Long): Order? = orders.find { it.id == orderId }
     override suspend fun updateOrderState(orderId: Long, orderState: OrderState) {
         TODO("Not yet implemented")
