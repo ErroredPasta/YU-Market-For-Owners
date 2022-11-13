@@ -9,7 +9,7 @@ class FakeReviewRepository : ReviewRepository {
         createReview(it)
     }.toMutableList()
 
-    override suspend fun getAllReviewsByMarketId(marketId: Long): List<Review> = reviews
+    override suspend fun getAllReviewsByMarketId(marketId: String): List<Review> = reviews
 }
 
 fun Review.shouldHaveReply() = id.toInt() % 2 == 0

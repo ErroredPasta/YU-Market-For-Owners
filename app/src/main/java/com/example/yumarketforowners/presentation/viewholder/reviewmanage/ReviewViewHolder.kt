@@ -12,7 +12,7 @@ class ReviewViewHolder(
     binding: ViewHolderReviewBinding
 ) : BaseViewHolder<ViewHolderReviewBinding, ReviewUiState>(binding) {
     override fun clear() {
-        binding.reviewWriterProfileImage.clear()
+//        binding.reviewWriterProfileImage.clear()
     }
 
     override fun bindData(model: ReviewUiState) {

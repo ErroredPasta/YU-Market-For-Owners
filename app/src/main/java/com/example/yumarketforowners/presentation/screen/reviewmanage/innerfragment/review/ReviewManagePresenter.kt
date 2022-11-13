@@ -14,7 +14,7 @@ class ReviewManagePresenter(
     scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(view, scopeProvider) {
 
-    fun requestData(marketId: Long) {
+    fun requestData(marketId: String) {
         coroutineScope.launch {
             view.loading(isLoading = true)
             // TODO: 2022.06.04 get all data by market id

@@ -36,7 +36,7 @@ class ReviewManagePresenterTest {
     // endregion test doubles ======================================================================
 
     // region constants ============================================================================
-    private val testMarketId = 0L
+    private val testMarketId = "0L"
     // endregion constants =========================================================================
 
     @Before

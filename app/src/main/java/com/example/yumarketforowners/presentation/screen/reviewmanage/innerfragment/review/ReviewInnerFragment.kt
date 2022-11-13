@@ -37,7 +37,7 @@ class ReviewInnerFragment : BaseFragment<InnerFragmentReviewListBinding>(), Base
 
     private fun requestData() {
         // TODO: 2022.07.10 request by market id
-        presenter.requestData(0)
+        presenter.requestData(marketId = "cc898844-8f2f-451e-bccf-2e84cb195c46")
     }
 
     override fun loading(isLoading: Boolean) {

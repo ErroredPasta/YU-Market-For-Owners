@@ -23,5 +23,5 @@ class FakeReviewRemoteDataSource @Inject constructor() : ReviewRemoteDataSource 
         )
     }
 
-    override suspend fun getAllReviewsByMarketId(marketId: Long) = testList
+    override suspend fun getAllReviewsByMarketId(marketId: String) = testList
 }

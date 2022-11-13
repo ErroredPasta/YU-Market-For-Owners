@@ -5,5 +5,5 @@ import com.example.yumarketforowners.domain.repository.ReviewRepository
 class GetReviewsUseCase(
     private val repository: ReviewRepository
 ) {
-    suspend operator fun invoke(marketId: Long) = repository.getAllReviewsByMarketId(marketId)
+    suspend operator fun invoke(marketId: String) = repository.getAllReviewsByMarketId(marketId)
 }

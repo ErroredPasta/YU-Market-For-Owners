@@ -3,13 +3,13 @@ package com.example.yumarketforowners.data.remote.dto.review
 // CR
 // non-updatable entity
 data class ReviewDto(
-    val id: Long,
-    val writerId: Long,
-    val writtenAt: Long,
-    val marketId: Long,
-    val orderId: Long,
-    val title: String? = null,
-    val content: String,
-    val rating: Int,
-    val reviewImages: List<String>
+    var id: Long = 0L,
+    var writerId: Long = 0L,
+    var writtenAt: Long = 0L,
+    var marketId: Long = 0L,
+    var orderId: Long = 0L,
+    var title: String? = null,
+    var content: String = "",
+    var rating: Int = 0,
+    var reviewImages: List<String> = emptyList()
 )

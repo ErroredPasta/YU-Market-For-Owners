@@ -12,7 +12,7 @@ class ReviewRepositoryImpl @Inject constructor(
     private val orderRepository: OrderRepository
 ) : ReviewRepository {
 
-    override suspend fun getAllReviewsByMarketId(marketId: Long): List<Review> =
+    override suspend fun getAllReviewsByMarketId(marketId: String): List<Review> =
         remoteDataSource.getAllReviewsByMarketId(marketId).map {
             it.toReview(
                 writerName = "writerName ${it.id}",
