@@ -19,20 +19,22 @@
         android:paddingHorizontal="10dp"
         android:paddingVertical="20dp">
 
-        <CheckBox
-            android:id="@+id/itemCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="@={itemUiState.checkedForStateChange}"
-            app:layout_constraintLeft_toLeftOf="parent"
+        <ImageView
+            android:id="@+id/itemImageView"
+            imageUrl="@{itemUiState.imageUrl}"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/itemDescriptionLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:orientation="vertical"
-            app:layout_constraintLeft_toRightOf="@id/itemCheckBox"
+            app:layout_constraintLeft_toRightOf="@id/itemImageView"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
