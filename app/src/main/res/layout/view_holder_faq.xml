@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="faqUiState"
+            type="com.example.yumarketforowners.presentation.viewholder.customersupport.FaqUiState" />
+
+        <import type="kotlin.jvm.functions.Function0" />
+
+    </data>
+
+    <LinearLayout
+        android:onClick="@{() -> faqUiState.onClick.invoke()}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#B8B8B8" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/block"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/customer_support_question_text"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:text="@{faqUiState.csTitle}"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="text" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@color/gray_d9"
+                app:layout_constraintBottom_toBottomOf="@+id/block"
+                app:layout_constraintEnd_toEndOf="@id/block"
+                app:layout_constraintStart_toStartOf="@id/block"
+                app:layout_constraintWidth_percent="0.8" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</layout>

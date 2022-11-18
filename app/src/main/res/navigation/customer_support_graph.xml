@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/customer_support_graph"
+    app:startDestination="@id/customerSupportFragment">
+    <fragment
+        android:id="@+id/customerSupportFragment"
+        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.CustomerSupportFragment"
+        android:label="CustomerSupportFragment"
+        tools:layout="@layout/fragment_customer_support" >
+        <action
+            android:id="@+id/action_customerSupportFragment_to_faqFragment"
+            app:destination="@id/faqFragment" />
+        <action
+            android:id="@+id/action_customerSupportFragment_to_emailFragment"
+            app:destination="@id/emailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/faqFragment"
+        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.faq.FaqFragment"
+        android:label="FaqFragment"
+        tools:layout="@layout/fragment_faq" >
+        <action
+            android:id="@+id/action_faqFragment_to_faqDetailFragment"
+            app:destination="@id/faqDetailFragment" />
+        <action
+            android:id="@+id/action_faqFragment_to_emailFragment"
+            app:destination="@id/emailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/faqDetailFragment"
+        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.faq.FaqDetailFragment"
+        android:label="FaqDetailFragment"
+        tools:layout="@layout/fragment_faq_detail">
+        <argument
+            android:name="faqData"
+            app:argType="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.faq.FaqData" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailFragment"
+        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.EmailFragment"
+        android:label="EmailFragment"
+        tools:layout="@layout/fragment_email" />
+
+</navigation>

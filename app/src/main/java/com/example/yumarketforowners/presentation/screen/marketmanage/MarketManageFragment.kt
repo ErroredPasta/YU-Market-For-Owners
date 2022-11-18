@@ -63,9 +63,9 @@ class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), Market
         navController.navigate(R.id.action_marketManageFragment_to_noticeActivity)
     }
 
-    override fun onServiceCenterClicked() {
+    override fun onCustomerSupportCenterClicked() {
         // TODO: 2022.06.10 start service center activity
-        Toast.makeText(context, "service center clicked", Toast.LENGTH_SHORT).show()
+        navController.navigate(R.id.action_marketManageFragment_to_customerSupportActivity)
     }
 
     override fun onSettingClicked() {

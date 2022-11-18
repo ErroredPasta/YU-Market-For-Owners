@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_marketManageFragment_to_updateProfileActivity"
             app:destination="@id/updateProfileActivity" />
+        <action
+            android:id="@+id/action_marketManageFragment_to_customerSupportActivity"
+            app:destination="@id/customerSupportActivity" />
     </fragment>
 
 
@@ -35,6 +38,10 @@
         android:id="@+id/updateProfileActivity"
         android:name="com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfileActivity"
         android:label="UpdateProfileActivity" />
+    <activity
+        android:id="@+id/customerSupportActivity"
+        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.CustomerSupportActivity"
+        android:label="CustomerSupportActivity" />
 
 
 </navigation>

@@ -8,6 +8,6 @@ interface MarketManageListener {
     fun onManageScheduleClicked()
     fun onManageReviewClicked()
     fun onNoticeClicked()
-    fun onServiceCenterClicked()
+    fun onCustomerSupportCenterClicked()
     fun onSettingClicked()
 }

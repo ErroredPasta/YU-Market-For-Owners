@@ -79,4 +79,25 @@
     <string name="id_hint"><font size="15">아이디를 입력해주세요</font></string>
     <string name="pw_hint"><font size="15">비밀번호를 입력해주세요</font></string>
     <string name="failed_to_login">로그인에 실패했습니다.</string>
+    <string name="faq">자주하는질문</string>
+    <string name="login">로그인</string>
+    <string name="use">이용</string>
+    <string name="pay">결제</string>
+    <string name="review">리뷰</string>
+    <string name="order">주문</string>
+    <string name="etc">기타</string>
+    <string name="customer_support_center">고객센터</string>
+    <string name="email_inquiry">이메일로 문의하기</string>
+    <string name="yu_market_customer_support_center_call">YU MARKET 고객센터(전화)</string>
+    <string name="market_registration_inquiry">입점문의</string>
+    <string name="with_market_corp">(주)위드마켓</string>
+    <string name="use_inquiry">이용문의</string>
+    <string name="send">전송</string>
+    <string name="enter_contents_and_click_the_send_button">내용을 작성해 주시고 전송버튼을 눌러주세요.</string>
+    <string name="enter_contents">내용을 입력해주세요.</string>
+    <string name="content">내용</string>
+    <string name="enter_title">제목을 입력해주세요.</string>
+    <string name="title">제목</string>
+    <string name="send_email">메일 보내기</string>
+    <string name="with_market">위드마켓</string>
 </resources>

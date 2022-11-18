@@ -5,6 +5,7 @@ import com.example.yumarketforowners.data.repository.auth.GoogleLoginRepository
 import com.example.yumarketforowners.data.repository.auth.KakaoLoginRepository
 import com.example.yumarketforowners.data.repository.chatroom.ChatRepositoryImpl
 import com.example.yumarketforowners.data.repository.chatroom.ChatRoomRepositoryImpl
+import com.example.yumarketforowners.data.repository.customersupport.FakeCustomerSupportRepository
 import com.example.yumarketforowners.data.repository.item.ItemRepositoryImpl
 import com.example.yumarketforowners.data.repository.market.MarketRepositoryImpl
 import com.example.yumarketforowners.data.repository.notice.NoticeRepositoryImpl
@@ -19,6 +20,7 @@ import com.example.yumarketforowners.domain.repository.ReviewRepository
 import com.example.yumarketforowners.domain.repository.auth.LoginRepository
 import com.example.yumarketforowners.domain.repository.chatroom.ChatRepository
 import com.example.yumarketforowners.domain.repository.chatroom.ChatRoomRepository
+import com.example.yumarketforowners.domain.repository.customersupport.CustomerSupportRepository
 import com.example.yumarketforowners.domain.repository.market.MarketRepository
 import com.example.yumarketforowners.domain.repository.notice.NoticeRepository
 import com.example.yumarketforowners.domain.repository.user.UserRepository
@@ -65,4 +67,7 @@ interface RepositoryModule {
     @Binds
     @LoginRepositoryQualifier(LoginRepositoryType.GOOGLE)
     fun bindGoogleLoginRepository(repository: GoogleLoginRepository): LoginRepository
+
+    @Binds
+    fun bindCustomerSupportRepository(repository: FakeCustomerSupportRepository): CustomerSupportRepository
 }

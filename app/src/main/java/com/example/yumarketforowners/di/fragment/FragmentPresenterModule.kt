@@ -3,6 +3,7 @@ package com.example.yumarketforowners.di.fragment
 import com.example.yumarketforowners.di.qualifier.LifeCycleScope
 import com.example.yumarketforowners.di.qualifier.LifeCycleScopeType.FRAGMENT
 import com.example.yumarketforowners.domain.repository.OrderRepository
+import com.example.yumarketforowners.domain.repository.customersupport.CustomerSupportRepository
 import com.example.yumarketforowners.domain.usecase.chatroom.GetChatRoomsUseCase
 import com.example.yumarketforowners.domain.usecase.chatroom.RemoveChatRoomUseCase
 import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
@@ -12,6 +13,8 @@ import com.example.yumarketforowners.domain.usecase.order.UpdateOrderStateUseCas
 import com.example.yumarketforowners.domain.usecase.review.GetReviewsUseCase
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManagePresenter
 import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageView
+import com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.faq.FaqListPresenter
+import com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.faq.FaqListView
 import com.example.yumarketforowners.presentation.screen.marketmanage.notice.detail.NoticeDetailPresenter
 import com.example.yumarketforowners.presentation.screen.marketmanage.notice.detail.NoticeDetailView
 import com.example.yumarketforowners.presentation.screen.marketmanage.notice.list.NoticeListPresenter
@@ -100,6 +103,17 @@ object FragmentPresenterModule {
     ) = NoticeDetailPresenter(
         view = view,
         getNoticeByIdUseCase = getNoticeByIdUseCase,
+        scopeProvider = scopeProvider
+    )
+
+    @Provides
+    fun provideCustomerSupportListPresenter(
+        view: FaqListView,
+        repository: CustomerSupportRepository,
+        @LifeCycleScope(FRAGMENT) scopeProvider: Provider<CoroutineScope>
+    ) = FaqListPresenter(
+        view = view,
+        repository = repository,
         scopeProvider = scopeProvider
     )
 }

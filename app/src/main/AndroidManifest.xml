@@ -39,6 +39,7 @@
         <activity android:name=".presentation.screen.marketmanage.notice.NoticeActivity" />
         <activity android:name=".presentation.screen.marketmanage.profile.UpdateProfileActivity" />
         <activity android:name=".presentation.screen.itemmanage.additem.AddItemActivity" />
+        <activity android:name=".presentation.screen.marketmanage.customersupport.CustomerSupportActivity" />
     </application>
 
 </manifest>
