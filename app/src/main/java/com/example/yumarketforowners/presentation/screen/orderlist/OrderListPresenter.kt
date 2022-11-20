@@ -6,10 +6,7 @@ import com.example.yumarketforowners.domain.usecase.order.UpdateOrderStateUseCas
 import com.example.yumarketforowners.presentation.mapper.order.toOrderUiState
 import com.example.yumarketforowners.presentation.screen.base.BaseCoroutinePresenter
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Provider
 
@@ -24,6 +21,8 @@ class OrderListPresenter(
     fun observeOrderList(orderState: OrderState) {
         orderListFlow.map {
             it.filter { order -> order.orderState == orderState }
+        }.onStart {
+            view.loading(isLoading = true)
         }.onEach {
             view.onRequestDataSuccess(
                 it.map { order ->
@@ -49,6 +48,10 @@ class OrderListPresenter(
                     )
                 }
             )
+        }.catch { cause ->
+            view.onError(cause)
+        }.onCompletion {
+            view.loading(isLoading = false)
         }.launchIn(coroutineScope)
     }
 
