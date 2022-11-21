@@ -37,7 +37,7 @@ class MarketManageFragment : BaseFragment<FragmentMarketManageBinding>(), Market
         )
     }
 
-    override fun onEditProfileClicked(user: User) {
+    override fun onEditProfileClicked() {
         /* TODO: 2022-11-8 화 05:42, pass proper user id */
         navController.navigate(R.id.action_marketManageFragment_to_updateProfileActivity)
     }
