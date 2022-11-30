@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.yumarketforowners.presentation.screen.base.BaseViewHolderState
-import com.example.yumarketforowners.presentation.util.ViewHolderFactory
+import com.example.yumarketforowners.presentation.util.createViewHolder
 import com.example.yumarketforowners.presentation.viewholder.BaseViewHolder
 import com.example.yumarketforowners.presentation.viewholder.CellType
 
@@ -18,7 +18,7 @@ class ModelRecyclerAdapter<M : BaseViewHolderState> :
     override fun getItemViewType(position: Int): Int = modelList[position].cellType.ordinal
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*, M> =
-        ViewHolderFactory.create(
+        createViewHolder(
             LayoutInflater.from(parent.context), parent, CellType.values()[viewType]
         )
 
