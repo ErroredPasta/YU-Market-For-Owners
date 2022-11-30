@@ -17,6 +17,10 @@ class GetOrderListUseCaseTest {
     private lateinit var fakeRepository: FakeOrderRepository
     // endregion test doubles ======================================================================
 
+    // region constants ============================================================================
+    private val testMarketId = "0L"
+    // endregion constants =========================================================================
+
     @Before
     fun setup() {
         fakeRepository = FakeOrderRepository()
@@ -27,7 +31,7 @@ class GetOrderListUseCaseTest {
     @Test
     fun `get pending orders correctly`() = runTest {
         // act
-        val result = sut(marketId = 0L, orderState = OrderState.PENDING)
+        val result = sut(marketId = testMarketId, orderState = OrderState.PENDING)
 
         // assert
         for (order in result) {
@@ -38,7 +42,7 @@ class GetOrderListUseCaseTest {
     @Test
     fun `get accepted orders correctly`() = runTest {
         // act
-        val result = sut(marketId = 0L, orderState = OrderState.ACCEPTED)
+        val result = sut(marketId = testMarketId, orderState = OrderState.ACCEPTED)
 
         // assert
         for (order in result) {
@@ -49,7 +53,7 @@ class GetOrderListUseCaseTest {
     @Test
     fun `get done orders correctly`() = runTest {
         // act
-        val result = sut(marketId = 0L, orderState = OrderState.DONE)
+        val result = sut(marketId = testMarketId, orderState = OrderState.DONE)
 
         // assert
         for (order in result) {
