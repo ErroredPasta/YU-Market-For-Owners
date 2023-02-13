@@ -1,6 +1,6 @@
 package com.example.yumarketforowners.di.activity
 
-import com.example.yumarketforowners.presentation.screen.base.BaseView
+import com.example.yumarketforowners.core.presentation.base.BaseView
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

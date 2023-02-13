@@ -7,9 +7,9 @@
 
         <variable
             name="orderUiState"
-            type="com.example.yumarketforowners.presentation.viewholder.orderlist.OrderUiState" />
+            type="com.example.yumarketforowners.orderlist.presentation.viewholder.OrderUiState" />
 
-        <import type="com.example.yumarketforowners.domain.model.order.OrderState" />
+        <import type="com.example.yumarketforowners.orderlist.domain.model.OrderState" />
 
     </data>
 

@@ -1,15 +1,15 @@
 package com.example.yumarketforowners.di.fragment
 
 import androidx.fragment.app.Fragment
-import com.example.yumarketforowners.presentation.screen.base.BaseView
-import com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageView
-import com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.faq.FaqListView
-import com.example.yumarketforowners.presentation.screen.marketmanage.notice.detail.NoticeDetailView
-import com.example.yumarketforowners.presentation.screen.marketmanage.notice.list.NoticeListView
-import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketView
-import com.example.yumarketforowners.presentation.screen.orderlist.OrderListView
-import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.ChatRoomListView
-import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review.ReviewListView
+import com.example.yumarketforowners.core.presentation.base.BaseView
+import com.example.yumarketforowners.itemmanage.presentation.screen.ItemManageView
+import com.example.yumarketforowners.marketmanage.customersupport.presentation.screen.faq.FaqListView
+import com.example.yumarketforowners.marketmanage.notice.presentation.screen.detail.NoticeDetailView
+import com.example.yumarketforowners.marketmanage.notice.presentation.screen.list.NoticeListView
+import com.example.yumarketforowners.marketmanage.market.presentation.screen.updatemarket.UpdateMarketView
+import com.example.yumarketforowners.orderlist.presentation.screen.OrderListView
+import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.screen.ChatRoomListView
+import com.example.yumarketforowners.reviewmanage.review.presentation.screen.ReviewListView
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

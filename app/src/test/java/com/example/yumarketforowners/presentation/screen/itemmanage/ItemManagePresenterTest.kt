@@ -1,8 +1,8 @@
 package com.example.yumarketforowners.presentation.screen.itemmanage
 //
 //import com.example.yumarketforowners.coroutine.TestCoroutineRule
-//import com.example.yumarketforowners.domain.model.item.Item
-//import com.example.yumarketforowners.domain.usecase.item.GetItemsUseCase
+//import com.example.yumarketforowners.itemmanage.domain.model.Item
+//import com.example.yumarketforowners.itemmanage.domain.usecase.GetItemsUseCase
 //import com.example.yumarketforowners.entity.createItem
 //import com.example.yumarketforowners.presentation.mapper.item.toItem
 //import com.google.common.truth.Truth.assertThat

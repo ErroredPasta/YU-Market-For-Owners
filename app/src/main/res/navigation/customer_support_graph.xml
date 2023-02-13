@@ -6,7 +6,7 @@
     app:startDestination="@id/customerSupportFragment">
     <fragment
         android:id="@+id/customerSupportFragment"
-        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.CustomerSupportFragment"
+        android:name="com.example.yumarketforowners.marketmanage.customersupport.presentation.screen.CustomerSupportFragment"
         android:label="CustomerSupportFragment"
         tools:layout="@layout/fragment_customer_support" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/faqFragment"
-        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.faq.FaqFragment"
+        android:name="com.example.yumarketforowners.marketmanage.customersupport.presentation.screen.faq.FaqFragment"
         android:label="FaqFragment"
         tools:layout="@layout/fragment_faq" >
         <action
@@ -30,16 +30,16 @@
     </fragment>
     <fragment
         android:id="@+id/faqDetailFragment"
-        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.faq.FaqDetailFragment"
+        android:name="com.example.yumarketforowners.marketmanage.customersupport.presentation.screen.faq.FaqDetailFragment"
         android:label="FaqDetailFragment"
         tools:layout="@layout/fragment_faq_detail">
         <argument
             android:name="faqData"
-            app:argType="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.faq.FaqData" />
+            app:argType="com.example.yumarketforowners.marketmanage.customersupport.presentation.screen.faq.FaqData" />
     </fragment>
     <fragment
         android:id="@+id/emailFragment"
-        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.EmailFragment"
+        android:name="com.example.yumarketforowners.marketmanage.customersupport.presentation.screen.EmailFragment"
         android:label="EmailFragment"
         tools:layout="@layout/fragment_email" />
 

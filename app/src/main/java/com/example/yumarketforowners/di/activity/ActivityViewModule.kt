@@ -1,13 +1,13 @@
 package com.example.yumarketforowners.di.activity
 
 import android.app.Activity
-import com.example.yumarketforowners.presentation.screen.base.BaseView
-import com.example.yumarketforowners.presentation.screen.itemmanage.additem.AddItemView
-import com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemView
-import com.example.yumarketforowners.presentation.screen.login.LoginView
-import com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfileView
-import com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketView
-import com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailView
+import com.example.yumarketforowners.core.presentation.base.BaseView
+import com.example.yumarketforowners.itemmanage.presentation.screen.additem.AddItemView
+import com.example.yumarketforowners.itemmanage.presentation.screen.updateitem.UpdateItemView
+import com.example.yumarketforowners.auth.presentation.screen.LoginView
+import com.example.yumarketforowners.marketmanage.profile.presentation.screen.UpdateProfileView
+import com.example.yumarketforowners.marketmanage.market.presentation.screen.updatemarket.UpdateMarketView
+import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.screen.chatroomdetail.ChatRoomDetailView
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

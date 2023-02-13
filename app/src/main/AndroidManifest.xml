@@ -15,7 +15,7 @@
         android:theme="@style/Theme.YUMarketForOwners"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".presentation.screen.login.LoginActivity"
+            android:name=".auth.presentation.screen.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,14 +32,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailActivity" />
-        <activity android:name=".presentation.screen.MainActivity" />
-        <activity android:name=".presentation.screen.marketmanage.updatemarket.UpdateMarketActivity" />
-        <activity android:name=".presentation.screen.itemmanage.updateitem.UpdateItemActivity" />
-        <activity android:name=".presentation.screen.marketmanage.notice.NoticeActivity" />
-        <activity android:name=".presentation.screen.marketmanage.profile.UpdateProfileActivity" />
-        <activity android:name=".presentation.screen.itemmanage.additem.AddItemActivity" />
-        <activity android:name=".presentation.screen.marketmanage.customersupport.CustomerSupportActivity" />
+        <activity android:name=".reviewmanage.inquirychat.presentation.screen.chatroomdetail.ChatRoomDetailActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".marketmanage.market.presentation.screen.updatemarket.UpdateMarketActivity" />
+        <activity android:name=".itemmanage.presentation.screen.updateitem.UpdateItemActivity" />
+        <activity android:name=".marketmanage.notice.presentation.screen.NoticeActivity" />
+        <activity android:name=".marketmanage.profile.presentation.screen.UpdateProfileActivity" />
+        <activity android:name=".itemmanage.presentation.screen.additem.AddItemActivity" />
+        <activity android:name=".marketmanage.customersupport.presentation.screen.CustomerSupportActivity" />
     </application>
 
 </manifest>

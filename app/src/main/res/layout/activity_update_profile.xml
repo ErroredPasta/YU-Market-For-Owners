@@ -7,11 +7,11 @@
 
         <variable
             name="userUiState"
-            type="com.example.yumarketforowners.domain.model.user.User" />
+            type="com.example.yumarketforowners.auth.domain.model.User" />
 
         <variable
             name="listener"
-            type="com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfileListener" />
+            type="com.example.yumarketforowners.marketmanage.profile.presentation.screen.UpdateProfileListener" />
 
     </data>
 

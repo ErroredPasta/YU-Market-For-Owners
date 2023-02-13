@@ -7,7 +7,7 @@
 
         <variable
             name="faqUiState"
-            type="com.example.yumarketforowners.presentation.viewholder.customersupport.FaqUiState" />
+            type="com.example.yumarketforowners.marketmanage.customersupport.presentation.viewholder.FaqUiState" />
 
         <import type="kotlin.jvm.functions.Function0" />
 

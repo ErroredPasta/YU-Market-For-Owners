@@ -7,7 +7,7 @@
 
         <variable
             name="orderItemUiState"
-            type="com.example.yumarketforowners.presentation.viewholder.orderlist.OrderItemUiState" />
+            type="com.example.yumarketforowners.orderlist.presentation.viewholder.OrderItemUiState" />
 
     </data>
 

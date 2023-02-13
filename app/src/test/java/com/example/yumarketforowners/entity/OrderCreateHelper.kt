@@ -1,6 +1,6 @@
 package com.example.yumarketforowners.entity
 
-import com.example.yumarketforowners.domain.model.order.*
+import com.example.yumarketforowners.orderlist.domain.model.*
 import java.time.LocalTime
 
 fun createOrder(

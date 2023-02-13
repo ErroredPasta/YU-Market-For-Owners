@@ -1,8 +1,8 @@
 package com.example.yumarketforowners.entity
 
-import com.example.yumarketforowners.domain.model.item.Item
-import com.example.yumarketforowners.domain.model.item.Option
-import com.example.yumarketforowners.domain.model.item.OptionGroup
+import com.example.yumarketforowners.itemmanage.domain.model.Item
+import com.example.yumarketforowners.itemmanage.domain.model.Option
+import com.example.yumarketforowners.itemmanage.domain.model.OptionGroup
 
 fun createItem(
     it: Int,

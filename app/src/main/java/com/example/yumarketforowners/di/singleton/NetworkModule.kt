@@ -1,9 +1,9 @@
 package com.example.yumarketforowners.di.singleton
 
 import com.example.yumarketforowners.BuildConfig
-import com.example.yumarketforowners.data.remote.api.MarketApi
-import com.example.yumarketforowners.data.remote.api.TMapApi
-import com.example.yumarketforowners.data.remote.api.TMapApiStub
+import com.example.yumarketforowners.core.data.api.MarketApi
+import com.example.yumarketforowners.core.data.api.TMapApi
+import com.example.yumarketforowners.core.data.api.TMapApiStub
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase

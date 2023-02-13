@@ -8,11 +8,11 @@
 
         <variable
             name="userModel"
-            type="com.example.yumarketforowners.domain.model.user.User" />
+            type="com.example.yumarketforowners.auth.domain.model.User" />
 
         <variable
             name="listener"
-            type="com.example.yumarketforowners.presentation.screen.marketmanage.MarketManageListener" />
+            type="com.example.yumarketforowners.marketmanage.market.presentation.screen.MarketManageListener" />
 
     </data>
 

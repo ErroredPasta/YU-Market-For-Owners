@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/marketManageFragment"
-        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.MarketManageFragment"
+        android:name="com.example.yumarketforowners.marketmanage.market.presentation.screen.MarketManageFragment"
         android:label="MarketManageFragment">
         <action
             android:id="@+id/action_marketManageFragment_to_updateMarketActivity"
@@ -25,22 +25,22 @@
 
     <activity
         android:id="@+id/updateMarketActivity"
-        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketActivity"
+        android:name="com.example.yumarketforowners.marketmanage.market.presentation.screen.updatemarket.UpdateMarketActivity"
         android:label="UpdateMarketActivity">
 
     </activity>
 
     <activity
         android:id="@+id/noticeActivity"
-        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.notice.NoticeActivity"
+        android:name="com.example.yumarketforowners.marketmanage.notice.presentation.screen.NoticeActivity"
         android:label="NoticeActivity" />
     <activity
         android:id="@+id/updateProfileActivity"
-        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.profile.UpdateProfileActivity"
+        android:name="com.example.yumarketforowners.marketmanage.profile.presentation.screen.UpdateProfileActivity"
         android:label="UpdateProfileActivity" />
     <activity
         android:id="@+id/customerSupportActivity"
-        android:name="com.example.yumarketforowners.presentation.screen.marketmanage.customersupport.CustomerSupportActivity"
+        android:name="com.example.yumarketforowners.marketmanage.customersupport.presentation.screen.CustomerSupportActivity"
         android:label="CustomerSupportActivity" />
 
 

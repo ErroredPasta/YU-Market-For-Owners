@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/reviewManageFragment"
-        android:name="com.example.yumarketforowners.presentation.screen.reviewmanage.ReviewManageFragment"
+        android:name="com.example.yumarketforowners.reviewmanage.ReviewManageFragment"
         android:label="ReviewManageFragment">
         <action
             android:id="@+id/action_reviewManageFragment_to_chatRoomDetailActivity"
@@ -16,7 +16,7 @@
 
     <activity
         android:id="@+id/chatRoomDetailActivity"
-        android:name="com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom.chatroomdetail.ChatRoomDetailActivity"
+        android:name="com.example.yumarketforowners.reviewmanage.inquirychat.presentation.screen.chatroomdetail.ChatRoomDetailActivity"
         android:label="activity_chat_room_detail"
         tools:layout="@layout/activity_chat_room_detail" />
 </navigation>

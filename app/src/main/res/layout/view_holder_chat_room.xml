@@ -7,7 +7,7 @@
 
         <variable
             name="chatRoomUiState"
-            type="com.example.yumarketforowners.presentation.viewholder.reviewmanage.ChatRoomUiState" />
+            type="com.example.yumarketforowners.reviewmanage.inquirychat.presentation.viewholder.ChatRoomUiState" />
 
         <import type="kotlin.jvm.functions.Function0" />
 

@@ -1,6 +1,6 @@
 package com.example.yumarketforowners.entity
 
-import com.example.yumarketforowners.domain.model.chatroom.ChatRoom
+import com.example.yumarketforowners.reviewmanage.inquirychat.domain.model.ChatRoom
 
 fun createChatRoom(it: Int) = ChatRoom(
     id = it.toLong(),

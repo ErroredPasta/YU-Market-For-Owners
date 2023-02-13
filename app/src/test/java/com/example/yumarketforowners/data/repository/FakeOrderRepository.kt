@@ -1,8 +1,9 @@
 package com.example.yumarketforowners.data.repository
 
-import com.example.yumarketforowners.domain.model.order.*
-import com.example.yumarketforowners.domain.repository.OrderRepository
+import com.example.yumarketforowners.orderlist.domain.repository.OrderRepository
 import com.example.yumarketforowners.entity.createOrder
+import com.example.yumarketforowners.orderlist.domain.model.Order
+import com.example.yumarketforowners.orderlist.domain.model.OrderState
 import kotlinx.coroutines.flow.Flow
 
 class FakeOrderRepository : OrderRepository {

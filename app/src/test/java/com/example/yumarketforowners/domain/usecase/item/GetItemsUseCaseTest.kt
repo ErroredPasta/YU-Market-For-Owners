@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.domain.usecase.item
 //
 //import com.example.yumarketforowners.data.repository.FakeItemRepository
-//import com.example.yumarketforowners.domain.repository.ItemRepository
+//import com.example.yumarketforowners.itemmanage.domain.repository.ItemRepository
 //import com.google.common.truth.Truth.assertThat
 //import kotlinx.coroutines.ExperimentalCoroutinesApi
 //import kotlinx.coroutines.test.runTest

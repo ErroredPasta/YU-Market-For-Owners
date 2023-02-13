@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/itemManageFragment"
-        android:name="com.example.yumarketforowners.presentation.screen.itemmanage.ItemManageFragment"
+        android:name="com.example.yumarketforowners.itemmanage.presentation.screen.ItemManageFragment"
         android:label="ItemManageFragment" >
         <action
             android:id="@+id/action_itemManageFragment_to_updateItemActivity"
@@ -17,11 +17,11 @@
     </fragment>
     <activity
         android:id="@+id/updateItemActivity"
-        android:name="com.example.yumarketforowners.presentation.screen.itemmanage.updateitem.UpdateItemActivity"
+        android:name="com.example.yumarketforowners.itemmanage.presentation.screen.updateitem.UpdateItemActivity"
         android:label="UpdateItemActivity" />
     <activity
         android:id="@+id/addItemActivity"
-        android:name="com.example.yumarketforowners.presentation.screen.itemmanage.additem.AddItemActivity"
+        android:name="com.example.yumarketforowners.itemmanage.presentation.screen.additem.AddItemActivity"
         android:label="AddItemActivity" />
 
 </navigation>

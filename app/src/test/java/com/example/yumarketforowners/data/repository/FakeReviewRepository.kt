@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.data.repository
 
-import com.example.yumarketforowners.domain.model.review.Review
-import com.example.yumarketforowners.domain.repository.ReviewRepository
+import com.example.yumarketforowners.reviewmanage.review.domain.model.Review
+import com.example.yumarketforowners.reviewmanage.review.domain.repository.ReviewRepository
 import com.example.yumarketforowners.entity.createReview
 
 class FakeReviewRepository : ReviewRepository {

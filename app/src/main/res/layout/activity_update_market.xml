@@ -7,11 +7,11 @@
 
         <variable
             name="updateMarketUiState"
-            type="com.example.yumarketforowners.domain.model.market.UpdateMarket" />
+            type="com.example.yumarketforowners.marketmanage.market.domain.model.UpdateMarket" />
 
         <variable
             name="listener"
-            type="com.example.yumarketforowners.presentation.screen.marketmanage.updatemarket.UpdateMarketListener" />
+            type="com.example.yumarketforowners.marketmanage.market.presentation.screen.updatemarket.UpdateMarketListener" />
 
     </data>
 

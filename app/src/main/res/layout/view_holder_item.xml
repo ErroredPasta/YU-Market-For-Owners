@@ -7,7 +7,7 @@
 
         <variable
             name="itemUiState"
-            type="com.example.yumarketforowners.presentation.viewholder.itemmanage.ItemUiState" />
+            type="com.example.yumarketforowners.itemmanage.presentation.viewholder.ItemUiState" />
 
         <import type="kotlin.jvm.functions.Function0" />
 

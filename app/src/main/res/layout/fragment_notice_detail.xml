@@ -7,7 +7,7 @@
 
         <variable
             name="noticeDetailUiState"
-            type="com.example.yumarketforowners.domain.model.notice.Notice" />
+            type="com.example.yumarketforowners.marketmanage.notice.domain.model.Notice" />
 
     </data>
 

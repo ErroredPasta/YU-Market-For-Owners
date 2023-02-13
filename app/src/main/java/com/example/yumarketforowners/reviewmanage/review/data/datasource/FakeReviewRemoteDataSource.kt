@@ -1,0 +1,27 @@
+package com.example.yumarketforowners.reviewmanage.review.data.datasource
+
+import com.example.yumarketforowners.reviewmanage.review.data.dto.ReviewDto
+import javax.inject.Inject
+
+class FakeReviewRemoteDataSource @Inject constructor() : ReviewRemoteDataSource {
+
+    private val testList = (0..9).map {
+        ReviewDto(
+            id = it.toLong(),
+            writerId = it.toLong(),
+            writtenAt = it.toLong(),
+            marketId = it.toLong(),
+            orderId = it.toLong(),
+            title = "title $it",
+            content = "content $it",
+            rating = it,
+            reviewImages = listOf(
+                "https://picsum.photos/200",
+                "https://picsum.photos/200",
+                "https://picsum.photos/200"
+            )
+        )
+    }
+
+    override suspend fun getAllReviewsByMarketId(marketId: String) = testList
+}

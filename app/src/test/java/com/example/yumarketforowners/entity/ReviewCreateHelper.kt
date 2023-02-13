@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.entity
 
-import com.example.yumarketforowners.domain.model.review.Reply
-import com.example.yumarketforowners.domain.model.review.Review
+import com.example.yumarketforowners.reviewmanage.review.domain.model.Reply
+import com.example.yumarketforowners.reviewmanage.review.domain.model.Review
 
 fun createReview(it: Int) = Review(
     id = it.toLong(),
