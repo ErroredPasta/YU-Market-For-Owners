@@ -2,8 +2,8 @@ package com.example.yumarketforowners.orderlist.data.datasource
 
 import android.util.Log
 import com.example.yumarketforowners.orderlist.data.dto.OrderDto
-import com.example.yumarketforowners.di.singleton.Dispatcher
-import com.example.yumarketforowners.di.singleton.DispatcherType
+import com.example.yumarketforowners.core.di.Dispatcher
+import com.example.yumarketforowners.core.di.DispatcherType
 import com.example.yumarketforowners.orderlist.domain.model.OrderState
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue

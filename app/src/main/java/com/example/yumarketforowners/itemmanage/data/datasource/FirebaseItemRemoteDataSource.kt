@@ -2,8 +2,8 @@ package com.example.yumarketforowners.itemmanage.data.datasource
 
 import android.util.Log
 import com.example.yumarketforowners.itemmanage.data.dto.ItemDto
-import com.example.yumarketforowners.di.singleton.Dispatcher
-import com.example.yumarketforowners.di.singleton.DispatcherType
+import com.example.yumarketforowners.core.di.Dispatcher
+import com.example.yumarketforowners.core.di.DispatcherType
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import kotlinx.coroutines.CoroutineDispatcher

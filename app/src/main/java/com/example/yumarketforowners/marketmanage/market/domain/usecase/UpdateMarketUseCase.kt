@@ -3,8 +3,9 @@ package com.example.yumarketforowners.marketmanage.market.domain.usecase
 import com.example.yumarketforowners.marketmanage.market.domain.model.UpdateMarket
 import com.example.yumarketforowners.marketmanage.market.domain.repository.MarketRepository
 import com.example.yumarketforowners.marketmanage.market.domain.validator.DeliveryFeeValidator
+import javax.inject.Inject
 
-class UpdateMarketUseCase(
+class UpdateMarketUseCase @Inject constructor(
     private val repository: MarketRepository
 ) {
     suspend operator fun invoke(marketToUpdate: UpdateMarket) {

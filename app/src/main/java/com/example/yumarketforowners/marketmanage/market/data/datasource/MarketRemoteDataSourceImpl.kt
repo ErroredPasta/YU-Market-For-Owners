@@ -4,8 +4,8 @@ import android.accounts.NetworkErrorException
 import com.example.yumarketforowners.core.data.api.MarketApi
 import com.example.yumarketforowners.marketmanage.market.data.dto.MarketDto
 import com.example.yumarketforowners.marketmanage.market.data.dto.UpdateMarketDto
-import com.example.yumarketforowners.di.singleton.Dispatcher
-import com.example.yumarketforowners.di.singleton.DispatcherType
+import com.example.yumarketforowners.core.di.Dispatcher
+import com.example.yumarketforowners.core.di.DispatcherType
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

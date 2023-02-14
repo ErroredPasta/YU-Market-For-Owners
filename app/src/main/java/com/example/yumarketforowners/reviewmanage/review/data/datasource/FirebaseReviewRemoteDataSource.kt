@@ -1,8 +1,8 @@
 package com.example.yumarketforowners.reviewmanage.review.data.datasource
 
 import com.example.yumarketforowners.reviewmanage.review.data.dto.ReviewDto
-import com.example.yumarketforowners.di.singleton.Dispatcher
-import com.example.yumarketforowners.di.singleton.DispatcherType
+import com.example.yumarketforowners.core.di.Dispatcher
+import com.example.yumarketforowners.core.di.DispatcherType
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.getValue
 import kotlinx.coroutines.CoroutineDispatcher

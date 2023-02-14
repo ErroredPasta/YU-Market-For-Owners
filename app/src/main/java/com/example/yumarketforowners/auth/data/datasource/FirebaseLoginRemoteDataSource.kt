@@ -1,7 +1,7 @@
 package com.example.yumarketforowners.auth.data.datasource
 
-import com.example.yumarketforowners.di.singleton.Dispatcher
-import com.example.yumarketforowners.di.singleton.DispatcherType
+import com.example.yumarketforowners.core.di.Dispatcher
+import com.example.yumarketforowners.core.di.DispatcherType
 import com.example.yumarketforowners.auth.domain.usecase.UserNotFoundException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
