@@ -1,13 +1,11 @@
-package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.review
+package com.example.yumarketforowners.reviewmanage.review.presentation.screen
 
-import com.example.yumarketforowners.coroutine.TestCoroutineRule
+import com.example.yumarketforowners.core.TestCoroutineRule
 import com.example.yumarketforowners.reviewmanage.review.domain.model.Review
 import com.example.yumarketforowners.reviewmanage.review.domain.usecase.GetReviewsUseCase
 import com.example.yumarketforowners.entity.createReview
 import com.example.yumarketforowners.reviewmanage.review.presentation.mapper.toReview
 import com.example.yumarketforowners.reviewmanage.review.presentation.viewholder.ReviewUiState
-import com.example.yumarketforowners.reviewmanage.review.presentation.screen.ReviewListView
-import com.example.yumarketforowners.reviewmanage.review.presentation.screen.ReviewManagePresenter
 import com.google.common.truth.Truth.assertThat
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope

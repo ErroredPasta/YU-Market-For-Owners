@@ -1,6 +1,6 @@
-package com.example.yumarketforowners.presentation.screen.orderlist
+package com.example.yumarketforowners.orderlist.presentation.screen
 //
-//import com.example.yumarketforowners.coroutine.TestCoroutineRule
+//import com.example.yumarketforowners.core.TestCoroutineRule
 //import com.example.yumarketforowners.domain.model.order.*
 //import com.example.yumarketforowners.domain.usecase.order.GetOrderList
 //import com.example.yumarketforowners.domain.usecase.order.UpdateOrderState

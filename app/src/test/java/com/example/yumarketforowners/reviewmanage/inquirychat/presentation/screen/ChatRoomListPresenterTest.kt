@@ -1,14 +1,12 @@
-package com.example.yumarketforowners.presentation.screen.reviewmanage.innerfragment.chatroom
+package com.example.yumarketforowners.reviewmanage.inquirychat.presentation.screen
 
-import com.example.yumarketforowners.coroutine.TestCoroutineRule
+import com.example.yumarketforowners.core.TestCoroutineRule
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.model.ChatRoom
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.usecase.GetChatRoomsUseCase
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.usecase.RemoveChatRoomUseCase
 import com.example.yumarketforowners.entity.createChatRoom
 import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.mapper.toChatRoom
 import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.viewholder.ChatRoomUiState
-import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.screen.ChatRoomListPresenter
-import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.screen.ChatRoomListView
 import com.google.common.truth.Truth.assertThat
 import io.mockk.*
 import kotlinx.coroutines.CoroutineScope

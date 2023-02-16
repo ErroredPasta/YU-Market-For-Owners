@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.data.repository
+package com.example.yumarketforowners.reviewmanage.review.data.repository
 
 import com.example.yumarketforowners.reviewmanage.review.domain.model.Review
 import com.example.yumarketforowners.reviewmanage.review.domain.repository.ReviewRepository

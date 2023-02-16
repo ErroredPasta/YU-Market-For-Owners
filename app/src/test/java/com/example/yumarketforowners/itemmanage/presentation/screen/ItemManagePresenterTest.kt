@@ -1,6 +1,6 @@
-package com.example.yumarketforowners.presentation.screen.itemmanage
+package com.example.yumarketforowners.itemmanage.presentation.screen
 //
-//import com.example.yumarketforowners.coroutine.TestCoroutineRule
+//import com.example.yumarketforowners.core.TestCoroutineRule
 //import com.example.yumarketforowners.itemmanage.domain.model.Item
 //import com.example.yumarketforowners.itemmanage.domain.usecase.GetItemsUseCase
 //import com.example.yumarketforowners.entity.createItem

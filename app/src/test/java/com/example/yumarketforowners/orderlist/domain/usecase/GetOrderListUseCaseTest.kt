@@ -1,8 +1,7 @@
-package com.example.yumarketforowners.domain.usecase.order
+package com.example.yumarketforowners.orderlist.domain.usecase
 
-import com.example.yumarketforowners.data.repository.FakeOrderRepository
+import com.example.yumarketforowners.orderlist.data.repository.FakeOrderRepository
 import com.example.yumarketforowners.orderlist.domain.model.OrderState
-import com.example.yumarketforowners.orderlist.domain.usecase.GetOrderListUseCase
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

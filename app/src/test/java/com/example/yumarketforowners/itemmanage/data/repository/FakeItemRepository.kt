@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.data.repository
+package com.example.yumarketforowners.itemmanage.data.repository
 
 import com.example.yumarketforowners.itemmanage.domain.model.Item
 import com.example.yumarketforowners.itemmanage.domain.repository.ItemRepository

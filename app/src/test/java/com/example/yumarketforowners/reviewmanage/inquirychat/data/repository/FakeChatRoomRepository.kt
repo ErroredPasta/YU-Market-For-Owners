@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.data.repository
+package com.example.yumarketforowners.reviewmanage.inquirychat.data.repository
 
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.model.ChatRoom
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.repository.ChatRoomRepository

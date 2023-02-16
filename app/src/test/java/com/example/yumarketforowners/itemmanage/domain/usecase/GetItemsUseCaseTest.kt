@@ -1,6 +1,6 @@
-package com.example.yumarketforowners.domain.usecase.item
+package com.example.yumarketforowners.itemmanage.domain.usecase
 //
-//import com.example.yumarketforowners.data.repository.FakeItemRepository
+//import com.example.yumarketforowners.itemmanage.data.repository.FakeItemRepository
 //import com.example.yumarketforowners.itemmanage.domain.repository.ItemRepository
 //import com.google.common.truth.Truth.assertThat
 //import kotlinx.coroutines.ExperimentalCoroutinesApi
