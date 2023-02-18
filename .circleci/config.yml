@@ -75,6 +75,7 @@ jobs:
     steps:
       - checkout
       - add-execution-permission
+      - import-local-properties
       - import-firebase-json
       # Then start the emulator and run the Instrumentation tests!
       - android/start-emulator-and-run-tests:
