@@ -18,15 +18,25 @@ commands:
   import-firebase-json:
     steps:
       - run:
-          # Export base64 encoded google-services.json
+          # Import base64 encoded google-services.json
           # into local bash variables
-          name: Export Google Services Json
+          name: Import Google Services Json
           command: echo 'export GOOGLE_SERVICES_JSON="$FIRE_BASE"' >> $BASH_ENV
 
       - run:
           # Decode the base64 string
           name: Decode Google Services Json
           command: echo $GOOGLE_SERVICES_JSON | base64 -di > /home/circleci/project/app/google-services.json
+          
+  import-local-properties:
+    steps:
+      - run: 
+          name: Import base64 encoded local.properties file
+          command: echo 'export LOCAL_PROPERTIES_FILE="$LOCAL_PROPERTIES"' >> $BASH_ENV
+
+      - run:
+          name: Decode local.properties
+          command: echo $LOCAL_PROPERTIES_FILE | base64 -di > /home/circleci/project/local.properties
 
 
 # Define a job to be invoked later in a workflow.
