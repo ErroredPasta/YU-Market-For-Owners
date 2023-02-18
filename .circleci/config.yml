@@ -51,6 +51,7 @@ jobs:
     steps:
       - checkout
       - add-execution-permission
+      - import-local-properties
       - import-firebase-json
       - android/restore-gradle-cache
       # The next step will run the unit tests
