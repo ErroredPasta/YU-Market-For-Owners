@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.entity
+package com.example.yumarketforowners.reviewmanage.inquirychat
 
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.model.ChatRoom
 

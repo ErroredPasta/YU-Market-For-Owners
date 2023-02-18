@@ -4,7 +4,7 @@ import com.example.yumarketforowners.core.TestCoroutineRule
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.model.ChatRoom
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.usecase.GetChatRoomsUseCase
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.usecase.RemoveChatRoomUseCase
-import com.example.yumarketforowners.entity.createChatRoom
+import com.example.yumarketforowners.reviewmanage.inquirychat.createChatRoom
 import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.mapper.toChatRoom
 import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.viewholder.ChatRoomUiState
 import com.google.common.truth.Truth.assertThat

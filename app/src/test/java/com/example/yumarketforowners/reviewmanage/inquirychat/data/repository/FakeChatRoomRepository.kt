@@ -2,7 +2,7 @@ package com.example.yumarketforowners.reviewmanage.inquirychat.data.repository
 
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.model.ChatRoom
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.repository.ChatRoomRepository
-import com.example.yumarketforowners.entity.createChatRoom
+import com.example.yumarketforowners.reviewmanage.inquirychat.createChatRoom
 
 class FakeChatRoomRepository : ChatRoomRepository {
     private val chatRooms = (1..10).map {

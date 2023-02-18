@@ -1,18 +1,18 @@
-package com.example.yumarketforowners.itemmanage.data.repository
+package com.example.yumarketforowners.itemmanage.domain.usecase
 
 import com.example.yumarketforowners.itemmanage.domain.model.Item
 import com.example.yumarketforowners.itemmanage.domain.repository.ItemRepository
-import com.example.yumarketforowners.entity.createItem
+import com.example.yumarketforowners.itemmanage.createItem
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 class FakeItemRepository : ItemRepository {
     private val items = (1..10).map {
         createItem(it)
     }.toMutableList()
 
-    override fun getItemsByMarketId(marketId: String): Flow<List<Item>> {
-        TODO("Not yet implemented")
-    }
+    override fun getItemsByMarketId(marketId: String): Flow<List<Item>> = flowOf(items)
+
     override suspend fun getSingleItemById(itemId: Long): Item {
         val foundItem = items.find { it.id == itemId }
 

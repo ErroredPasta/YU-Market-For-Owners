@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.entity
+package com.example.yumarketforowners.orderlist
 
 import com.example.yumarketforowners.orderlist.domain.model.*
 import java.time.LocalTime

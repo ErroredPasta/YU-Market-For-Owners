@@ -3,7 +3,7 @@ package com.example.yumarketforowners.reviewmanage.review.presentation.screen
 import com.example.yumarketforowners.core.TestCoroutineRule
 import com.example.yumarketforowners.reviewmanage.review.domain.model.Review
 import com.example.yumarketforowners.reviewmanage.review.domain.usecase.GetReviewsUseCase
-import com.example.yumarketforowners.entity.createReview
+import com.example.yumarketforowners.reviewmanage.review.createReview
 import com.example.yumarketforowners.reviewmanage.review.presentation.mapper.toReview
 import com.example.yumarketforowners.reviewmanage.review.presentation.viewholder.ReviewUiState
 import com.google.common.truth.Truth.assertThat

@@ -1,4 +1,4 @@
-package com.example.yumarketforowners.entity
+package com.example.yumarketforowners.itemmanage
 
 import com.example.yumarketforowners.itemmanage.domain.model.Item
 import com.example.yumarketforowners.itemmanage.domain.model.Option

@@ -2,7 +2,7 @@ package com.example.yumarketforowners.reviewmanage.review.data.repository
 
 import com.example.yumarketforowners.reviewmanage.review.domain.model.Review
 import com.example.yumarketforowners.reviewmanage.review.domain.repository.ReviewRepository
-import com.example.yumarketforowners.entity.createReview
+import com.example.yumarketforowners.reviewmanage.review.createReview
 
 class FakeReviewRepository : ReviewRepository {
     private val reviews = (1..10).map {

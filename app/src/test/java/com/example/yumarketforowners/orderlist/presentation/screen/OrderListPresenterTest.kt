@@ -1,22 +1,23 @@
 package com.example.yumarketforowners.orderlist.presentation.screen
 //
 //import com.example.yumarketforowners.core.TestCoroutineRule
-//import com.example.yumarketforowners.domain.model.order.*
-//import com.example.yumarketforowners.domain.usecase.order.GetOrderList
-//import com.example.yumarketforowners.domain.usecase.order.UpdateOrderState
-//import com.example.yumarketforowners.entity.createOrder
-//import com.example.yumarketforowners.presentation.mapper.order.toOrderUiState
+//import com.example.yumarketforowners.orderlist.createOrder
+//import com.example.yumarketforowners.orderlist.domain.model.OrderState
+//import com.example.yumarketforowners.orderlist.domain.usecase.FakeOrderRepository
+//import com.example.yumarketforowners.orderlist.domain.usecase.UpdateOrderStateUseCase
+//import com.example.yumarketforowners.orderlist.presentation.mapper.toOrderUiState
+//import com.example.yumarketforowners.orderlist.presentation.viewholder.OrderUiState
 //import io.mockk.*
 //import kotlinx.coroutines.CoroutineScope
 //import kotlinx.coroutines.ExperimentalCoroutinesApi
-//import kotlinx.coroutines.flow.flow
+//import kotlinx.coroutines.SupervisorJob
+//import kotlinx.coroutines.plus
 //import kotlinx.coroutines.test.TestScope
 //import kotlinx.coroutines.test.advanceUntilIdle
 //import kotlinx.coroutines.test.runTest
 //import org.junit.Before
-//import org.junit.Test
-//
 //import org.junit.Rule
+//import org.junit.Test
 //import javax.inject.Provider
 //
 //@ExperimentalCoroutinesApi
@@ -29,31 +30,26 @@ package com.example.yumarketforowners.orderlist.presentation.screen
 //
 //    // region test doubles =========================================================================
 //    private lateinit var viewMock: OrderListInnerFragment
-//    private lateinit var getOrderListMock: GetOrderList
 //    private lateinit var scopeProviderMock: Provider<CoroutineScope>
-//    private lateinit var updateOrderState: UpdateOrderState
+//    private lateinit var updateOrderStateUseCase: UpdateOrderStateUseCase
+//    private lateinit var fakeOrderRepository: FakeOrderRepository
 //    // endregion test doubles ======================================================================
-//
-//    // region constants ============================================================================
-//    private val testMarketId = 0L
-//    // endregion constants =========================================================================
 //
 //    @Before
 //    fun setup() {
 //        viewMock = mockk(relaxed = true)
-//        getOrderListMock = mockk()
 //        scopeProviderMock = mockk()
-//        updateOrderState = mockk(relaxUnitFun = true)
+//        updateOrderStateUseCase = mockk(relaxUnitFun = true)
+//        fakeOrderRepository = FakeOrderRepository()
 //
 //        sut = OrderListPresenter(
 //            view = viewMock,
-////            getOrderList = getOrderListMock,
 //            scopeProvider = scopeProviderMock,
-//            updateOrderState = updateOrderState,
-//            orderListFlow = flow {  }
+//            updateOrderStateUseCase = updateOrderStateUseCase,
+//            orderListFlow = fakeOrderRepository.orderListFlow
 //        )
 //
-//        every { scopeProviderMock.get() } returns TestScope()
+//        every { scopeProviderMock.get() } returns TestScope() + SupervisorJob()
 //    }
 //
 //    @Test
@@ -62,7 +58,7 @@ package com.example.yumarketforowners.orderlist.presentation.screen
 //        getOrderListReturns(orderState = OrderState.PENDING)
 //
 //        // act
-//        sut.requestOrderList(marketId = testMarketId, orderState = OrderState.PENDING)
+//        sut.observeOrderList(orderState = OrderState.PENDING)
 //        advanceUntilIdle()
 //
 //        // assert
@@ -78,7 +74,7 @@ package com.example.yumarketforowners.orderlist.presentation.screen
 //        val expected = getOrderListReturns(orderState = OrderState.PENDING)
 //
 //        // act
-//        sut.requestOrderList(marketId = testMarketId, orderState = OrderState.PENDING)
+//        sut.observeOrderList(orderState = OrderState.PENDING)
 //        advanceUntilIdle()
 //
 //        // assert
@@ -91,7 +87,7 @@ package com.example.yumarketforowners.orderlist.presentation.screen
 //        getOrderListFailed()
 //
 //        // act
-//        sut.requestOrderList(marketId = testMarketId, orderState = OrderState.PENDING)
+//        sut.observeOrderList(orderState = OrderState.PENDING)
 //        advanceUntilIdle()
 //
 //        // assert
@@ -104,7 +100,7 @@ package com.example.yumarketforowners.orderlist.presentation.screen
 //        val expected = getOrderListReturns(orderState = OrderState.ACCEPTED)
 //
 //        // act
-//        sut.requestOrderList(marketId = testMarketId, orderState = OrderState.ACCEPTED)
+//        sut.observeOrderList(orderState = OrderState.ACCEPTED)
 //        advanceUntilIdle()
 //
 //        // assert
@@ -117,7 +113,7 @@ package com.example.yumarketforowners.orderlist.presentation.screen
 //        getOrderListFailed()
 //
 //        // act
-//        sut.requestOrderList(marketId = testMarketId, orderState = OrderState.ACCEPTED)
+//        sut.observeOrderList(orderState = OrderState.ACCEPTED)
 //        advanceUntilIdle()
 //
 //        // assert
@@ -130,7 +126,7 @@ package com.example.yumarketforowners.orderlist.presentation.screen
 //        val expected = getOrderListReturns(orderState = OrderState.DONE)
 //
 //        // act
-//        sut.requestOrderList(marketId = testMarketId, orderState = OrderState.DONE)
+//        sut.observeOrderList(orderState = OrderState.DONE)
 //        advanceUntilIdle()
 //
 //        // assert
@@ -143,7 +139,7 @@ package com.example.yumarketforowners.orderlist.presentation.screen
 //        getOrderListFailed()
 //
 //        // act
-//        sut.requestOrderList(marketId = testMarketId, orderState = OrderState.DONE)
+//        sut.observeOrderList(orderState = OrderState.DONE)
 //        advanceUntilIdle()
 //
 //        // assert
@@ -152,14 +148,8 @@ package com.example.yumarketforowners.orderlist.presentation.screen
 //
 //    // region helper methods =======================================================================
 //
-//    private fun getOrderListReturns(orderState: OrderState): List<OrderUiState> {
-//        val returnValue = createOrderList(orderState)
-//
-//        coEvery {
-//            getOrderListMock(marketId = any(), orderState = orderState)
-//        } returns returnValue
-//
-//        return returnValue.map {
+//    private fun getOrderListReturns(orderState: OrderState): List<OrderUiState> =
+//        createOrderList(orderState).map {
 //            it.toOrderUiState(
 //                onTelephoneNumberClicked = {},
 //                onAcceptOrderButtonClicked = {},
@@ -167,10 +157,9 @@ package com.example.yumarketforowners.orderlist.presentation.screen
 //                onDeliveryDoneButtonClicked = {}
 //            )
 //        }
-//    }
 //
 //    private fun getOrderListFailed() {
-//        coEvery { getOrderListMock(marketId = any(), orderState = any()) } returns null
+//        fakeOrderRepository.getOrderListFailure = true
 //    }
 //
 //    private fun createOrderList(orderState: OrderState) = (1..10).map {
