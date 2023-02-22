@@ -16,7 +16,7 @@ class ChatRoomDetailPresenter(
     private val getChatsByChatRoomIdUseCase: GetChatsByChatRoomIdUseCase,
     private val sendChatUseCase: SendChatUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestChats(chatRoomId: Long) {
         getChatsByChatRoomIdUseCase(chatRoomId = chatRoomId).onStart {

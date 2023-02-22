@@ -14,7 +14,7 @@ class UpdateProfilePresenter(
     private val getCurrentUserUseCase: GetCurrentUserUseCase,
     private val updateUserUseCase: UpdateUserUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestCurrentUser() {
         getCurrentUserUseCase().onStart {

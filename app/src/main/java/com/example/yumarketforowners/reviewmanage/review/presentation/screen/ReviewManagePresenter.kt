@@ -12,7 +12,7 @@ class ReviewManagePresenter(
     private val view: ReviewListView,
     private val getReviewsUseCase: GetReviewsUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestData(marketId: String) {
         coroutineScope.launch {

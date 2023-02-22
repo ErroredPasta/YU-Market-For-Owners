@@ -10,7 +10,7 @@ class NoticeDetailPresenter(
     private val view: NoticeDetailView,
     private val getNoticeByIdUseCase: GetNoticeByIdUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestNoticeById(noticeId: Long) {
         coroutineScope.launch {

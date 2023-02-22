@@ -14,7 +14,7 @@ class ItemManagePresenter(
     private val view: ItemManageView,
     private val getItemsUseCase: GetItemsUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestData(marketId: String, available: Boolean) {
         /* TODO: 2022-09-21 수 01:34, error 처리 구현 */

@@ -13,7 +13,7 @@ class FaqListPresenter(
     private val view: FaqListView,
     private val repository: CustomerSupportRepository,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestCustomerSupportList(faqCategory: FaqCategory) {
         coroutineScope.launch {

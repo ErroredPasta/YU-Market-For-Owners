@@ -17,7 +17,7 @@ class UpdateMarketPresenter(
     private val getMarketDetailUseCase: GetMarketDetailUseCase,
     private val updateMarketUseCase: UpdateMarketUseCase,
     scopeProvider: Provider<CoroutineScope>,
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     private lateinit var deliveryFeeUiStates: List<DeliveryFeeUiState>
 

@@ -16,7 +16,7 @@ class OrderListPresenter(
     private val updateOrderStateUseCase: UpdateOrderStateUseCase,
     private val orderListFlow: Flow<List<Order>>,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun observeOrderList(orderState: OrderState) {
         orderListFlow.map {

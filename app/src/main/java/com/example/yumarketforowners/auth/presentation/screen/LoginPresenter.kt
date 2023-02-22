@@ -16,7 +16,7 @@ class LoginPresenter(
     private val kakaoLoginUseCase: KakaoLoginUseCase,
     private val googleLoginUseCase: GoogleLoginUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun login(id: String, password: String) {
         coroutineScope.launch {

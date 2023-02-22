@@ -17,7 +17,7 @@ class UpdateItemPresenter(
     private val getSingleItemUseCase: GetSingleItemUseCase,
     private val updateItemUseCase: UpdateItemUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     private var optionGroupUiStates = emptyList<OptionGroupUiState>()
 

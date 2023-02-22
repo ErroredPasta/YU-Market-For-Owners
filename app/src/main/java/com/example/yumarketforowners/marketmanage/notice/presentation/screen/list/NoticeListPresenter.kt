@@ -11,7 +11,7 @@ class NoticeListPresenter(
     private val view: NoticeListView,
     private val getAllNoticesUseCase: GetAllNoticesUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestNotices() {
         coroutineScope.launch {

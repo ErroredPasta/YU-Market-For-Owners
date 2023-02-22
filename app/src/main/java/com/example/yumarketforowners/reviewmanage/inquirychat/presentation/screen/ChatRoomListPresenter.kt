@@ -13,7 +13,7 @@ class ChatRoomListPresenter(
     private val getChatRoomsUseCase: GetChatRoomsUseCase,
     private val removeChatRoomUseCase: RemoveChatRoomUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestChatRooms(marketId: Long) {
         coroutineScope.launch {

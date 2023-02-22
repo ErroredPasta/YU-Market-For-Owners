@@ -13,7 +13,7 @@ class AddItemPresenter(
     private val view: AddItemView,
     private val addItemUseCase: AddItemUseCase,
     scopeProvider: Provider<CoroutineScope>
-) : BaseCoroutinePresenter(view, scopeProvider) {
+) : BaseCoroutinePresenter(scopeProvider) {
 
     private var optionGroupUiStates = emptyList<OptionGroupUiState>()
 
