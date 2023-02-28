@@ -6,6 +6,7 @@ import com.example.yumarketforowners.core.presentation.di.LifeCycleScopeType
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.usecase.GetChatRoomsUseCase
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.usecase.RemoveChatRoomUseCase
 import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.mapper.toChatRoomUiState
+import com.example.yumarketforowners.core.util.runCoroutineCatching
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,21 +23,26 @@ class ChatRoomListPresenter @Inject constructor(
         coroutineScope.launch {
             view.loading(isLoading = true)
             /* TODO: 2022-09-21 수 01:35, error 처리 구현 */
-            val result = getChatRoomsUseCase(marketId = marketId).map { chatRoom ->
-                chatRoom.toChatRoomUiState(
-                    onClicked = { view.navigateToChatRoomScreen(chatRoom.id) },
-                    onRemoveClicked = {
-                        coroutineScope.launch {
-                            removeChatRoomUseCase(chatRoom.id)
-                            requestChatRooms(marketId = marketId)
+            runCoroutineCatching {
+                getChatRoomsUseCase(marketId = marketId).map { chatRoom ->
+                    chatRoom.toChatRoomUiState(
+                        onClicked = { view.navigateToChatRoomScreen(chatRoom.id) },
+                        onRemoveClicked = {
+                            coroutineScope.launch {
+                                removeChatRoomUseCase(chatRoom.id)
+                                requestChatRooms(marketId = marketId)
+                            }
                         }
-                    }
-                )
+                    )
+                }
+            }.onSuccess { result ->
+                view.onRequestChatRoomsSuccess(result)
+            }.onFailure { cause ->
+                view.onError(cause)
             }
 
             view.loading(isLoading = false)
 
-            view.onRequestChatRoomsSuccess(result)
         }
     }
 }
