@@ -3,16 +3,19 @@ package com.example.yumarketforowners.itemmanage.presentation.screen.additem
 import com.example.yumarketforowners.itemmanage.domain.usecase.AddItemUseCase
 import com.example.yumarketforowners.itemmanage.presentation.mapper.toItem
 import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScope
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScopeType
 import com.example.yumarketforowners.itemmanage.presentation.viewholder.OptionGroupUiState
 import com.example.yumarketforowners.itemmanage.presentation.viewholder.OptionUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import javax.inject.Provider
 
-class AddItemPresenter(
+class AddItemPresenter @Inject constructor(
     private val view: AddItemView,
     private val addItemUseCase: AddItemUseCase,
-    scopeProvider: Provider<CoroutineScope>
+    @LifeCycleScope(LifeCycleScopeType.ACTIVITY) scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     private var optionGroupUiStates = emptyList<OptionGroupUiState>()

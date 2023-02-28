@@ -4,14 +4,17 @@ import android.util.Log
 import com.example.yumarketforowners.reviewmanage.review.domain.usecase.GetReviewsUseCase
 import com.example.yumarketforowners.reviewmanage.review.presentation.mapper.toReviewUiState
 import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScope
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScopeType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import javax.inject.Provider
 
-class ReviewManagePresenter(
+class ReviewManagePresenter @Inject constructor(
     private val view: ReviewListView,
     private val getReviewsUseCase: GetReviewsUseCase,
-    scopeProvider: Provider<CoroutineScope>
+    @LifeCycleScope(LifeCycleScopeType.FRAGMENT) scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestData(marketId: String) {

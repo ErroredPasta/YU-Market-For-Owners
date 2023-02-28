@@ -7,16 +7,19 @@ import com.example.yumarketforowners.marketmanage.market.presentation.mapper.toD
 import com.example.yumarketforowners.marketmanage.market.presentation.mapper.toDeliveryFeeUiState
 import com.example.yumarketforowners.marketmanage.market.presentation.mapper.toUpdateMarket
 import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScope
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScopeType
 import com.example.yumarketforowners.marketmanage.market.presentation.viewholder.DeliveryFeeUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import javax.inject.Provider
 
-class UpdateMarketPresenter(
+class UpdateMarketPresenter @Inject constructor(
     private val view: UpdateMarketView,
     private val getMarketDetailUseCase: GetMarketDetailUseCase,
     private val updateMarketUseCase: UpdateMarketUseCase,
-    scopeProvider: Provider<CoroutineScope>,
+    @LifeCycleScope(LifeCycleScopeType.ACTIVITY) scopeProvider: Provider<CoroutineScope>,
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     private lateinit var deliveryFeeUiStates: List<DeliveryFeeUiState>

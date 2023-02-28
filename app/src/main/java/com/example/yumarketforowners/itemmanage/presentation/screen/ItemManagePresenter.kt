@@ -3,17 +3,20 @@ package com.example.yumarketforowners.itemmanage.presentation.screen
 import com.example.yumarketforowners.itemmanage.domain.usecase.GetItemsUseCase
 import com.example.yumarketforowners.itemmanage.presentation.mapper.toItemUiState
 import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScope
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScopeType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
+import javax.inject.Inject
 import javax.inject.Provider
 
-class ItemManagePresenter(
+class ItemManagePresenter @Inject constructor(
     private val view: ItemManageView,
     private val getItemsUseCase: GetItemsUseCase,
-    scopeProvider: Provider<CoroutineScope>
+    @LifeCycleScope(LifeCycleScopeType.FRAGMENT) scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestData(marketId: String, available: Boolean) {

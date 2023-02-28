@@ -1,21 +1,24 @@
 package com.example.yumarketforowners.reviewmanage.inquirychat.presentation.screen.chatroomdetail
 
+import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScope
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScopeType
+import com.example.yumarketforowners.core.presentation.viewholder.CellType
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.model.Chat
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.usecase.GetChatsByChatRoomIdUseCase
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.usecase.SendChatUseCase
 import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.mapper.toChatUiState
-import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
-import com.example.yumarketforowners.core.presentation.viewholder.CellType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import javax.inject.Provider
 
-class ChatRoomDetailPresenter(
+class ChatRoomDetailPresenter @Inject constructor(
     private val view: ChatRoomDetailView,
     private val getChatsByChatRoomIdUseCase: GetChatsByChatRoomIdUseCase,
     private val sendChatUseCase: SendChatUseCase,
-    scopeProvider: Provider<CoroutineScope>
+    @LifeCycleScope(LifeCycleScopeType.ACTIVITY) scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestChats(chatRoomId: Long) {

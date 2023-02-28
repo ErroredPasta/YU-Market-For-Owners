@@ -1,18 +1,21 @@
 package com.example.yumarketforowners.reviewmanage.inquirychat.presentation.screen
 
+import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScope
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScopeType
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.usecase.GetChatRoomsUseCase
 import com.example.yumarketforowners.reviewmanage.inquirychat.domain.usecase.RemoveChatRoomUseCase
 import com.example.yumarketforowners.reviewmanage.inquirychat.presentation.mapper.toChatRoomUiState
-import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import javax.inject.Provider
 
-class ChatRoomListPresenter(
+class ChatRoomListPresenter @Inject constructor(
     private val view: ChatRoomListView,
     private val getChatRoomsUseCase: GetChatRoomsUseCase,
     private val removeChatRoomUseCase: RemoveChatRoomUseCase,
-    scopeProvider: Provider<CoroutineScope>
+    @LifeCycleScope(LifeCycleScopeType.FRAGMENT) scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestChatRooms(marketId: Long) {

@@ -6,16 +6,19 @@ import com.example.yumarketforowners.auth.domain.usecase.KakaoLoginUseCase
 import com.example.yumarketforowners.auth.domain.usecase.LoginUseCase
 import com.example.yumarketforowners.auth.domain.usecase.UserNotFoundException
 import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScope
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScopeType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import javax.inject.Provider
 
-class LoginPresenter(
+class LoginPresenter @Inject constructor(
     private val view: LoginView,
     private val loginUseCase: LoginUseCase,
     private val kakaoLoginUseCase: KakaoLoginUseCase,
     private val googleLoginUseCase: GoogleLoginUseCase,
-    scopeProvider: Provider<CoroutineScope>
+    @LifeCycleScope(LifeCycleScopeType.ACTIVITY) scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     fun login(id: String, password: String) {

@@ -6,17 +6,20 @@ import com.example.yumarketforowners.itemmanage.presentation.mapper.toItem
 import com.example.yumarketforowners.itemmanage.presentation.mapper.toOptionGroupUiStates
 import com.example.yumarketforowners.itemmanage.presentation.mapper.toUpdateItemUiState
 import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScope
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScopeType
 import com.example.yumarketforowners.itemmanage.presentation.viewholder.OptionGroupUiState
 import com.example.yumarketforowners.itemmanage.presentation.viewholder.OptionUiState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import javax.inject.Provider
 
-class UpdateItemPresenter(
+class UpdateItemPresenter @Inject constructor(
     private val view: UpdateItemView,
     private val getSingleItemUseCase: GetSingleItemUseCase,
     private val updateItemUseCase: UpdateItemUseCase,
-    scopeProvider: Provider<CoroutineScope>
+    @LifeCycleScope(LifeCycleScopeType.ACTIVITY) scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     private var optionGroupUiStates = emptyList<OptionGroupUiState>()

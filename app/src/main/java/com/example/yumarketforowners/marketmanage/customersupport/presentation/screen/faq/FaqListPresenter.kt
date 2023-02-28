@@ -4,15 +4,18 @@ import com.example.yumarketforowners.marketmanage.customersupport.domain.model.F
 import com.example.yumarketforowners.marketmanage.customersupport.domain.repository.CustomerSupportRepository
 import com.example.yumarketforowners.marketmanage.customersupport.presentation.mapper.toCustomerSupportUiState
 import com.example.yumarketforowners.core.presentation.base.BaseCoroutinePresenter
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScope
+import com.example.yumarketforowners.core.presentation.di.LifeCycleScopeType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import javax.inject.Provider
 
 
-class FaqListPresenter(
+class FaqListPresenter @Inject constructor(
     private val view: FaqListView,
     private val repository: CustomerSupportRepository,
-    scopeProvider: Provider<CoroutineScope>
+    @LifeCycleScope(LifeCycleScopeType.FRAGMENT) scopeProvider: Provider<CoroutineScope>
 ) : BaseCoroutinePresenter(scopeProvider) {
 
     fun requestCustomerSupportList(faqCategory: FaqCategory) {
